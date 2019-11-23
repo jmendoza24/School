@@ -1,5 +1,6 @@
-<li class=" nav-item"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Catalogos</span></a>
-    <ul class="menu-content">       
-        <li class=""><a href=""><span>Clientes</span></a></li>
-    </ul>
+<li class=" nav-item {{ Request::is('catalogos*') ? 'active' : '' }}">
+    <a href="{!! route('catalogos.index') !!}">
+        <i class="ft-bar-chart-2"></i>
+        <span class="menu-title" data-i18n="">Catálogos</span>
+    </a>
 </li>

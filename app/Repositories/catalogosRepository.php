@@ -2,26 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\alumnos;
+use App\Models\catalogos;
 use App\Repositories\BaseRepository;
 
 /**
- * Class alumnosRepository
+ * Class catalogosRepository
  * @package App\Repositories
- * @version November 21, 2019, 5:11 am UTC
+ * @version November 23, 2019, 5:16 am UTC
 */
 
-class alumnosRepository extends BaseRepository
+class catalogosRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'direccion',
-        'grado',
-        'grupo',
-        'salon'
+        'catalogo',
+        'valor'
     ];
 
     /**
@@ -39,6 +36,6 @@ class alumnosRepository extends BaseRepository
      **/
     public function model()
     {
-        return alumnos::class;
+        return catalogos::class;
     }
 }

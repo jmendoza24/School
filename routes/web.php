@@ -19,5 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('catalogos', 'catalogosController');
 
-Route::resource('alumnos', 'alumnosController');
+Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
+	Route::get('/guarda_catalogo', 'catalogosController@store');
+	Route::get('/elimina_catalogo', 'catalogosController@elimina');
+
+	});
