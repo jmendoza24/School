@@ -30,3 +30,21 @@ function busca_mun2(){
       });
 
 }
+
+
+function tabla_alumnos(id){
+  
+  alert(id);
+  $.ajax({
+          url:"/api/v1/alumnos",
+          type: "get",
+          data:{'id':id},
+          success: function(respuesta){ 
+         alert(respuesta);
+            //   $("#tabla").html(respuesta);
+
+          }
+      });
+
+
+}

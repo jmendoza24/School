@@ -41,14 +41,9 @@
                     @if(!empty($Alumnos))
                         <option value="1" {{  ($Alumnos->nivel_estudio==1) ? 'selected' : '' }}>Preescolar</option>
                         <option value="2" {{  ($Alumnos->nivel_estudio==2) ? 'selected' : '' }}>Primaria</option>
-                        <option value="3" {{  ($Alumnos->nivel_estudio==3) ? 'selected' : '' }}>Secundaria</option>
-                        <option value="4" {{  ($Alumnos->nivel_estudio==4) ? 'selected' : '' }}>Preparatoria</option>
                     @else
-
                         <option value="1">Preescolar</option>
                         <option value="2">Primaria</option>
-                        <option value="3">Secundaria</option>
-                        <option value="4">Preparatoria</option>
                     @endif
                     
             </select>
@@ -247,7 +242,7 @@
           </div> 
     </div>
     <br><br><br><br><br><br>
-  </div>
+</div>
 
   <div class="tab-pane" id="link32" role="tabpanel" aria-labelledby="link-tab32" aria-expanded="false">
     <h4 class="form-section"><i class="ft-user"></i>Información de contacto</h4>     

@@ -26,18 +26,20 @@ Route::resource('contactos', 'ContactosController');
 Route::resource('documentacions', 'documentacionController');
 
 
+
+
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 
-Route::get('municipios', 'AlumnosController@municipios');
+Route::get('/municipios', 'AlumnosController@municipios');
+
+Route::get('/alumnos', 'AlumnosController@alumnos');
+
+Route::get('/guarda_catalogo', 'catalogosController@store');
+
+Route::get('/elimina_catalogo', 'catalogosController@elimina');
 
 
 });
 
 
 Route::resource('catalogos', 'catalogosController');
-
-Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
-	Route::get('/guarda_catalogo', 'catalogosController@store');
-	Route::get('/elimina_catalogo', 'catalogosController@elimina');
-
-	});

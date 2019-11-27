@@ -33,7 +33,12 @@ class alumnosController extends AppBaseController
     {   
         
         $alumnos = Alumnos::all();
-        return view('alumnos.index',compact('alumnos'));
+        $objeto_alumnos = new Alumnos;
+        $prescolar=$objeto_alumnos->grados_grupos(1);
+        $primaria=$objeto_alumnos->grados_grupos(2);
+
+
+        return view('alumnos.index',compact('alumnos','prescolar','primaria'));
     }
 
     /**
@@ -161,5 +166,17 @@ class alumnosController extends AppBaseController
         }
 
         return $op;
+    }
+
+    public function alumnos(Request $request)
+    {
+
+        $id_grado = $request->id;
+        //dd($id_grado);
+        $objeto_alumnos = new Alumnos;
+        $alumnos=$objeto_alumnos->sql_alumnos($id_grado);
+                return  json_encode($alumnos);
+
+
     }
 }

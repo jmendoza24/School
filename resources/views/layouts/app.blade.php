@@ -226,16 +226,17 @@
   <script src="{{ url('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
 
   <script src="{{ url('app-assets/js/scripts/forms/wizard-steps.js')}}" type="text/javascript"></script>
-  <script src="{{ url('app-assets/js/scripts/tables/datatables/datatable-basic.js')}}" type="text/javascript"></script>
+  
   <script src="{{ url('js/control.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/vendors/js/extensions/dragula.min.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/cards/draggable.js') }}" type="text/javascript"></script>
+  <script src="{{ url('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
 
   <script type="text/javascript" src="{{ url('js/funcion.js') }}"></script>
   
 
   <script type="text/javascript">
-    var table = $(".display").DataTable({
+     $(".display").DataTable({
              "language": {
               "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
           }

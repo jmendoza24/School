@@ -108,5 +108,34 @@ class Alumnos extends Model
                           ->get();
         
 
-    }   
+    }
+
+    public function sql_alumnos($id)
+    {
+        
+        return DB::table('alumnos as a')
+                         ->leftjoin('catalogos as c','c.id','=','a.id_grado')
+                         ->leftjoin('catalogos as c2','c2.id','=','a.id_grupo')
+                         ->leftjoin('catalogos as c3','c3.id','=','a.id_ciclo')
+                         ->select()
+                         ->where('a.nivel_estudio',$id)
+                         ->get();
+
+    }  
+
+    public function grados_grupos($id)
+    {
+      
+        return DB::table('alumnos as a')
+                         ->leftjoin('catalogos as c','c.id','=','a.id_grado')
+                         ->leftjoin('catalogos as c2','c2.id','=','a.id_grupo')
+                         ->selectraw('c.valor as grado,c2.valor as grupo,count(*) as conteos')
+                         ->where('a.nivel_estudio',$id)
+                         ->groupby('c.valor','c2.valor')
+                         ->orderby('c.valor','asc')
+                         ->get();
+
+    } 
 }
+
+

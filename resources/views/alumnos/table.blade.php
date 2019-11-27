@@ -8,7 +8,6 @@
             <th>Grado</th>
             <th>Grupo</th>
             <th>Ciclo</th>
-            <th>Nivel</th>
             <th>Estatus</th>
             <th colspan=""></th>
         </tr>
@@ -22,7 +21,6 @@
             <td>{!! $alumnos->id_grado !!}</td>
             <td>{!! $alumnos->id_grupo !!}</td>
             <td>{!! $alumnos->id_ciclo !!}</td>
-            <td>{!! $alumnos->nivel_estudio !!}</td>
             <td>Activo</td>
             <td>
                 {!! Form::open(['route' => ['alumnos.destroy', $alumnos->id], 'method' => 'delete']) !!}
