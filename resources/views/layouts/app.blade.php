@@ -4,13 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Fluxmetal Fluxmetal">
-  <meta name="keywords" content="Fluxmetal">
-  <meta name="author" content="Fluxmetal">
+  <meta name="description" content="Admin School,Administrador de alumnos">
+  <meta name="keywords" content="Admin School">
+  <meta name="author" content="Snappath">
   <meta name="google-site-verification" content="SKuO2NOdADnxaV-X-53eTxgnXKRvIABkZB800jV9hWM" />
-  <title>Fluxmetals</title> 
-  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/apple-icon-120.png') }}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/ico/favicon.ico') }}">
+  <title>Admin School</title> 
+  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
@@ -35,13 +35,60 @@
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/switch.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/wizard.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/pickers/daterange/daterange.css')}}">
-  
+ <style type="text/css">
+             .m{
+             color: white;
+          }
+          .b{
+
+           background-color: white;
+          color: white;
+          }
+        .naranja{
+
+           background-color: #A34B0A;
+          color: white;
+        
+        }
+
+        .g{
+          color: #666666;    
+        }
+        
+        .azul{
+
+           background-color: #404E67;
+           color: white;
+
+        }
+        .gris{
+           
+            background-color: #646464;
+           color: white;
+        }
+        .morado{
+           background-color: #370f5b;
+           color: white;
+        }
+              .text-bold
+      {
+          color: #370f5b;
+        }
+        .btn_morado{
+           background-color: #370f5b;
+           color: white;
+
+        }
+        .naranja:hover { color: white; }
+        .gris:hover { color: white; }
+        .azul:hover { color: white; }
+        .btn_morado:hover {  background-color: #370f5b;
+           color: white; }
+       </style>
 
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}">
-  
-  
   
   @yield('script')
   <!-- END Custom CSS-->
@@ -91,8 +138,8 @@
   <!-- ////////////////////////////////////////////////////////////////////////////-->
           <footer class="footer footer-static footer-light navbar-border">
             <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
-              <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2019 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
-                target="_blank">Snappath </a>, All rights reserved. </span>
+              <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2020 <a class="text-bold-800 blue darken-2" href="https://snappath.mx/"
+                target="_blank">Snappath </a></span>
               <!--<span class="float-md-right d-block d-md-inline-block d-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span>-->
             </p>
           </footer>
@@ -182,11 +229,36 @@
   <script src="{{ url('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
 
   <script src="{{ url('app-assets/js/scripts/forms/wizard-steps.js')}}" type="text/javascript"></script>
+  <script src="{{ url('js/control.js')}}" type="text/javascript"></script>
 
-  <script src="{{ url('app-assets/vendors/js/extensions/dragula.min.js')}}" type="text/javascript"></script>
-  <script src="{{ url('app-assets/js/scripts/cards/draggable.js') }}" type="text/javascript"></script>
-  <script src="{{ url('app-assets/js/scripts/tables/datatables/datatable-basic.js')}}" type="text/javascript"></script>
-  <script type="text/javascript" src="{{ url('js/funcion.js') }}"></script>
+  <script type="text/javascript">
+    var table = $(".display").DataTable({
+             "language": {
+              "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+          }
+        });
+
+    (function() {
+       'use strict';
+       window.addEventListener('load', function() {
+         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+         var forms = document.getElementsByClassName('needs-validation');
+         // Loop over them and prevent submission
+         var validation = Array.prototype.filter.call(forms, function(form) {
+           form.addEventListener('submit', function(event) {
+             if (form.checkValidity() === false) {
+               event.preventDefault();
+               event.stopPropagation();
+             }
+             form.classList.add('was-validated');
+           }, false);
+         });
+
+       }, false);
+
+      })();
+
+  </script>
   <!--<script type="text/javascript" src="{{ url('app-assets/js/scripts/ui/compact-menu.js')}}"></script>-->
   @yield('script')
   <!-- END STACK JS-->
