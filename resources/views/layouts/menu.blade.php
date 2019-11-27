@@ -11,6 +11,11 @@
                     <span class="menu-title" data-i18n="">Catálogos</span>
                 </a>
             </li>
+            <li class=" nav-item {{ Request::is('materias*') ? 'active' : '' }}">
+                <a href="{!! route('materias.index') !!}">
+                    <span class="menu-title" data-i18n="">Materias</span>
+                </a>
+            </li>
     	
                                         
          </ul>

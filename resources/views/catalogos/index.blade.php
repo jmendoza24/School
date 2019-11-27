@@ -8,7 +8,7 @@
               <select class="form-control" id="identificador" name="identificador" required="">
                     <option value="" >Seleccione una opción...</option>
                     <option value="1" >Ciclo</option>
-                    <option value="2" >Materias</option>
+                    <option value="2" >Documentos</option>
                     <option value="3" >Grados</option>
                     <option value="4" >Grupos</option>
               </select>

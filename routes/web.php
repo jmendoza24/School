@@ -42,4 +42,5 @@ Route::get('/elimina_catalogo', 'catalogosController@elimina');
 });
 
 
-Route::resource('catalogos', 'catalogosController');
+	Route::resource('catalogos', 'catalogosController');
+	Route::resource('materias', 'materiasController');

@@ -2,23 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\Materias;
+use App\Models\materias;
 use App\Repositories\BaseRepository;
 
 /**
- * Class MateriasRepository
+ * Class materiasRepository
  * @package App\Repositories
- * @version November 23, 2019, 5:54 am UTC
+ * @version November 27, 2019, 4:39 am UTC
 */
 
-class MateriasRepository extends BaseRepository
+class materiasRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'activo'
+        'nivel',
+        'grado',
+        'materia'
     ];
 
     /**
@@ -36,6 +37,6 @@ class MateriasRepository extends BaseRepository
      **/
     public function model()
     {
-        return Materias::class;
+        return materias::class;
     }
 }
