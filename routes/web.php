@@ -11,36 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('alumnos', 'AlumnosController');
-
-Route::resource('contactos', 'ContactosController');
-
-Route::resource('documentacions', 'documentacionController');
-
+	//Route::get('/', function () { return view('welcome');});
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::resource('alumnos', 'AlumnosController');
+	Route::resource('contactos', 'ContactosController');
+	Route::resource('documentacions', 'documentacionController');
+	Route::resource('catalogos', 'catalogosController');
+	Route::resource('materias', 'materiasController');
+	Route::get('reportes', 'ReportesController@index')->name('reportes.index');
+});
 
 
 
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
-
-Route::get('/municipios', 'AlumnosController@municipios');
-
-Route::get('/alumnos', 'AlumnosController@alumnos');
-
-Route::get('/guarda_catalogo', 'catalogosController@store');
-
-Route::get('/elimina_catalogo', 'catalogosController@elimina');
-
-
+	Route::get('/municipios', 'AlumnosController@municipios');
+	Route::get('/alumnos', 'AlumnosController@alumnos');
+	Route::get('/guarda_catalogo', 'catalogosController@store');
+	Route::get('/elimina_catalogo', 'catalogosController@elimina');
 });
 
 
-	Route::resource('catalogos', 'catalogosController');
-	Route::resource('materias', 'materiasController');
+	

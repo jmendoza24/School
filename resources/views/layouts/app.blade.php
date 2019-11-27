@@ -236,6 +236,7 @@
   <script src="{{ url('app-assets/vendors/js/extensions/dragula.min.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/cards/draggable.js') }}" type="text/javascript"></script>
   <script src="{{ url('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url('app-assets/js/scripts/cards/card-statistics.js')}}" type="text/javascript"></script>
 
   <script type="text/javascript" src="{{ url('js/funcion.js') }}"></script>
   
