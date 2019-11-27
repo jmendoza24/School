@@ -1,4 +1,4 @@
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow">
+  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow" >
     <div class="navbar-wrapper">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -18,22 +18,18 @@
         <div class="collapse navbar-collapse" id="navbar-mobile">
           <ul class="nav navbar-nav mr-auto float-left">
             <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
-           
           </ul>
           <ul class="nav navbar-nav float-right">
-           
-
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                
                 <span class="user-name">{{ Auth::user()->name }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Editar Prerfil</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{!! url('/logout') !!}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ft-power"></i> Logout</a>                
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                  {{ csrf_field() }}
+                   </form>
 
               </div>
             </li>
@@ -42,9 +38,9 @@
       </div>
     </div>
   </nav>
-  <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="main-menu-content">
-      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+  <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="background: #404E67;">
+    <div class="main-menu-content" >
+      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" >
         
        @include('layouts.menu')
       </ul>

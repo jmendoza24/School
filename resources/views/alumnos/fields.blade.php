@@ -59,8 +59,25 @@
             <div class="col-md-9">
                  <select class="form-control" name="id_grado" id="id_grado">
                     <option value="0" selected="">Elige una opción</option>
-                    <option value="1">Grado 1</option>
-                    <option value="2">Grado 2</option>
+                           @if(!empty($Alumnos))
+                              @foreach($grados as $tipo)
+                                 <option 
+                                      value="{{ $tipo->id }}" 
+                                      {{ old('id_grado', $Alumnos->id_grado) == $tipo->id ? 'selected' : '' }}
+                                 >{{ $tipo->valor }}</option>
+                              @endforeach   
+                              @else
+                               @foreach($grados as $tipo)
+
+                                 <option 
+                                      value="{{ $tipo->id }}" 
+                                      {{ old('id_grado')}}
+                                 >{{ $tipo->valor }}</option>
+                              @endforeach   
+                              @endif
+
+                    </select>
+
                 </select>
             <div class="invalid-feedback">Este campo es requerido.</div>
             </div>
@@ -72,8 +89,23 @@
           <div class="col-md-9">
             <select class="form-control" name="id_grupo" id="id_grupo">
                     <option value="0" selected="">Elige una opción</option>
-                    <option value="1">Grupo 1</option>
-                    <option value="2">Grupo 2</option>
+                      @if(!empty($Alumnos))
+                      @foreach($grupos as $tipo)
+                         <option 
+                              value="{{ $tipo->id }}" 
+                              {{ old('id_grupo', $Alumnos->id_grupo) == $tipo->id ? 'selected' : '' }}
+                         >{{ $tipo->valor }}</option>
+                      @endforeach   
+                      @else
+                       @foreach($grupos as $tipo)
+
+                         <option 
+                              value="{{ $tipo->id }}" 
+                              {{ old('id_grupo')}}
+                         >{{ $tipo->valor }}</option>
+                      @endforeach   
+                      @endif
+ 
             </select>
             <div class="invalid-feedback">Este campo es requerido.</div>
           </div>
@@ -87,9 +119,24 @@
           <label class="col-md-3 label-control" for="userinput1">Ciclo</label>
           <div class="col-md-9">
             <select class="form-control" name="id_ciclo" id="id_ciclo">
-                    <option value="0" selected="">Elige una opción</option>
-                    <option value="1">Ciclo 1</option>
-                    <option value="2">Ciclo 2</option>
+                <option value="0" selected="">Elige una opción</option>
+                    @if(!empty($Alumnos))
+                      @foreach($ciclos as $tipo)
+                         <option 
+                              value="{{ $tipo->id }}" 
+                              {{ old('id_ciclo', $Alumnos->id_ciclo) == $tipo->id ? 'selected' : '' }}
+                         >{{ $tipo->valor }}</option>
+                      @endforeach   
+                      @else
+                       @foreach($ciclos as $tipo)
+
+                         <option 
+                              value="{{ $tipo->id }}" 
+                              {{ old('id_ciclo')}}
+                         >{{ $tipo->valor }}</option>
+                      @endforeach   
+                      @endif
+
             </select>
             <div class="invalid-feedback">Este campo es requerido.</div>
           </div>
@@ -126,7 +173,8 @@
           <div class="form-group row">
             <label class="col-md-3 label-control" for="userinput2">Fecha Nacimiento</label>
             <div class="col-md-9">
-            {!! Form::date('fecha_nacimiento', null, ['class' => 'form-control','id'=>'fecha_nacimiento']) !!}
+             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ (!empty($Alumnos)) ? substr($Alumnos->fecha_nacimiento,0,10) :date('Y-m-d') }}">
+
             </div>
           </div>
       </div> 
@@ -152,11 +200,11 @@
           <div class="col-md-9">
             <select class="form-control" name="id_estado" id="id_estado" onchange="busca_mun()">
                 <option value="0" selected="">Elige una opción</option>
-                    @if(!empty($estados->id_estado))
+                    @if(!empty($Alumnos->id_estado))
                       @foreach($estados as $tipo)
                          <option 
                               value="{{ $tipo->id }}" 
-                              {{ old('id_estado', $estados->id_estado) == $tipo->id ? 'selected' : '' }}
+                              {{ old('id_estado', $Alumnos->id_estado) == $tipo->id ? 'selected' : '' }}
                          >{{ $tipo->estado }}</option>
                       @endforeach   
                       @else
@@ -178,10 +226,10 @@
             <div class="col-md-9">
                  <select class="form-control" id="id_municipio" name="id_municipio">
                     <option value="0" >Elige una opción</option> 
-                     @if(!empty($municipios))
+                     @if(!empty($Alumnos->id_municipio))
                       @foreach($municipios as $idmun)
                         <option value="{{ $idmun->id }}" 
-                             {{ old('id_municipio', $empleados->id_municipio) == $idmun->id ? 'selected' : '' }}
+                             {{ old('id_municipio', $Alumnos->id_municipio) == $idmun->id ? 'selected' : '' }}
                          >{{ $idmun->municipio }}</option>
                       @endforeach
                    @endif
@@ -218,15 +266,28 @@
             <label class="col-md-3 label-control" for="userinput2">Tipo Sangre</label>
             <div class="col-md-9">
                 <select class="form-control" name="id_tipo_sangre" id="id_tipo_sangre">
-                    <option value="0" selected="">Elige una opción</option>
-                    <option value="1">O-</option>
-                    <option value="2">O+</option>
-                    <option value="3">A-</option>
-                    <option value="4">A+</option>
-                    <option value="5">B-</option>
-                    <option value="6">B+</option>
-                    <option value="7">AB-</option>
-                    <option value="8">AB+</option>
+                      <option value="0" selected="">Elige una opción</option>
+                    @if(!empty($Alumnos))
+                        <option value="1" {{  ($Alumnos->id_tipo_sangre==1) ? 'selected' : '' }}>O-</option>
+                        <option value="2" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>O+</option>
+                        <option value="3" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>A-</option>
+                        <option value="4" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>A+</option>
+                        <option value="5" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>B-</option>
+                        <option value="6" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>B+</option>
+                        <option value="7" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>AB</option>
+                        <option value="8" {{  ($Alumnos->id_tipo_sangre==2) ? 'selected' : '' }}>AB+</option>
+
+                    @else
+                        <option value="1">O-</option>
+                        <option value="2">O+</option>
+                        <option value="3">A-</option>
+                        <option value="4">A+</option>
+                        <option value="5">B-</option>
+                        <option value="6">B+</option>
+                        <option value="7">AB-</option>
+                        <option value="8">AB+</option>
+                    @endif
+                   
                 </select>
             </div>
           </div>

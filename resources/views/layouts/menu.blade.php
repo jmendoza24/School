@@ -9,3 +9,4 @@
 <li class="{{ Request::is('reportes*') ? 'active' : '' }}"><a href="{!! route('reportes.index') !!}"><i class="ft-file"></i>Reportes</span></a></li>
 
 
+

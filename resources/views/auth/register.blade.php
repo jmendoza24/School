@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="google-site-verification" content="SKuO2NOdADnxaV-X-53eTxgnXKRvIABkZB800jV9hWM" />
-  <meta name="description" content="Fluxmetal">
-  <meta name="keywords" content="Fluxmetal">
-  <meta name="author" content="Fluxmetal">
-  <title>Fluxmetal registro</title>
-  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/apple-icon-120.png') }}">
+  <meta name="description" content="Admin School,Administrador de alumnos">
+  <meta name="keywords" content="Admin School">
+  <meta name="author" content="Snappath">
+  <title>Admin School</title>
+  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
   <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/ico/favicon.ico') }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
   rel="stylesheet">
@@ -30,7 +30,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}">
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-menu 1-column bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background: #518a87;">
+<body class="vertical-layout vertical-menu 1-column bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background: #404E67;">
   <!-- ////////////////////////////////////////////////////////////////////////////-->
   <div class="app-content content">
     <div class="content-wrapper">
@@ -40,10 +40,10 @@
         <section class="flexbox-container">
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="col-md-4 col-10 box-shadow-2 p-0">
-              <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
+              <div class="card border-grey border-lighten-3 m-0">
                 <div class="card-header border-0 pb-0">
                   <div class="card-title text-center">
-                    <h4><b><img class="brand-logo" alt="stack admin logo" style="width: 50%;" src="{{ url('app-assets/images/logo/flux.png') }}"></b></h4>
+                    <h4><b><img class="brand-logo" alt="admin logo" style="width: 30%;" src="{{ url('app-assets/images/ico/logo.png') }}"></b></h4>
                   </div>
                 </div>
                 <div class="card-content">
@@ -66,19 +66,7 @@
                         <label for="user-password">Repite tu contreseña</label>
                         <input type="password" class="form-control" id="password_confirmation" min="8" required="" name="password_confirmation" placeholder="">
                       </fieldset>
-                      <div class="form-group row">
-                        <div class="col-12">
-                          <fieldset >
-                            <label for="remember-me" style="width: 100%">
-                             <input type="checkbox" id="remember-me" class="chk-remember">
-                             Estoy de acuerdo con los <a href="#">terminos</a></label>
-                          </fieldset>
-                        </div>
-                        <!--
-                        <div class="col-md-6 col-12 float-sm-left text-center text-sm-right">
-                            <a href="recover-password.html" class="card-link">Forgot Password?</a>
-                        </div>-->
-                      </div>
+                      
                       <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-user"></i> Registro</button>
                     </form>
                   </div>

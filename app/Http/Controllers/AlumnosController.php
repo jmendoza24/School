@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Alumnos;
+use App\Models\catalogos;
 
 
 use App\Http\Requests\CreatealumnosRequest;
@@ -32,13 +33,14 @@ class alumnosController extends AppBaseController
     public function index(Request $request)
     {   
         
-        $alumnos = Alumnos::all();
         $objeto_alumnos = new Alumnos;
+        $alumnos=$objeto_alumnos->sql_alumnos(1);
         $prescolar=$objeto_alumnos->grados_grupos(1);
         $primaria=$objeto_alumnos->grados_grupos(2);
 
-
         return view('alumnos.index',compact('alumnos','prescolar','primaria'));
+        return view('alumnos.table',compact('alumnos','prescolar','primaria'))->render();
+
     }
 
     /**
@@ -49,10 +51,14 @@ class alumnosController extends AppBaseController
     public function create()
     {   
         $objeto_alumnos = new Alumnos;
+        $grados=catalogos::where('catalogo',3)->get();
+        $grupos=catalogos::where('catalogo',4)->get();
+        $ciclos=catalogos::where('catalogo',1)->get();
+        $alumnos="";
         $estados=$objeto_alumnos->sql_estados();
         $municipios='';
 
-        return view('alumnos.create',compact('estados','alumnos','municipios'));
+        return view('alumnos.create',compact('estados','municipios','grados','grupos','ciclos','alumnos'));
     }
 
     /**
@@ -69,7 +75,7 @@ class alumnosController extends AppBaseController
         
 
 
-        return redirect(route('alumnos.index',compact('estados','alumnos')));
+        return redirect(route('alumnos.index',compact('alumnos')));
     }
 
     /**
@@ -107,7 +113,11 @@ class alumnosController extends AppBaseController
         $municipios='';
         $Alumnos=Alumnos::all();
         $Alumnos=$Alumnos[0];
-        return view('alumnos.edit',compact('estados','alumnos','municipios','id','Alumnos'));
+        $grados=catalogos::where('catalogo',3)->get();
+        $grupos=catalogos::where('catalogo',4)->get();
+        $ciclos=catalogos::where('catalogo',1)->get();
+
+        return view('alumnos.edit',compact('estados','alumnos','municipios','id','Alumnos','grados','grupos','ciclos'));
     }
 
     /**
@@ -172,11 +182,14 @@ class alumnosController extends AppBaseController
     {
 
         $id_grado = $request->id;
-        //dd($id_grado);
         $objeto_alumnos = new Alumnos;
+        $prescolar=$objeto_alumnos->grados_grupos(1);
+        $primaria=$objeto_alumnos->grados_grupos(2);
+       
         $alumnos=$objeto_alumnos->sql_alumnos($id_grado);
-                return  json_encode($alumnos);
 
+        return view('alumnos.table',compact('alumnos','prescolar','primaria'))->render();
+        
 
     }
 }
