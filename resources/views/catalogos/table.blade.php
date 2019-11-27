@@ -38,7 +38,7 @@
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Materias</h4>
+          <h4 class="card-title">Documentos</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
             <ul class="list-inline mb-0">
@@ -52,7 +52,7 @@
           <table class="table table-striped table-bordered scroll-vertical display">
               <thead>
               <tr>
-                <th>Materias</th>
+                <th>Documentos</th>
                 <th></th>
               </tr>
               </thead>

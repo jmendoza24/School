@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDocumentacionsTable extends Migration
+class CreateMateriasTable extends Migration
 {
 
     /**
@@ -13,12 +13,11 @@ class CreateDocumentacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documentacions', function (Blueprint $table) {
+        Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_alumno');
-            $table->text('acta_nacimiento')->nullable();
-            $table->text('curp')->nullable();
-            $table->text('comentarios')->nullable();
+            $table->integer('nivel');
+            $table->integer('grado');
+            $table->string('materia');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateDocumentacionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('documentacions');
+        Schema::drop('materias');
     }
 }

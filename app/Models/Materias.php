@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
- * Class Materias
+ * Class materias
  * @package App\Models
- * @version November 23, 2019, 5:54 am UTC
+ * @version November 27, 2019, 4:39 am UTC
  *
- * @property string nombre
- * @property integer activo
+ * @property integer nivel
+ * @property integer grado
+ * @property string materia
  */
-class Materias extends Model
+class materias extends Model
 {
 
     public $table = 'materias';
@@ -21,8 +22,9 @@ class Materias extends Model
 
 
     public $fillable = [
-        'nombre',
-        'activo'
+        'nivel',
+        'grado',
+        'materia'
     ];
 
     /**
@@ -32,8 +34,9 @@ class Materias extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre' => 'string',
-        'activo' => 'integer'
+        'nivel' => 'integer',
+        'grado' => 'integer',
+        'materia' => 'string'
     ];
 
     /**
@@ -42,7 +45,9 @@ class Materias extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required'
+        'nivel' => 'required',
+        'grado' => 'required',
+        'materia' => 'required'
     ];
 
     

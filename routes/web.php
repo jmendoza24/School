@@ -34,10 +34,12 @@ Route::get('municipios', 'AlumnosController@municipios');
 });
 
 
-Route::resource('catalogos', 'catalogosController');
+	Route::resource('catalogos', 'catalogosController');
+	Route::resource('materias', 'materiasController');
 
-Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
+	Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 	Route::get('/guarda_catalogo', 'catalogosController@store');
 	Route::get('/elimina_catalogo', 'catalogosController@elimina');
 
 	});
+

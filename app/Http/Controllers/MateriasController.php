@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateMateriasRequest;
-use App\Http\Requests\UpdateMateriasRequest;
-use App\Repositories\MateriasRepository;
+use App\Models\catalogos;
+use App\Http\Requests\CreatemateriasRequest;
+use App\Http\Requests\UpdatemateriasRequest;
+use App\Repositories\materiasRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class MateriasController extends AppBaseController
+class materiasController extends AppBaseController
 {
-    /** @var  MateriasRepository */
+    /** @var  materiasRepository */
     private $materiasRepository;
 
-    public function __construct(MateriasRepository $materiasRepo)
+    public function __construct(materiasRepository $materiasRepo)
     {
         $this->materiasRepository = $materiasRepo;
     }
 
     /**
-     * Display a listing of the Materias.
+     * Display a listing of the materias.
      *
      * @param Request $request
      *
@@ -36,23 +37,28 @@ class MateriasController extends AppBaseController
     }
 
     /**
-     * Show the form for creating a new Materias.
+     * Show the form for creating a new materias.
      *
      * @return Response
      */
-    public function create()
-    {
-        return view('materias.create');
+    public function create(){
+
+        $grados = catalogos::where('catalogo',3)->get();
+        $materias = array('nivel'=>0,
+                          'grado'=>0);
+        $materias =  (object)$materias;
+
+        return view('materias.create',compact('grados','materias'));
     }
 
     /**
-     * Store a newly created Materias in storage.
+     * Store a newly created materias in storage.
      *
-     * @param CreateMateriasRequest $request
+     * @param CreatemateriasRequest $request
      *
      * @return Response
      */
-    public function store(CreateMateriasRequest $request)
+    public function store(CreatemateriasRequest $request)
     {
         $input = $request->all();
 
@@ -64,7 +70,7 @@ class MateriasController extends AppBaseController
     }
 
     /**
-     * Display the specified Materias.
+     * Display the specified materias.
      *
      * @param int $id
      *
@@ -84,7 +90,7 @@ class MateriasController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified Materias.
+     * Show the form for editing the specified materias.
      *
      * @param int $id
      *
@@ -94,24 +100,20 @@ class MateriasController extends AppBaseController
     {
         $materias = $this->materiasRepository->find($id);
 
-        if (empty($materias)) {
-            Flash::error('Materias not found');
+        $grados = catalogos::where('catalogo',3)->get();
 
-            return redirect(route('materias.index'));
-        }
-
-        return view('materias.edit')->with('materias', $materias);
+        return view('materias.edit',compact('materias','grados'));
     }
 
     /**
-     * Update the specified Materias in storage.
+     * Update the specified materias in storage.
      *
      * @param int $id
-     * @param UpdateMateriasRequest $request
+     * @param UpdatemateriasRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateMateriasRequest $request)
+    public function update($id, UpdatemateriasRequest $request)
     {
         $materias = $this->materiasRepository->find($id);
 
@@ -129,7 +131,7 @@ class MateriasController extends AppBaseController
     }
 
     /**
-     * Remove the specified Materias from storage.
+     * Remove the specified materias from storage.
      *
      * @param int $id
      *
