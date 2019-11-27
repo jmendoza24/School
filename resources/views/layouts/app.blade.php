@@ -90,6 +90,8 @@
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}">
   
+  
+  
   @yield('script')
   <!-- END Custom CSS-->
 </head>
