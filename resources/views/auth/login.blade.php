@@ -45,7 +45,7 @@
                   <div class="card-title text-center">
                     <div class="p-1">
                       
-                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 50%;" src="{{ url('app-assets/images/ico/logo.png') }}"></b></h4>
+                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 30%;" src="{{ url('app-assets/images/ico/logo.png') }}"></b></h4>
                       
                     </div>
                   </div>
@@ -64,15 +64,6 @@
                                 <input type="password" class="form-control" required="" id="password" name="password" placeholder="Ingresa tu contraseña">
                         </fieldset>
 
-                      <div class="form-group row">
-                        <div class="col-md-6 col-12 text-center text-sm-left">
-                          <fieldset>
-                            <input type="checkbox" id="remember-me" class="chk-remember">
-                            <label for="remember-me"> Recordar</label>
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-12 float-sm-left text-center text-sm-right"><a href="{{ url('/password/reset') }}" class="card-link">Olvidaste tu contraseña?</a></div>
-                      </div>
                       <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> Login</button>
                     </form>
                   </div>
