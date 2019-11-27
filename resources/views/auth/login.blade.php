@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="google-site-verification" content="SKuO2NOdADnxaV-X-53eTxgnXKRvIABkZB800jV9hWM" />
-  <meta name="description" content="Fluxmetals">
-  <meta name="keywords" content="Fluxmetals">
-  
-  <title>Fluxmetals Login</title>
-  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/apple-icon-120.png')}}">
+  <meta name="description" content="Admin School,Administrador de alumnos">
+  <meta name="keywords" content="Admin School">
+  <meta name="author" content="Snappath">
+  <title>Admin School</title>
+  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
   rel="stylesheet">
@@ -30,7 +30,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css')}}">
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-menu 1-column   bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background: #518a87;">
+<body class="vertical-layout vertical-menu 1-column   bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background: #404E67;">
   <!-- ////////////////////////////////////////////////////////////////////////////-->
   <div class="app-content content">
     <div class="content-wrapper">
@@ -45,7 +45,7 @@
                   <div class="card-title text-center">
                     <div class="p-1">
                       
-                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 50%;" src="{{ url('app-assets/images/logo/flux.png') }}"></b></h4>
+                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 50%;" src="{{ url('app-assets/images/ico/logo.png') }}"></b></h4>
                       
                     </div>
                   </div>
@@ -63,8 +63,7 @@
                                 <label for="user-password">Contraseña</label>
                                 <input type="password" class="form-control" required="" id="password" name="password" placeholder="Ingresa tu contraseña">
                         </fieldset>
-                        
-                      
+
                       <div class="form-group row">
                         <div class="col-md-6 col-12 text-center text-sm-left">
                           <fieldset>
@@ -78,7 +77,7 @@
                     </form>
                   </div>
                   <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
-                    <span>Eres nuevo en Fluxmetals ?</span>
+                    <span>Eres nuevo en Admin School ?</span>
                   </p>
                   <div class="card-body">
                     <a href="{{ url('/register') }}" class="btn btn-outline-danger btn-block"><i class="ft-user"></i> Registro</a>
