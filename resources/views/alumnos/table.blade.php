@@ -18,15 +18,15 @@
             <td>{!! $alumnos->num_control !!}</td>
             <td>{!! $alumnos->nombre_alumno !!}</td>
             <td>{!! $alumnos->apellidos_alumno !!}</td>
-            <td>{!! $alumnos->id_grado !!}</td>
-            <td>{!! $alumnos->id_grupo !!}</td>
-            <td>{!! $alumnos->id_ciclo !!}</td>
-            <td>Activo</td>
+            <td>{!! $alumnos->grado !!}</td>
+            <td>{!! $alumnos->grupo !!}</td>
+            <td>{!! $alumnos->ciclo !!}</td>
+            <td>{{ ($alumnos->activo==1) ? 'Activo' : 'Baja'  }}</td>
             <td>
-                {!! Form::open(['route' => ['alumnos.destroy', $alumnos->id], 'method' => 'delete']) !!}
+                {!! Form::open(['route' => ['alumnos.destroy', $alumnos->id_alumno], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     {{-- <a href="{!! route('alumnos.show', [$alumnos->id]) !!}" class='btn btn-float btn-outline-secondary btn-round'><i class="fa fa-thumbs-o-up"></i></a> --}}
-                    <a href="{!! route('alumnos.edit', [$alumnos->id]) !!}" class='btn btn-float btn-outline-success btn-round'><i class="fa fa-edit"></i></a>
+                    <a href="{!! route('alumnos.edit', [$alumnos->id_alumno]) !!}" class='btn btn-float btn-outline-success btn-round'><i class="fa fa-edit"></i></a>
                     {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-float btn-outline-danger btn-round', 'onclick' => "return confirm('Estas seguro deseas eliminar?')"]) !!}
                 </div>
                 {!! Form::close() !!}

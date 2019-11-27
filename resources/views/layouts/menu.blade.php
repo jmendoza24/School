@@ -1,5 +1,5 @@
      
-       <li  style=""><a href="{{ url('/home') }}"><i class="fa fa-home"></i> Home</span></a></li>
+       <li  style=""><a href="{{ url('/home') }}" ><i class="fa fa-home"></i> Home</span></a></li>
        <li class="{{ Request::is('alumnos*') ? 'active' : '' }}">
                     <a href="{!! route('alumnos.index') !!}"><i class="ft-user"></i> Alumnos</span></a>
                 </li>

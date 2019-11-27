@@ -117,7 +117,7 @@ class Alumnos extends Model
                          ->leftjoin('catalogos as c','c.id','=','a.id_grado')
                          ->leftjoin('catalogos as c2','c2.id','=','a.id_grupo')
                          ->leftjoin('catalogos as c3','c3.id','=','a.id_ciclo')
-                         ->select()
+                         ->selectraw('*,c.valor as grado,c2.valor as grupo,c3.valor as ciclo,a.id as id_alumno')
                          ->where('a.nivel_estudio',$id)
                          ->get();
 
@@ -136,6 +136,8 @@ class Alumnos extends Model
                          ->get();
 
     } 
+
+
 }
 
 

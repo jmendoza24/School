@@ -11,11 +11,11 @@
     <div class="col-md-12">
 		<ul class="nav nav-tabs nav-underline no-hover-bg nav-justified">
 		  <li class="nav-item">
-		    <a class="nav-link active" id="active-tab32" data-toggle="tab" href="#active32"  aria-controls="active32"
+		    <a class="nav-link active" id="active-tab32" data-toggle="tab" href="#active32" onclick="tabla_alumnos(1)" aria-controls="active32"
 		    aria-expanded="true"><i class="ft-user"></i>Preescolar</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="link-tab32" data-toggle="tab" href="#link32"  aria-controls="link32"
+		    <a class="nav-link" id="link-tab32" data-toggle="tab" href="#link32" onclick="tabla_alumnos(2)"  aria-controls="link32"
 		    aria-expanded="false"><i class="ft-user"></i>Primaria</a>
 		  </li>
 		</ul>
@@ -81,7 +81,7 @@
 			</div>
   			</div>
     </div><br><hr>
-    <div style="overflow: auto">
+    <div style="overflow: auto" id="tabla">
     	@include('alumnos.table')
     </div>
 @endsection
