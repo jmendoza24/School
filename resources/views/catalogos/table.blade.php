@@ -4,20 +4,17 @@
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Ciclos</h4>
+          <h4 class="card-title">School Cycle</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
-              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-              <li><a data-action="close"><i class="ft-x"></i></a></li>
-            </ul>
+           
           </div>
         </div>
         <div class="card-content collapse show">
             <table class="table table-striped table-bordered scroll-vertical display">
-              <thead>
+              <thead class="azul">
               <tr>
-                <th>Ciclos</th>
+                <th>School Cycle</th>
                 <th></th>
               </tr>
               </thead>
@@ -38,21 +35,17 @@
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Documentos</h4>
+          <h4 class="card-title">Documents</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
-              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-              <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-              <li><a data-action="close"><i class="ft-x"></i></a></li>
-            </ul>
+            
           </div>
         </div>
         <div class="card-content collapse show">
           <table class="table table-striped table-bordered scroll-vertical display">
-              <thead>
+              <thead class="azul">
               <tr>
-                <th>Documentos</th>
+                <th>Documents</th>
                 <th></th>
               </tr>
               </thead>
@@ -73,20 +66,17 @@
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Grados</h4>
+          <h4 class="card-title">Grade</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
-              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-              <li><a data-action="close"><i class="ft-x"></i></a></li>
-            </ul>
+            
           </div>
         </div>
         <div class="card-content collapse show">
           <table class="table table-striped table-bordered scroll-vertical display">
-              <thead>
+              <thead class="azul">
               <tr>
-                <th>Grados</th>
+                <th>Grade</th>
                 <th></th>
               </tr>
               </thead>
@@ -107,21 +97,17 @@
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Grupos</h4>
+          <h4 class="card-title">Groups</h4>
           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
-              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-              <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-              <li><a data-action="close"><i class="ft-x"></i></a></li>
-            </ul>
+           
           </div>
         </div>
         <div class="card-content collapse show">
           <table class="table table-striped table-bordered scroll-vertical display">
-              <thead>
+              <thead class="azul">
               <tr>
-                <th>Grupos</th>
+                <th>Groups</th>
                 <th></th>
               </tr>
               </thead>

@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('titulo') Catálogos @endsection
+@section('titulo') Catalogs @endsection
 @section('content')
 <div class="col-md-12">
         <div class="form-row">
             <div class="col-md-3">
-              <label for="validationDefault02">Catálogo:</label>
+              <label for="validationDefault02">Catalog:</label>
               <select class="form-control" id="identificador" name="identificador" required="">
-                    <option value="" >Seleccione una opción...</option>
-                    <option value="1" >Ciclo</option>
-                    <option value="2" >Documentos</option>
-                    <option value="3" >Grados</option>
-                    <option value="4" >Grupos</option>
+                    <option value="" >select option</option>
+                    <option value="1" >School Cycle</option>
+                    <option value="2" >Documents</option>
+                    <option value="3" >Grade</option>
+                    <option value="4" >Groups</option>
               </select>
             </div>
             <div class="col-md-3">
-              <label for="validationDefaultUsername">Valor</label>
+              <label for="validationDefaultUsername">Value</label>
               <div class="input-group">
                 <input type="text" class="form-control" name="valor" id="valor" required="">
               </div>
@@ -22,7 +22,7 @@
             <div class="col-md-3">
               <label for="validationDefaultUsername">&nbsp;</label>
               <div class="input-group">
-                <button  class="btn btn_verde pull-right" onclick="guarda_catalogo()"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                <button  class="btn btn_verde pull-right" onclick="guarda_catalogo()"><i class="fa fa-save"></i>&nbsp;Save</button>
               </div>
             </div>
         </div>

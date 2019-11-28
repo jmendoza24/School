@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('alumnos', 'AlumnosController');
+	Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
 	Route::resource('contactos', 'ContactosController');
 	Route::resource('documentacions', 'documentacionController');
 	Route::resource('catalogos', 'catalogosController');
@@ -27,10 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
-	Route::get('/municipios', 'AlumnosController@municipios');
-	Route::get('/alumnos', 'AlumnosController@alumnos');
+	Route::get('/alumnos', 'personal_info_alumnoController@alumnos');
 	Route::get('/guarda_catalogo', 'catalogosController@store');
 	Route::get('/elimina_catalogo', 'catalogosController@elimina');
 });
+
+
 
 

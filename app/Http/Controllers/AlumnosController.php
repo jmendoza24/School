@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Alumnos;
 use App\Models\catalogos;
-
+ 
 
 use App\Http\Requests\CreatealumnosRequest;
 use App\Http\Requests\UpdatealumnosRequest;

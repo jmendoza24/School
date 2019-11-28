@@ -56,12 +56,12 @@
                         {!! csrf_field() !!}
                         
                             <fieldset class="form-group floating-label-form-group">
-                              <label for="user-name">Email</label>
-                              <input type="text" class="form-control" required="" id="email" name="email" placeholder="Tu email" value="{{ old('email') }}">
+                              <label for="user-name">Email:</label>
+                              <input type="text" class="form-control" required="" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
                             </fieldset>
                         <fieldset class="form-group floating-label-form-group mb-1">
-                                <label for="user-password">Contraseña</label>
-                                <input type="password" class="form-control" required="" id="password" name="password" placeholder="Ingresa tu contraseña">
+                                <label for="user-password">Password:</label>
+                                <input type="password" class="form-control" required="" id="password" name="password" placeholder="Password">
                         </fieldset>
 
                       <button type="submit" style="background-color: #852fbe; color: white" class="btn  btn-block"><i class="ft-unlock"></i> Login</button>
