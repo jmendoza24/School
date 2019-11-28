@@ -29,6 +29,7 @@ class CreateAlumnosTable extends Migration
             $table->text('num_control')->nullable();
             $table->integer('nivel_estudio');
             $table->text('comentarios')->nullable();
+            $table->text('foto')->nullable();
             $table->integer('activo');
 
             $table->timestamps();

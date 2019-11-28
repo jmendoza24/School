@@ -32,14 +32,21 @@ function busca_mun2(){
 }
 
 
-function tabla_alumnos(id){
+function tabla_alumnos(nivel, grado, grupo){
 
   $.ajax({
           url:"/api/v1/alumnos",
           type: "get",
-          data:{'id':id},
+          data:{'nivel':nivel,'grado':grado,'grupo':grupo},
+          dataType: "json",
           success: function(respuesta){ 
-            $("#tabla").html(respuesta);
+            $("#tabla_alumnos").html(respuesta);
+            $(".display").DataTable({
+                   "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+              });
+            $("#tabla_alumnos").show();
           }
       });
 

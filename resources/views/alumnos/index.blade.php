@@ -11,11 +11,11 @@
     <div class="col-md-12">
 		<ul class="nav nav-tabs nav-underline no-hover-bg nav-justified">
 		  <li class="nav-item">
-		    <a class="nav-link active" id="active-tab32" data-toggle="tab" href="#active32" onclick="tabla_alumnos(1)" aria-controls="active32"
+		    <a class="nav-link active" id="active-tab32" data-toggle="tab" href="#active32"  aria-controls="active32"
 		    aria-expanded="true"><i class="ft-user"></i>Preescolar</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="link-tab32" data-toggle="tab" href="#link32" onclick="tabla_alumnos(2)"  aria-controls="link32"
+		    <a class="nav-link" id="link-tab32" data-toggle="tab" href="#link32" aria-controls="link32"
 		    aria-expanded="false"><i class="ft-user"></i>Primaria</a>
 		  </li>
 		</ul>
@@ -24,23 +24,19 @@
 			    <h4 class="form-section">Preescolar</h4><br>
 			      <div class="row" style="background-color: #f5f7fa;padding-top: 14px">
 			      	@foreach($prescolar as $p)
-				      	<div class="col-xl-3 col-lg-6 col-12">
+				      	<div class="col-xl-2">
 				            <div class="card">
 				              <div class="card-content">
 				                <div class="card-body">
 				                  <div class="media">
 				                    <div class="media-body text-left w-100">
-				                      <h3 class="primary">{{ $p->conteos }}</h3>
+				                      <h2 class="primary">{{ $p->conteos }}</h2>
 				                      <span>{{ $p->grado }} - {{ $p->grupo }}</span>
 
 				                    </div>
-				                    <div class="media-right media-middle">
+				                    <div class="media-right media-middle" onclick="tabla_alumnos(1,{{ $p->id_grado }},{{ $p->id_grupo }})" style="cursor: pointer;">
 				                      <i class="icon-user-follow primary font-large-2 float-right"></i>
 				                    </div>
-				                  </div>
-				                  <div class="progress progress-sm mt-1 mb-0">
-				                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="25"
-				                    aria-valuemin="0" aria-valuemax="100"></div>
 				                  </div>
 				                </div>
 				              </div>
@@ -54,23 +50,19 @@
 				<h4 class="form-section">Primaria</h4><br>
 				<div class="row" style="background-color: #f5f7fa;padding-top: 14px">
 			      	@foreach($primaria as $pr)
-				      	<div class="col-xl-3 col-lg-6 col-12">
+				      	<div class="col-xl-2">
 				            <div class="card">
 				              <div class="card-content">
 				                <div class="card-body">
 				                  <div class="media">
 				                    <div class="media-body text-left w-100">
-				                      <h3 class="warning">{{ $pr->conteos }}</h3>
+				                      <h2 class="warning">{{ $pr->conteos }}</h2>
 				                      <span>{{ $pr->grado }} - {{ $pr->grupo }}</span>
 
 				                    </div>
-				                    <div class="media-right media-middle">
+				                    <div class="media-right media-middle" onclick="tabla_alumnos(2,{{ $pr->id_grado }},{{ $pr->id_grupo }})" style="cursor: pointer;">
 				                      <i class="icon-user-follow warning font-large-2 float-right"></i>
 				                    </div>
-				                  </div>
-				                  <div class="progress progress-sm mt-1 mb-0">
-				                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="25"
-				                    aria-valuemin="0" aria-valuemax="100"></div>
 				                  </div>
 				                </div>
 				              </div>
@@ -81,7 +73,7 @@
 			</div>
   			</div>
     </div><br><hr>
-    <div style="overflow: auto" id="tabla">
+    <div style="overflow: auto; display: none;" id="tabla_alumnos" >
     	@include('alumnos.table')
     </div>
 @endsection
