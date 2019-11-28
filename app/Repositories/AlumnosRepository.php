@@ -31,6 +31,7 @@ class AlumnosRepository extends BaseRepository
         'num_control',
         'nivel_estudio',
         'comentarios',
+        'foto',
         'activo'
     ];
 

@@ -10,6 +10,7 @@ use App\Http\Requests\UpdatealumnosRequest;
 use App\Repositories\AlumnosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 
@@ -34,12 +35,12 @@ class alumnosController extends AppBaseController
     {   
         
         $objeto_alumnos = new Alumnos;
-        $alumnos=$objeto_alumnos->sql_alumnos(1);
-        $prescolar=$objeto_alumnos->grados_grupos(1);
-        $primaria=$objeto_alumnos->grados_grupos(2);
+        $alumnos=array();
+        $prescolar=$objeto_alumnos->sql_alumnos(1);
+        $primaria=$objeto_alumnos->sql_alumnos(2);
 
         return view('alumnos.index',compact('alumnos','prescolar','primaria'));
-        return view('alumnos.table',compact('alumnos','prescolar','primaria'))->render();
+        //return view('alumnos.table',compact('alumnos','prescolar','primaria'))->render();
 
     }
 
@@ -54,9 +55,9 @@ class alumnosController extends AppBaseController
         $grados=catalogos::where('catalogo',3)->get();
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
-        $alumnos="";
+        $alumnos=array();
         $estados=$objeto_alumnos->sql_estados();
-        $municipios='';
+        $municipios=array();
 
         return view('alumnos.create',compact('estados','municipios','grados','grupos','ciclos','alumnos'));
     }
@@ -71,11 +72,20 @@ class alumnosController extends AppBaseController
     public function store(CreatealumnosRequest $request)
     {
          $input = $request->all();
+
+        $file_img = $request->file('foto');
+        if(!empty($file_img)){
+            $img = Storage::url($file_img->store('alumnos', 'public'));
+            $imgp = strpos($img,'/storage/');
+            $img = substr($img, $imgp, strlen($img));
+            $input['foto']  = $img;
+        }
+
         $alumnos = $this->AlumnosRepository->create($input);
         
 
 
-        return redirect(route('alumnos.index',compact('alumnos')));
+        return redirect()->route('alumnos.index');
     }
 
     /**
@@ -108,10 +118,9 @@ class alumnosController extends AppBaseController
     public function edit($id)
     {
         $alumnos = $this->AlumnosRepository->find($id);
-       // dd($alumnos);
-        $objeto_alumnos = new Alumnos;
+        $objeto_alumnos = new Alumnos; 
         $estados=$objeto_alumnos->sql_estados();
-        $municipios= array();
+        $municipios= $objeto_alumnos->sql_estados_mun($alumnos->id_estado);
 
         $Alumnos=Alumnos::all();
         $Alumnos=$Alumnos[0];
@@ -133,10 +142,19 @@ class alumnosController extends AppBaseController
     public function update($id, UpdatealumnosRequest $request)
     {
         $alumnos = $this->AlumnosRepository->find($id);
+        $alumnos = $request->all();
 
-        $alumnos = $this->AlumnosRepository->update($request->all(), $id);
-
+        $file_img = $request->file('foto');
+        if(!empty($file_img)){
+            $img = Storage::url($file_img->store('alumnos', 'public'));
+            $imgp = strpos($img,'/storage/');
+            $img = substr($img, $imgp, strlen($img));
+            $alumnos['foto']  = $img;
+        }else{
+            unset($alumnos['foto'] );
+        }
         //dd($alumnos);
+        $alumnos = $this->AlumnosRepository->update($alumnos, $id);
         return redirect(route('alumnos.index'));
     }
 
@@ -180,17 +198,14 @@ class alumnosController extends AppBaseController
         return $op;
     }
 
-    public function alumnos(Request $request)
-    {
+    public function alumnos(Request $request){
 
-        $id_grado = $request->id;
         $objeto_alumnos = new Alumnos;
-        $prescolar=$objeto_alumnos->grados_grupos(1);
-        $primaria=$objeto_alumnos->grados_grupos(2);
-       
-        $alumnos=$objeto_alumnos->sql_alumnos($id_grado);
+        $alumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grado,$request->grupo);
+        
+        $options =  view('alumnos.table',compact('alumnos'))->render();
 
-        return view('alumnos.table',compact('alumnos','prescolar','primaria'))->render();
+        return json_encode($options);
         
 
     }

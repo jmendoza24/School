@@ -22,7 +22,60 @@
     <h4 class="form-section"><i class="fa fa-pencil"></i> Información Genereal</h4>
    <div class="row">
     <input type="hidden" name="activo" id="activo" value="1">
-      <div class="col-md-6">
+    <div class="col-md-6">
+        <div class="col-md-12" style="text-align: center;">
+          <table style="margin: auto;">
+            <tr>
+              <td>
+                <img class="media-object rounded-circle" src="@if(!empty($alumnos)) {{ asset($alumnos->foto) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
+              </td>
+              <td>
+                <a href="" class="btn btn-primary"><i class="fa fa-card"></i>Credencial</a>
+              </td>
+            </tr>
+          </table>
+          
+
+          <br><br>
+        </div>
+         <div class="col-md-12">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput2">Cambiar Foto</label>
+            <div class="col-md-9">
+            <input type="file" name="foto" id="foto" class="form-control">
+            </div>
+          </div>
+        </div> 
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput2">Nombre Alumno</label>
+            <div class="col-md-9">
+            {!! Form::text('nombre_alumno', null, ['class' => 'form-control','required'=>'required']) !!}
+            <div class="invalid-feedback">Este campo es requerido.</div>
+            </div>
+          </div>
+        </div> 
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="userinput1">Apellidos Alumno</label>
+            <div class="col-md-9">
+              {!! Form::text('apellidos_alumno', null, ['class' => 'form-control','required'=>'required']) !!}
+              <div class="invalid-feedback">Este campo es requerido.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="userinput2">Fecha Nacimiento</label>
+              <div class="col-md-9">
+               <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ (!empty($Alumnos)) ? substr($Alumnos->fecha_nacimiento,0,10) :date('Y-m-d') }}">
+
+              </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12">
           <div class="form-group row">
             <label class="col-md-3 label-control" for="userinput2">#Control</label>
             <div class="col-md-9">
@@ -32,12 +85,12 @@
             </div>
           </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group row">
           <label class="col-md-3 label-control" for="userinput1">Nivel Estudio</label>
           <div class="col-md-9">
-            <select class="form-control" name="nivel_estudio" id="nivel_estudio">
-                    <option value="0" selected="">Elige una opción</option>
+            <select class="form-control" name="nivel_estudio" id="nivel_estudio" required="">
+                    <option value="" selected="">Elige una opción</option>
                     @if(!empty($Alumnos))
                         <option value="1" {{  ($Alumnos->nivel_estudio==1) ? 'selected' : '' }}>Preescolar</option>
                         <option value="2" {{  ($Alumnos->nivel_estudio==2) ? 'selected' : '' }}>Primaria</option>
@@ -51,14 +104,13 @@
           </div>
         </div>
       </div>  
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+    
+        <div class="col-md-12">
           <div class="form-group row">
             <label class="col-md-3 label-control" for="userinput2">Grado</label>
             <div class="col-md-9">
-                 <select class="form-control" name="id_grado" id="id_grado">
-                    <option value="0" selected="">Elige una opción</option>
+                 <select class="form-control" name="id_grado" id="id_grado" required="">
+                    <option value="" selected="">Elige una opción</option>
                            @if(!empty($Alumnos))
                               @foreach($grados as $tipo)
                                  <option 
@@ -77,18 +129,16 @@
                               @endif
 
                     </select>
-
-                </select>
             <div class="invalid-feedback">Este campo es requerido.</div>
             </div>
           </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="form-group row">
           <label class="col-md-3 label-control" for="userinput1">Grupo</label>
           <div class="col-md-9">
-            <select class="form-control" name="id_grupo" id="id_grupo">
-                    <option value="0" selected="">Elige una opción</option>
+            <select class="form-control" name="id_grupo" id="id_grupo" required="">
+                    <option value="" selected="">Elige una opción</option>
                       @if(!empty($Alumnos))
                       @foreach($grupos as $tipo)
                          <option 
@@ -111,15 +161,13 @@
           </div>
         </div>
       </div>  
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
+  
+      <div class="col-md-12">
         <div class="form-group row">
           <label class="col-md-3 label-control" for="userinput1">Ciclo</label>
           <div class="col-md-9">
-            <select class="form-control" name="id_ciclo" id="id_ciclo">
-                <option value="0" selected="">Elige una opción</option>
+            <select class="form-control" name="id_ciclo" id="id_ciclo" required="">
+                <option value="" selected="">Elige una opción</option>
                     @if(!empty($Alumnos))
                       @foreach($ciclos as $tipo)
                          <option 
@@ -142,45 +190,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-          
-      </div>  
     </div>
-    <div class="row">
-      
-      <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-md-3 label-control" for="userinput2">Nombre Alumno</label>
-            <div class="col-md-9">
-            {!! Form::text('nombre_alumno', null, ['class' => 'form-control','required'=>'required']) !!}
-            <div class="invalid-feedback">Este campo es requerido.</div>
-            </div>
-          </div>
-      </div> 
-      <div class="col-md-6">
-        <div class="form-group row">
-          <label class="col-md-3 label-control" for="userinput1">Apellidos Alumno</label>
-          <div class="col-md-9">
-            {!! Form::text('apellidos_alumno', null, ['class' => 'form-control','required'=>'required']) !!}
-            <div class="invalid-feedback">Este campo es requerido.</div>
-          </div>
-        </div>
-      </div> 
-    </div>
-   <div class="row">
-      
-      <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-md-3 label-control" for="userinput2">Fecha Nacimiento</label>
-            <div class="col-md-9">
-             <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ (!empty($Alumnos)) ? substr($Alumnos->fecha_nacimiento,0,10) :date('Y-m-d') }}">
-
-            </div>
-          </div>
-      </div> 
-      <div class="col-md-6">
-    
-      </div> 
     </div>
 
     @section('scripts')
@@ -398,13 +408,6 @@
             <div class="col-md-9">
                  <select class="form-control" id="id_municipioc" name="id_municipioc">
                     <option value="0" >Elige una opción</option> 
-                     @if(!empty($municipios))
-                      @foreach($municipios as $idmun)
-                        <option value="{{ $idmun->id }}" 
-                             {{ old('id_municipio', $empleados->id_municipio) == $idmun->id ? 'selected' : '' }}
-                         >{{ $idmun->municipio }}</option>
-                      @endforeach
-                   @endif
                  </select>
             </div>
           </div>

@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string num_control
  * @property integer nivel_estudio
  * @property string comentarios
+ * @property string foto
  */
 class Alumnos extends Model
 {
@@ -48,6 +49,7 @@ class Alumnos extends Model
         'num_control',
         'nivel_estudio',
         'comentarios',
+        'foto',
         'activo'
     ];
 
@@ -72,6 +74,7 @@ class Alumnos extends Model
         'num_control' => 'string',
         'nivel_estudio' => 'integer',
         'comentarios' => 'string',
+        'foto'=>'string',
         'activo' => 'integer'
 
     ];
@@ -117,27 +120,35 @@ class Alumnos extends Model
                          ->leftjoin('catalogos as c','c.id','=','a.id_grado')
                          ->leftjoin('catalogos as c2','c2.id','=','a.id_grupo')
                          ->leftjoin('catalogos as c3','c3.id','=','a.id_ciclo')
-                         ->selectraw('*,c.valor as grado,c2.valor as grupo,c3.valor as ciclo,a.id as id_alumno')
+                         ->selectraw('a.id_grado, a.id_grupo,c.valor as grado,c2.valor as grupo,count(*) as conteos')
                          ->where('a.nivel_estudio',$id)
+                         ->groupby('c.valor','c2.valor','a.id_grado', 'a.id_grupo')
                          ->get();
 
     }  
 
-    public function grados_grupos($id)
+    public function grados_grupos($nivel,$grado,$grupo)
     {
       
         return DB::table('alumnos as a')
                          ->leftjoin('catalogos as c','c.id','=','a.id_grado')
                          ->leftjoin('catalogos as c2','c2.id','=','a.id_grupo')
-                         ->selectraw('c.valor as grado,c2.valor as grupo,count(*) as conteos')
-                         ->where('a.nivel_estudio',$id)
-                         ->groupby('c.valor','c2.valor')
+                         ->selectraw('a.* ,c.valor as grado,c2.valor as grupo')
+                         ->where([['a.nivel_estudio',$nivel],['a.id_grado',$grado],['a.id_grupo',$grupo]])
                          ->orderby('c.valor','asc')
                          ->get();
 
     } 
+/**
+    function get_municipios($id){
+        return db::table('tbl_estadosmun as em')
+                ->join('tbl_municipios as m','em.municipios_id','=','m.id')
+                ->selectraw('m.*')
+                ->where('e.id',$id)
+                ->get();
+    }
 
-
+*/
 }
 
 
