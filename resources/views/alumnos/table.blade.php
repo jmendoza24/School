@@ -1,7 +1,7 @@
 
 <table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
     <thead>
-        <tr class="gris">
+        <tr class="azul">
             <th>#Control</th>                
             <th>Nombre</th>
             <th>Apellidos</th>

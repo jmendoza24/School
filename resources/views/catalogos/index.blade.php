@@ -22,7 +22,7 @@
             <div class="col-md-3">
               <label for="validationDefaultUsername">&nbsp;</label>
               <div class="input-group">
-                <button  class="btn btn-primary pull-right" onclick="guarda_catalogo()"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                <button  class="btn btn_verde pull-right" onclick="guarda_catalogo()"><i class="fa fa-save"></i>&nbsp;Guardar</button>
               </div>
             </div>
         </div>

@@ -8,9 +8,9 @@
   <meta name="description" content="Admin School,Administrador de alumnos">
   <meta name="keywords" content="Admin School">
   <meta name="author" content="Snappath">
-  <title>Admin School</title>
-  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
-  <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
+  <title>Admin Matihomeschool</title>
+  <link rel="apple-touch-icon" href="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
@@ -30,28 +30,28 @@
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css')}}">
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-menu 1-column   bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background: #404E67;">
+<body class="vertical-layout vertical-menu 1-column   bg-lighten-2 menu-expanded blank-page blank-page" data-open="click" data-menu="vertical-menu" data-col="1-column" style="background-image: url('app-assets/images/logo/35-mates.png');" >
   <!-- ////////////////////////////////////////////////////////////////////////////-->
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
       </div>
-      <div class="content-body">
+      <div class="content-body" >
         <section class="flexbox-container">
-          <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="col-md-4 col-10 box-shadow-2 p-0">
-              <div class="card border-grey border-lighten-3 m-0">
-                <div class="card-header border-0">
-                  <div class="card-title text-center">
+          <div class="col-12 d-flex align-items-center justify-content-center" >
+            <div class="col-md-4 col-10 box-shadow-2 p-0" >
+              <div class="card border-grey border-lighten-3 m-0" >
+                <div class="card-header border-0" >
+                  <div class="card-title text-center" >
                     <div class="p-1">
                       
-                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 30%;" src="{{ url('app-assets/images/ico/logo.png') }}"></b></h4>
+                        <h4><b><img class="brand-logo" alt="stack admin logo"  style="width: 50%;" src="{{ url('app-assets/images/logo/thumbnail_mati-talent-sin-fondo.png') }}"></b></h4>
                       
                     </div>
                   </div>
                 </div>
-                <div class="card-content">
-                  <div class="card-body pt-0">
+                <div class="card-content" >
+                  <div class="card-body pt-0" >
                     <form method="post" class="form-horizontal" action="{{ url('/login') }}">
                         {!! csrf_field() !!}
                         
@@ -64,15 +64,15 @@
                                 <input type="password" class="form-control" required="" id="password" name="password" placeholder="Ingresa tu contraseña">
                         </fieldset>
 
-                      <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> Login</button>
+                      <button type="submit" style="background-color: #852fbe; color: white" class="btn  btn-block"><i class="ft-unlock"></i> Login</button>
                     </form>
                   </div>
-                  <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
-                    <span>Eres nuevo en Admin School ?</span>
-                  </p>
+                  
+                 <!-- 
                   <div class="card-body">
                     <a href="{{ url('/register') }}" class="btn btn-outline-danger btn-block"><i class="ft-user"></i> Registro</a>
                   </div>
+                -->
                 </div>
               </div>
             </div>

@@ -1,12 +1,12 @@
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow" >
-    <div class="navbar-wrapper">
-      <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
+  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow morado " >
+    <div class="navbar-wrapper morado">
+      <div class="navbar-header morado">
+        <ul class="nav navbar-nav flex-row ">
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="navbar-brand" href="{{ route('home')}}">
-              <img class="brand-logo" alt="admin logo" style="width: 15%;" src="{{ url('app-assets/images/ico/logo.png') }}">
-              <h2 class="brand-text">Admin School</h2>
+              <img class="brand-logo" alt="admin logo"  src="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
+              <h2 class="brand-text">Admin</h2>
             </a>
           </li>
           <li class="nav-item d-md-none">
@@ -14,12 +14,12 @@
           </li>
         </ul>
       </div>
-      <div class="navbar-container content">
+      <div class="navbar-container content morado">
         <div class="collapse navbar-collapse" id="navbar-mobile">
-          <ul class="nav navbar-nav mr-auto float-left">
+          <ul class="nav navbar-nav mr-auto float-left ">
             <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
           </ul>
-          <ul class="nav navbar-nav float-right">
+          <ul class="nav navbar-nav float-right ">
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="user-name">{{ Auth::user()->name }}</span>
@@ -38,9 +38,9 @@
       </div>
     </div>
   </nav>
-  <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="background: #404E67;">
+  <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="background-color: #FFD965" >
     <div class="main-menu-content" >
-      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" >
+      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background-color: #FFD965">
         
        @include('layouts.menu')
       </ul>

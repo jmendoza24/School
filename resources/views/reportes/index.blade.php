@@ -30,7 +30,7 @@
 	                </div>
                   </div>
                 </div>
-                <div class="bg-primary p-2 media-middle">
+                <div class=" azul p-2 media-middle">
                   <i class="ft-user font-large-2 white" style="cursor: pointer;"></i>
                 </div>
               </div>
@@ -55,7 +55,7 @@
 	                </div>
                   </div>
                 </div>
-                <div class="bg-warning p-2 media-middle">
+                <div class="naranja p-2 media-middle">
                 </a>  <i class="icon-speech font-large-2  white" style="cursor: pointer;"></i>
                 </div>
               </div>

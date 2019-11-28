@@ -108,9 +108,11 @@ class alumnosController extends AppBaseController
     public function edit($id)
     {
         $alumnos = $this->AlumnosRepository->find($id);
+       // dd($alumnos);
         $objeto_alumnos = new Alumnos;
         $estados=$objeto_alumnos->sql_estados();
-        $municipios='';
+        $municipios= array();
+
         $Alumnos=Alumnos::all();
         $Alumnos=$Alumnos[0];
         $grados=catalogos::where('catalogo',3)->get();

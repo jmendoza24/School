@@ -4,13 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="google-site-verification" content="SKuO2NOdADnxaV-X-53eTxgnXKRvIABkZB800jV9hWM" />
   <meta name="description" content="Admin School,Administrador de alumnos">
   <meta name="keywords" content="Admin School">
   <meta name="author" content="Snappath">
-  <meta name="google-site-verification" content="SKuO2NOdADnxaV-X-53eTxgnXKRvIABkZB800jV9hWM" />
-  <title>Admin School</title> 
-  <link rel="apple-touch-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/ico/logo.png') }}">
+  <title>Admin Matihomeschool</title>
+  <link rel="apple-touch-icon" href="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
@@ -36,7 +36,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/wizard.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/pickers/daterange/daterange.css')}}">
  <style type="text/css">
-             .m{
+          .m{
              color: white;
           }
           .b{
@@ -44,9 +44,9 @@
            background-color: white;
           color: white;
           }
-        .naranja{
+        .verde{
 
-           background-color: #A34B0A;
+           background-color: #52b921;
           color: white;
         
         }
@@ -57,7 +57,7 @@
         
         .azul{
 
-           background-color: #404E67;
+           background-color: #0275d8;
            color: white;
 
         }
@@ -66,8 +66,19 @@
             background-color: #646464;
            color: white;
         }
+        .naranja{
+           
+            background-color: #F47300;
+           color: white;
+        }
+
+        
         .morado{
-           background-color: #370f5b;
+           background-color: #852fbe;
+           color: white;
+        }
+        .verde{
+           background-color: #52b921;
            color: white;
         }
               .text-bold
@@ -75,15 +86,35 @@
           color: #370f5b;
         }
         .btn_morado{
-           background-color: #370f5b;
+           background-color: #852fbe;
            color: white;
 
         }
-        .naranja:hover { color: white; }
+        .btn_verde{
+           background-color: #52b921;
+           color: white;
+
+        }
+        .verde:hover { color: white; }
         .gris:hover { color: white; }
         .azul:hover { color: white; }
-        .btn_morado:hover {  background-color: #370f5b;
+        .btn_morado:hover {  background-color: #852fbe;
+
            color: white; }
+        .btn_verde:hover {  background-color: #52b921;
+        
+           color: white; }
+        .page-item.active .page-link {
+          z-index: 1;
+          color: #fff;
+          background-color: #852fbe;
+          border-color: #852fbe;
+      }
+      .nav.nav-tabs.nav-underline .nav-item a.nav-link:hover, .nav.nav-tabs.nav-underline .nav-item a.nav-link:focus{
+         color: #852fbe;
+          border-color: #852fbe;
+
+      }
        </style>
 
   <!-- END Page Level CSS-->
@@ -96,7 +127,7 @@
   <!-- END Custom CSS-->
 </head>
 
-<body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+<body class=" vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
 @if (!Auth::guest())
     
         <!-- Main Header -->
@@ -104,7 +135,7 @@
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
         <!-- Content Wrapper. Contains page content -->
-        <div class="app-content content">
+        <div class="app-content content ">
             <div class="content-wrapper">
               <div class="content-body">
                 <!-- Basic initialization table -->
@@ -118,10 +149,7 @@
                           <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                           <div class="heading-elements">
                             <ul class="list-inline mb-0">
-                              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                              <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                               <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                              <li><a data-action="close"><i class="ft-x"></i></a></li>
                             </ul>
                           </div>
                         </div>

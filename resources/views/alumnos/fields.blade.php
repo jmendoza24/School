@@ -452,7 +452,7 @@
   <i class="ft-x"></i> Cancelar
 </button>
 </a>
-<button type="submit" class="btn btn-primary">
+<button type="submit" class="btn btn_verde">
   <i class="fa fa-check-square-o"></i> Guardar
 </button>
 </div>
@@ -473,7 +473,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-warning " data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-outline-primary" onclick="guarda_direccion()">Guardar</button>
+              <button type="button" class="btn btn_verde" onclick="guarda_direccion()">Guardar</button>
             </div>
           </div>
       </form>
