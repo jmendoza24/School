@@ -37,13 +37,10 @@
                           <div class="card-content">
                             <div class="card-body">
                               <div class="media">
-                                <div class="media-body text-left w-100">
-                                  <h2 class="primary">{{ $p->conteos }}</h2>
-                                  <span>{{ $p->grado }} - {{ $p->grupo }}</span>
-
-                                </div>
-                                <div class="media-right media-middle" onclick="tabla_alumnos(1,{{ $p->grade }},{{ $p->group }})" style="cursor: pointer;">
-                                  <i class="icon-user-follow primary font-large-2 float-right"></i>
+                                <div class="media-body text-left w-100" onclick="tabla_alumnos(1,{{ $p->grade }},{{ $p->group }})" style="cursor: pointer;">
+                                  <h4 class="primary">
+                                    <i class="icon-user-follow primary "></i>
+                                    {{ $p->grado }} - {{ $p->grupo }} ({{ $p->conteos }})</h4>
                                 </div>
                               </div>
                             </div>
@@ -62,14 +59,11 @@
                             <div class="card-content">
                               <div class="card-body">
                                 <div class="media">
-                                  <div class="media-body text-left w-100">
-                                    <h2 class="warning">{{ $pr->conteos }}</h2>
-                                    <span>{{ $pr->grado }} - {{ $pr->grupo }}</span>
-
-                                  </div>
-                                  <div class="media-right media-middle" onclick="tabla_alumnos(2,{{ $pr->grade }},{{ $pr->group }})" style="cursor: pointer;">
-                                    <i class="icon-user-follow warning font-large-2 float-right"></i>
-                                  </div>
+                                  <div class="media-body text-left w-100" onclick="tabla_alumnos(2,{{ $pr->grade }},{{ $pr->group }})" style="cursor: pointer;">
+                                  <h4 class="primary">
+                                    <i class="icon-user-follow primary "></i>
+                                    {{ $pr->grado }} - {{ $pr->grupo }} ({{ $pr->conteos }})</h4>
+                                </div>
                                 </div>
                               </div>
                             </div>

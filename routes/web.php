@@ -14,12 +14,16 @@
 
 
 Auth::routes();
+Route::get('/register', 'HomeController@register');
+Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
+
+//Route::post('/save_alumno_ext', 'HomeController@store')->name('personalInfoExt.store');
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('alumnos', 'AlumnosController');
-	Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
+	//Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
 	Route::resource('contactos', 'ContactosController');
 	Route::resource('documentacions', 'documentacionController');
 	Route::resource('catalogos', 'catalogosController');
@@ -36,3 +40,6 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 
 
 
+
+
+Route::resource('alumnosDocumentos', 'alumnos_documentosController');

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\personal_info_alumno;
 use App\Models\catalogos;
-
+use App\Models\alumnos_documentos;
 use App\Http\Requests\Createpersonal_info_alumnoRequest;
 use App\Http\Requests\Updatepersonal_info_alumnoRequest;
 use App\Repositories\personal_info_alumnoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 
@@ -56,8 +57,18 @@ class personal_info_alumnoController extends AppBaseController
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
         $alumnos=array();
+        $personalInfoAlumno = array('grade'=>'',
+                                    'group'=>'',
+                                    'level'=>'',
+                                    'school_cycle'=>'',
+                                    'gender'=>'','ethnicity'=>'',
+                                    'race'=>'','special_ed'=>'',
+                                    'gifted_talented'=>''
+                                );
+        $personalInfoAlumno = (object)$personalInfoAlumno;
+        $alumnosDocumentos = array();
 
-        return view('personal_info_alumnos.create',compact('grados','grupos','ciclos','alumnos'));
+        return view('personal_info_alumnos.create',compact('grados','grupos','ciclos','alumnos','personalInfoAlumno','alumnosDocumentos'));
     }
 
     /**
@@ -78,7 +89,7 @@ class personal_info_alumnoController extends AppBaseController
             $img = Storage::url($file_img->store('alumnos', 'public'));
             $imgp = strpos($img,'/storage/');
             $img = substr($img, $imgp, strlen($img));
-            $input['foto']  = $img;
+            $input['photo_alumno']  = $img;
         }
 
         $personalInfoAlumno = $this->personalInfoAlumnoRepository->create($input);
@@ -118,15 +129,15 @@ class personal_info_alumnoController extends AppBaseController
     {   
 
 
-        $alumnos = $this->personalInfoAlumnoRepository->find($id);
+        $personalInfoAlumno = $this->personalInfoAlumnoRepository->find($id);
         $objeto_alumnos = new personal_info_alumno; 
-        $personalInfoAlumno=personal_info_alumno::all();
-        $personalInfoAlumno=$personalInfoAlumno[0];
+        $alumnos=personal_info_alumno::all();
+        $alumnos=$alumnos[0];
         $grados=catalogos::where('catalogo',3)->get();
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
-
-        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos'));
+        $alumnosDocumentos = alumnos_documentos::get();
+        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos'));
 
     }
 
@@ -151,11 +162,11 @@ class personal_info_alumnoController extends AppBaseController
             $img = Storage::url($file_img->store('alumnos', 'public'));
             $imgp = strpos($img,'/storage/');
             $img = substr($img, $imgp, strlen($img));
-            $alumnos['foto']  = $img;
+            $alumnos['photo_alumno']  = $img;
         }else{
-            unset($alumnos['foto'] );
+            unset($alumnos['photo_alumno'] );
         }
-        //dd($alumnos);
+        #dd($alumnos);
         $alumnos = $this->personalInfoAlumnoRepository->update($alumnos, $id);
         return redirect(route('personalInfoAlumnos.index'));
 

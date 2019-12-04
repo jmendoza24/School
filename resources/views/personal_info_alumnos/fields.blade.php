@@ -10,6 +10,9 @@
   <li class="nav-item">
     <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt2" aria-controls="linkOpt2"><i class="fa fa-file-text-o"></i> Documents</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-file-text-o"></i> Documents</a>
+  </li>
   @endif
 </ul>
 <div class="tab-content px-1 pt-1">
@@ -19,19 +22,23 @@
         <input type="hidden" name="activo" id="activo" value="1">
         
         <div class="col-md-6">
+          @if($ext==0)
             <div class="col-md-12" style="text-align: center;">
               <table style="margin: auto;">
                 <tr>
                   <td>
-                    <img class="media-object rounded-circle" src="@if(!empty($alumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
+                    <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
                   </td>
                   <td>
+                    
                     <a href="" class="btn btn_verde"><i class="fa fa-card"></i>Credential</a>
+                    
                   </td>
                 </tr>
               </table>
               <br><br>
             </div>
+            @endif
             <div class="col-md-12">
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Photo:</label>
@@ -77,23 +84,15 @@
                 <div class="col-md-9">
                 <select class="form-control" name="grade" id="grade" required="required">
                     <option value="" selected="">select option</option> 
-                     @if(!empty($personalInfoAlumnos))
-                              @foreach($grados as $tipo)
-                                 <option 
-                                      value="{{ $tipo->id }}" 
-                                      {{ old('grade', $personalInfoAlumnos->grade) == $tipo->id ? 'selected' : '' }}
-                                 >{{ $tipo->valor }}</option>
-                              @endforeach   
-                              @else
-                               @foreach($grados as $tipo)
-
-                                 <option 
-                                      value="{{ $tipo->id }}" 
-                                      {{ old('grade')}}
-                                 >{{ $tipo->valor }}</option>
-                              @endforeach   
-                              @endif
-
+                       @if(!empty($grados))
+                         @foreach($grados as $tipo)
+                        <option value="{{ $tipo->id }}" 
+                          
+                            {{ ($personalInfoAlumno->grade == $tipo->id) ? 'selected' : '' }}
+                           >
+                          {{ $tipo->valor}}</option>
+                        @endforeach
+                        @endif
                 </select>
                 </div>
               </div>
@@ -106,23 +105,15 @@
                 <div class="col-md-9">
                 <select class="form-control" name="group" id="group" required="required">
                     <option value="" selected="">select option</option> 
-                     @if(!empty($personalInfoAlumnos))
-                      @foreach($grupos as $tipo)
-                         <option 
-                              value="{{ $tipo->id }}" 
-                              {{ old('group', $personalInfoAlumnos->group) == $tipo->id ? 'selected' : '' }}
-                         >{{ $tipo->valor }}</option>
-                      @endforeach   
-                      @else
-                       @foreach($grupos as $tipo)
-
-                         <option 
-                              value="{{ $tipo->id }}" 
-                              {{ old('group')}}
-                         >{{ $tipo->valor }}</option>
-                      @endforeach   
-                      @endif
- 
+                    @if(!empty($grupos))
+                         @foreach($grupos as $tipo)
+                        <option value="{{ $tipo->id }}" 
+                          
+                            {{ ($personalInfoAlumno->group == $tipo->id) ? 'selected' : '' }}
+                           >
+                          {{ $tipo->valor}}</option>
+                        @endforeach
+                    @endif                   
                 </select>
                 </div>
               </div>
@@ -135,10 +126,10 @@
                 <div class="col-md-9">
                 <select class="form-control" name="level" id="level" required="required">
                     <option value="" selected="">select option</option>
-                    <option value="1" >Pre kindergarten</option>
-                    <option value="2" >Primary</option>
-                    <option value="3" >High school (Secundaria)</option>
-                    <option value="4" >High school (preparatoria)</option>
+                    <option value="1" {{($personalInfoAlumno->level ==1) ? 'selected':''}} >Pre kindergarten</option>
+                    <option value="2" {{($personalInfoAlumno->level ==2) ? 'selected':''}} >Primary</option>
+                    <option value="3" {{($personalInfoAlumno->level ==3) ? 'selected':''}} >High school (Secundaria)</option>
+                    <option value="4" {{($personalInfoAlumno->level ==4) ? 'selected':''}} >High school (preparatoria)</option>
 
                 </select>
                 </div>
@@ -152,23 +143,15 @@
                 <div class="col-md-9">
                 <select class="form-control" name="school_cycle" id="school_cycle" required="required">
                     <option value="" selected="">select option</option> 
-                     @if(!empty($personalInfoAlumnos))
-                      @foreach($ciclos as $tipo)
-                         <option 
-                              value="{{ $tipo->id }}" 
-                              {{ old('school_cycle', $personalInfoAlumnos->school_cycle) == $tipo->id ? 'selected' : '' }}
-                         >{{ $tipo->valor }}</option>
-                      @endforeach   
-                      @else
-                       @foreach($ciclos as $tipo)
-
-                         <option 
-                              value="{{ $tipo->id }}" 
-                              {{ old('school_cycle')}}
-                         >{{ $tipo->valor }}</option>
-                      @endforeach   
-                      @endif
-
+                     @if(!empty($ciclos))
+                         @foreach($ciclos as $tipo)
+                        <option value="{{ $tipo->id }}" 
+                          
+                            {{ ($personalInfoAlumno->school_cycle == $tipo->id) ? 'selected' : '' }}
+                           >
+                          {{ $tipo->valor}}</option>
+                        @endforeach
+                    @endif  
                 </select>
                 </div>
               </div>
@@ -200,8 +183,8 @@
                 <div class="col-md-9">
                 <select class="form-control" name="gender" id="gender" >
                     <option value="0" selected="">select option</option>
-                    <option value="1" >M</option> 
-                    <option value="2" >F</option>  
+                    <option value="1" {{($personalInfoAlumno->gender ==1) ? 'selected':''}}>M</option> 
+                    <option value="2" {{($personalInfoAlumno->gender ==2) ? 'selected':''}}>F</option>  
                 </select>
                 </div>
               </div>
@@ -224,8 +207,8 @@
                 <div class="col-md-9">
                   <select class="form-control" name="ethnicity" id="ethnicity" >
                       <option value="0" selected="">select option</option>
-                      <option value="1">Students of Hispanic/Latino Origin</option>
-                      <option value="2">Not Hispanic/Latino</option> 
+                      <option value="1" {{($personalInfoAlumno->ethnicity ==1) ? 'selected':''}}>Students of Hispanic/Latino Origin</option>
+                      <option value="2" {{($personalInfoAlumno->ethnicity ==2) ? 'selected':''}}>Not Hispanic/Latino</option> 
                 </select>
                 </div>
               </div>
@@ -238,11 +221,11 @@
                 <div class="col-md-9">
                    <select class="form-control" name="race" id="race" >
                      <option value="0" selected="">select option</option>
-                     <option value="1">American Indian or Alaska Native</option>
-                     <option value="2">Asian</option>
-                     <option value="3">Black or African American</option>
-                     <option value="4">Native Hawaiian or other Pacific Islander</option>
-                     <option value="5">White</option> 
+                     <option value="1" {{($personalInfoAlumno->race ==1) ? 'selected':''}}>American Indian or Alaska Native</option>
+                     <option value="2" {{($personalInfoAlumno->race ==2) ? 'selected':''}}>Asian</option>
+                     <option value="3" {{($personalInfoAlumno->race ==3) ? 'selected':''}}>Black or African American</option>
+                     <option value="4" {{($personalInfoAlumno->race ==4) ? 'selected':''}}>Native Hawaiian or other Pacific Islander</option>
+                     <option value="5" {{($personalInfoAlumno->race ==5) ? 'selected':''}}>White</option> 
                  </select>
 
                 </div>
@@ -255,9 +238,9 @@
                 <label class="col-md-3 label-control" for="userinput2">Special Ed:</label>
                 <div class="col-md-9">
                    <select class="form-control" name="special_ed" id="special_ed" >
-                     <option value="0" selected="">select option</option>
-                     <option value="1" >Yes</option> 
-                     <option value="2" >No</option> 
+                     <option value="0" {{($personalInfoAlumno->special_ed ==0) ? 'selected':''}}>select option</option>
+                     <option value="1" {{($personalInfoAlumno->special_ed ==1) ? 'selected':''}}>Yes</option> 
+                     <option value="2" {{($personalInfoAlumno->special_ed ==2) ? 'selected':''}}>No</option> 
                  </select>
                 </div>
               </div>
@@ -269,9 +252,9 @@
                 <label class="col-md-3 label-control" for="userinput2">Gifted/Talent:</label>
                 <div class="col-md-9">
                    <select class="form-control" name="gifted_talented" id="gifted_talented" >
-                    <option value="0" >select option</option>
-                    <option value="1" >Yes</option> 
-                    <option value="2" >No</option>  
+                    <option value="0" {{($personalInfoAlumno->gifted_talented ==0) ? 'selected':''}}>select option</option>
+                    <option value="1" {{($personalInfoAlumno->gifted_talented ==1) ? 'selected':''}}>Yes</option> 
+                    <option value="2" {{($personalInfoAlumno->gifted_talented ==2) ? 'selected':''}}>No</option>  
                  </select>
                 </div>
               </div>
@@ -471,44 +454,61 @@
         </div>
     </div>
     
-    <br><br><br><br><br><br>
+    <div class="form-actions right">
+      <a href="{{ route('personalInfoAlumnos.index') }}">
+    <button type="button" class="btn btn-red mr-1">
+      <i class="ft-x"></i> Cancel
+    </button>
+    </a>
+    <button type="submit" class="btn btn_verde">
+      <i class="fa fa-check-square-o"></i> Save
+    </button>
+    </div>
 </div>
 
-  <div class="tab-pane" id="link32" role="tabpanel" aria-labelledby="link-tab32" aria-expanded="false">
-    <h4 class="form-section"><i class="ft-user"></i>Información de contacto</h4>     
-    
-    </div>
-    
     
   @if($editar ==1)
   <div class="tab-pane" id="linkOpt2" role="tabpanel" aria-labelledby="linkOpt-tab2" aria-expanded="false">
- <br>
-    <div class="row">
-          <div class="col-lg-6 col-md-12">
-            <fieldset class="form-group">
-              <label for="basicInputFile">Acta de nacimiento</label>
-              <input type="file" class="form-control-file" id="basicInputFile">
-            </fieldset>
-          </div>
-          <div class="col-lg-6 col-md-12">
-            <fieldset class="form-group">
-              <label for="basicInputFile">CURP</label>
-              <input type="file" class="form-control-file" id="basicInputFile">
-            </fieldset>
-          </div>
+    <form method="post"  action="" class="form-horizontal needs-validation novalidate" enctype='multipart/form-data'>
+        <div class="form-row">
+            <div class="col-md-3">
+              <label for="validationDefault02">Documents:</label>
+              <select class="form-control" id="documents" name="documents" required="">
+                    <option value="" >select option</option>
+                    <option value="1" >School Cycle</option>
+                    <option value="2" >Documents</option>
+                    <option value="3" >Grade</option>
+                    <option value="4" >Groups</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="validationDefaultUsername">Archivo:</label>
+              <div class="input-group">
+                <input type="file" class="form-control" name="valor" id="valor" required="">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationDefaultUsername">Comment:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" name="comments" id="comments">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationDefaultUsername">&nbsp;</label>
+              <div class="input-group">
+                <button type="submit" class="btn btn_verde pull-right" ><i class="fa fa-save"></i>&nbsp;Save</button>
+              </div>
+            </div>
         </div>
+    </form>
+    <hr>
+    @include('alumnos_documentos.table')
+  </div>
+  <div class="tab-pane" id="linkOpt3" role="tabpanel" aria-labelledby="linkOpt-tab3" aria-expanded="false" aria-controls="linkOpt3">
+    JJJJJ
   </div>
   @endif
-</div>
-<div class="form-actions right">
-  <a href="{{ route('personalInfoAlumnos.index') }}">
-<button type="button" class="btn btn-red mr-1">
-  <i class="ft-x"></i> Cancel
-</button>
-</a>
-<button type="submit" class="btn btn_verde">
-  <i class="fa fa-check-square-o"></i> Save
-</button>
+
 </div>
 
 

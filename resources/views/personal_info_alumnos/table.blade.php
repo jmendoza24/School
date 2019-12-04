@@ -18,8 +18,8 @@
             <td><img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/imagesdefault-user-icon-5.jpg') }} @endif" style="width: 64px;height: 64px;"/></td>
             <td>{!! $personalInfoAlumno->num_control !!}</td>
             <td>{!! $personalInfoAlumno->name !!}</td>
-            <td>{!! $personalInfoAlumno->level !!}</td>
-            <td>{!! $personalInfoAlumno->grade !!}</td>
+            <td>{!! $personalInfoAlumno->nivel_escolar !!}</td>
+            <td>{!! $personalInfoAlumno->grado !!}</td>
             <td>{!! $personalInfoAlumno->grupo !!}</td>
             <td>{!! $personalInfoAlumno->email !!}</td>
             <td>{!! $personalInfoAlumno->tel !!}</td>
