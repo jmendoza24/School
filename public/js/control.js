@@ -41,12 +41,12 @@ function tabla_alumnos(nivel, grado, grupo){
           dataType: "json",
           success: function(respuesta){ 
             $("#tabla_alumnos").html(respuesta);
-            $(".display").DataTable({
-                   "language": {
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                }
-              });
+            $('.scroll-horizontal').DataTable( {
+                  "scrollX": true
+              } );
+
             $("#tabla_alumnos").show();
+
           }
       });
 

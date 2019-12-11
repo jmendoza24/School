@@ -35,6 +35,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/switch.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/wizard.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/pickers/daterange/daterange.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{  url('app-assets/css/pages/users.css')}}">
  <style type="text/css">
           .m{
              color: white;
@@ -234,7 +235,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-  <script src="{{ url('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
+  
   <script src="{{ url('app-assets/js/scripts/forms/extended/form-inputmask.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/forms/extended/form-maxlength.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/vendors/js/forms/icheck/icheck.min.js') }}" type="text/javascript"></script>
@@ -264,15 +265,14 @@
   <script src="{{ url('app-assets/vendors/js/extensions/dragula.min.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/cards/draggable.js') }}" type="text/javascript"></script>
   <script src="{{ url('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url('app-assets/js/scripts/tables/datatables/datatable-basic.js') }}" type="text/javascript"></script>
 
   <script type="text/javascript" src="{{ url('js/funcion.js') }}"></script>
   
 
   <script type="text/javascript">
-     $(".display").DataTable({
-           
-        });
 
+  
     (function() {
        'use strict';
        window.addEventListener('load', function() {

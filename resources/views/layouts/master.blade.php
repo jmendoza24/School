@@ -25,6 +25,7 @@
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded container boxed-layout fixed-navbar"
@@ -35,7 +36,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
       <div class="navbar-header morado">
         <ul class="nav navbar-nav flex-row ">
           <li class="nav-item ">
-            <a class="navbar-brand" href="{{ route('home')}}">
+            <a class="navbar-brand" href="/">
               <img class="brand-logo" alt="admin logo"  src="{{ url('app-assets/images/logo/mati-kinder-logo-50x34.png') }}">
               <h2 class="brand-text">Admin</h2>
             </a>
@@ -49,8 +50,8 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
           </ul>
           <ul class="nav navbar-nav float-right ">
             <li class="dropdown dropdown-user nav-item">
-              <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                <span class="user-name">Guest</span>
+              <a class="dropdown-toggle nav-link dropdown-user-link" href="{{ route('register') }}" >
+                <span class="user-name">Registro</span>
               </a>
             </li>
           </ul>
@@ -67,7 +68,7 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
         <!-- Description -->
         <section id="description" class="card">
           <div class="card-header">
-            <h4 class="card-title">Registro de Alumnos</h4>
+            <h4 class="card-title">@yield('titulo')</h4>
           </div>
           <div class="card-content">
             <div class="card-body">
@@ -90,6 +91,8 @@ data-open="click" data-menu="vertical-menu" data-col="2-columns">
   <script src="{{ url('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/core/app.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+  <script src="{{ url('js/funcion.js')}}" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
   <script type="text/javascript">    
 
     (function() {

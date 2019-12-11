@@ -1,6 +1,6 @@
-<table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
+<table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="">
     <thead>
-        <tr class="azul">
+        <tr>
             <th>Photo</th>
             <th>ID</th>                
             <th>Name</th>
@@ -26,7 +26,7 @@
             <td>
                 {!! Form::open(['route' => ['personalInfoAlumnos.destroy', $personalInfoAlumno->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    {{-- <a href="{!! route('alumnos.show', [$alumnos->id]) !!}" class='btn btn-float btn-outline-secondary btn-round'><i class="fa fa-thumbs-o-up"></i></a> --}}
+                    <a href="{!! route('personalInfoAlumnos.show', [$personalInfoAlumno->id]) !!}" class='btn btn-float btn-outline-secondary btn-round'><i class="fa fa-user"></i></a>
                     <a href="{!! route('personalInfoAlumnos.edit', [$personalInfoAlumno->id]) !!}" class='btn btn-float btn-outline-success btn-round'><i class="fa fa-edit"></i></a>
                     {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-float btn-outline-danger btn-round', 'onclick' => "return confirm('Are you sure you want to delete?')"]) !!}
                 </div>

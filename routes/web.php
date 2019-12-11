@@ -12,16 +12,18 @@
 */
 
 
-
+Route::get('/', 'HomeController@index');
 Auth::routes();
-Route::get('/register', 'HomeController@register');
+
+Route::get('/register', 'HomeController@register')->name('register');
+Route::get('/thanks', 'HomeController@gracias')->name('personalInfoAlumnos.thanks');
 Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
 
 //Route::post('/save_alumno_ext', 'HomeController@store')->name('personalInfoExt.store');
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/', 'HomeController@index')->name('home');
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/admin', 'HomeController@inicio')->name('home');
+	Route::get('/home', 'HomeController@inicio')->name('home');
 	Route::resource('alumnos', 'AlumnosController');
 	//Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
 	Route::resource('contactos', 'ContactosController');
@@ -34,10 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 	Route::get('/alumnos', 'personal_info_alumnoController@alumnos');
 	Route::get('/guarda_catalogo', 'catalogosController@store');
-	Route::get('/elimina_catalogo', 'catalogosController@elimina');
+	Route::get('/elimina_catalogo', 'catalogosController@elimina');	
 });
 
-
+Route::get('/valida_curp', 'HomeController@valida_curp');
 
 
 
