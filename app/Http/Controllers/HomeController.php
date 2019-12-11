@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome');
     }
 
     function register(){
@@ -74,5 +74,18 @@ class HomeController extends Controller
 
     }
 
+    public function gracias(Request $request){
+        return view('personal_info_alumnos.thanks');
+    }
+
+    function valida_curp(Request $request){
+        $contero =  db::table('alumnos_personal_infos')->where('curp',$request->curp)->count();
+
+        return json_encode($contero);
+    }
+
+    function  inicio(){
+        return view('home');
+    }
 
 }

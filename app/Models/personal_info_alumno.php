@@ -87,7 +87,8 @@ class personal_info_alumno extends Model
         'level',
         'group',
         'school_cycle',
-        'num_control'
+        'num_control',
+        'curp'
 
     ];
 
@@ -130,7 +131,8 @@ class personal_info_alumno extends Model
         'level' => 'integer',
         'group' => 'integer',
         'school_cycle' => 'integer',
-        'num_control' => 'string'
+        'num_control' => 'string',
+        'curp' => 'string'
 
     ];
 
@@ -147,12 +149,15 @@ class personal_info_alumno extends Model
     {
         
         return DB::table('alumnos_personal_infos as a')
-                         ->leftjoin('catalogos as c','c.id','=','a.grade')
+                        // ->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
                          ->leftjoin('catalogos as c3','c3.id','=','a.school_cycle')
-                         ->selectraw('a.grade, a.group,c.valor as grado,c2.valor as grupo,count(*) as conteos')
+                         ->selectraw("a.grade, a.group,
+                                    case a.grade when 1 then 'Prekinder'
+                                                 when 2 then 'Kinder'
+                                                 else a.grade end as grado,c2.valor as grupo,count(*) as conteos")
                          ->where('a.level',$id)
-                         ->groupby('c.valor','c2.valor','a.grade', 'a.group')
+                         ->groupby('c2.valor','a.grade', 'a.group')
                          ->get();
 
     }  
@@ -161,15 +166,15 @@ class personal_info_alumno extends Model
     {
       
         return DB::table('alumnos_personal_infos as a')
-                         ->leftjoin('catalogos as c','c.id','=','a.grade')
+                         //->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
-                         ->selectraw("a.* ,c.valor as grado,c2.valor as grupo,
+                         ->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
                                     case a.level when 1 then 'Pre kindergarten'
                                                when 2 then 'Primary'
                                                when 3 then 'High school (Secundaria)'
                                                when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar ")
                          ->where([['a.level',$nivel],['a.grade',$grado],['a.group',$grupo]])
-                         ->orderby('c.valor','asc')
+                         ->orderby('a.grade','asc')
                          ->get();
 
     }

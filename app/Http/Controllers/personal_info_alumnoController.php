@@ -84,6 +84,9 @@ class personal_info_alumnoController extends AppBaseController
 
         $input = $request->all();
 
+        $ext  = $request->ext;
+
+
         $file_img = $request->file('foto');
         if(!empty($file_img)){
             $img = Storage::url($file_img->store('alumnos', 'public'));
@@ -94,7 +97,12 @@ class personal_info_alumnoController extends AppBaseController
 
         $personalInfoAlumno = $this->personalInfoAlumnoRepository->create($input);
 
-        return redirect()->route('personalInfoAlumnos.index');
+        if($ext==1){
+            return redirect()->route('personalInfoAlumnos.thanks');
+        }else{
+            return redirect()->route('personalInfoAlumnos.index');    
+        }
+        
 
     }
 
@@ -208,4 +216,5 @@ class personal_info_alumnoController extends AppBaseController
         
 
     }
+
 }

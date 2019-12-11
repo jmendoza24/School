@@ -18,27 +18,15 @@
 <div role="tabpanel" class="tab-pane active in" id="active32" aria-labelledby="active-tab32" aria-expanded="true">
    <br>
    <div class="row">
-        <input type="hidden" name="activo" id="activo" value="1">
         
-        <div class="col-md-6">
+        
+        
           @if($ext==0)
-            <div class="col-md-12" style="text-align: center;">
-              <table style="margin: auto;">
-                <tr>
-                  <td>
-                    <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
-                  </td>
-                  <td>
-                    
-                    <a href="" class="btn btn_verde"><i class="fa fa-card"></i>Credential</a>
-                    
-                  </td>
-                </tr>
-              </table>
-              <br><br>
+            <div class="col-md-6" style="text-align: center;">
+              <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
             </div>
             @endif
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Photo:</label>
                 <div class="col-md-9">
@@ -47,10 +35,7 @@
               </div>
             </div> 
 
-        </div>
-        <div class="col-md-6">
-          
-        </div>
+        
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
@@ -79,19 +64,48 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Grade:</label>
+                <label class="col-md-3 label-control" for="userinput2">Curp:</label>
                 <div class="col-md-9">
-                <select class="form-control" name="grade" id="grade" required="required">
+                     {!! Form::text('curp', null, ['class' => 'form-control','required'=>'required','id'=>'curp','onchange'=>'valida_curp()']) !!}
+                <div class="invalid-feedback">This field is required.</div>
+
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12">
+              <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput2">School Cycle:</label>
+                <div class="col-md-9">
+                <select class="form-control" name="school_cycle" id="school_cycle" required="required">
                     <option value="" selected="">select option</option> 
-                       @if(!empty($grados))
-                         @foreach($grados as $tipo)
+                     @if(!empty($ciclos))
+                         @foreach($ciclos as $tipo)
                         <option value="{{ $tipo->id }}" 
                           
-                            {{ ($personalInfoAlumno->grade == $tipo->id) ? 'selected' : '' }}
+                            {{ ($personalInfoAlumno->school_cycle == $tipo->id) ? 'selected' : '' }}
                            >
                           {{ $tipo->valor}}</option>
                         @endforeach
-                        @endif
+                    @endif  
+                </select>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12">
+              <div class="form-group row">
+                <label class="col-md-3 label-control" for="userinput2">School Level:</label>
+                <div class="col-md-9">
+                <select class="form-control" name="level" id="level" required="required" onchange="grados_niveles()">
+                    <option value="" selected="">select option</option>
+                    <option value="1" {{($personalInfoAlumno->level ==1) ? 'selected':''}} >Pre kindergarten</option>
+                    <option value="2" {{($personalInfoAlumno->level ==2) ? 'selected':''}} >Primary</option>
+                    <option value="3" {{($personalInfoAlumno->level ==3) ? 'selected':''}} >High school (Secundaria)</option>
+                    <option value="4" {{($personalInfoAlumno->level ==4) ? 'selected':''}} >High school (preparatoria)</option>
+
                 </select>
                 </div>
               </div>
@@ -121,41 +135,31 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">School Level:</label>
+                <label class="col-md-3 label-control" for="userinput2">Grade:</label>
                 <div class="col-md-9">
-                <select class="form-control" name="level" id="level" required="required">
-                    <option value="" selected="">select option</option>
-                    <option value="1" {{($personalInfoAlumno->level ==1) ? 'selected':''}} >Pre kindergarten</option>
-                    <option value="2" {{($personalInfoAlumno->level ==2) ? 'selected':''}} >Primary</option>
-                    <option value="3" {{($personalInfoAlumno->level ==3) ? 'selected':''}} >High school (Secundaria)</option>
-                    <option value="4" {{($personalInfoAlumno->level ==4) ? 'selected':''}} >High school (preparatoria)</option>
-
-                </select>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="col-md-12">
-              <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">School Cycle:</label>
-                <div class="col-md-9">
-                <select class="form-control" name="school_cycle" id="school_cycle" required="required">
+                <select class="form-control" name="grade" id="grade" required="required">
                     <option value="" selected="">select option</option> 
-                     @if(!empty($ciclos))
-                         @foreach($ciclos as $tipo)
-                        <option value="{{ $tipo->id }}" 
-                          
-                            {{ ($personalInfoAlumno->school_cycle == $tipo->id) ? 'selected' : '' }}
-                           >
-                          {{ $tipo->valor}}</option>
-                        @endforeach
-                    @endif  
+                    <option value="1" {{ ($personalInfoAlumno->grade == 1) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 1) ? '' : 'display: none' }}" class="prescolar">Prekinder</option>
+                    <option value="2" {{ ($personalInfoAlumno->grade == 2) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 2) ? '' : 'display: none' }}" class="prescolar">Kinder</option>
+                    <option value="3" {{ ($personalInfoAlumno->grade == 3) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 3) ? '' : 'display: none' }}" class="primaria">1</option>
+                    <option value="4" {{ ($personalInfoAlumno->grade == 4) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 4) ? '' : 'display: none' }}" class="primaria">2</option>
+                    <option value="5" {{ ($personalInfoAlumno->grade == 5) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 5) ? '' : 'display: none' }}" class="primaria">3</option>
+                    <option value="6" {{ ($personalInfoAlumno->grade == 6) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 6) ? '' : 'display: none' }}" class="primaria">4</option>
+                    <option value="7" {{ ($personalInfoAlumno->grade == 7) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 7) ? '' : 'display: none' }}" class="primaria">5</option>
+                    <option value="8" {{ ($personalInfoAlumno->grade == 8) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 8) ? '' : 'display: none' }}" class="primaria">6</option>
+                    <option value="9" {{ ($personalInfoAlumno->grade == 9) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 9) ? '' : 'display: none' }}" class="secundaria">7</option>
+                    <option value="10" {{ ($personalInfoAlumno->grade == 10) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 10) ? '' : 'display: none' }}" class="secundaria">8</option>
+                    <option value="11" {{ ($personalInfoAlumno->grade == 11) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 11) ? '' : 'display: none' }}" class="secundaria">9</option>
+                    <option value="12" {{ ($personalInfoAlumno->grade == 12) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 12) ? '' : 'display: none' }}" class="prepa">10</option>                            
+                    <option value="13" {{ ($personalInfoAlumno->grade == 13) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 13) ? '' : 'display: none' }}"class="prepa">11</option>  
+                    <option value="14" {{ ($personalInfoAlumno->grade == 14) ? 'selected' : '' }} style="{{ ($personalInfoAlumno->grade == 14) ? '' : 'display: none' }}"class="prepa">12</option>  
                 </select>
                 </div>
               </div>
           </div>
         </div>
+        
+        
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
@@ -459,7 +463,7 @@
       <i class="ft-x"></i> Cancel
     </button>
     </a>
-    <button type="submit" class="btn btn_verde">
+    <button type="submit" class="btn btn-success" id="btn_save" style="{{ ($ext==1)?'display: none;':'' }}">
       <i class="fa fa-check-square-o"></i> Save
     </button>
     </div>
@@ -495,7 +499,8 @@
             <div class="col-md-3">
               <label for="validationDefaultUsername">&nbsp;</label>
               <div class="input-group">
-                <button type="submit" class="btn btn_verde pull-right" ><i class="fa fa-save"></i>&nbsp;Save</button>
+
+                <button type="submit" class="btn btn-success" id="btn_save"><i class="fa fa-save"></i>&nbsp;Save</button>
               </div>
             </div>
         </div>

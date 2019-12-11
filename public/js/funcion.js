@@ -39,3 +39,46 @@ function borra_catalogo(id){
             }
         });
 }
+
+function grados_niveles(){
+  var level = $("#level").val();
+
+  if(level ==1){
+    $(".prescolar").show();
+    $(".primaria").hide();
+    $(".secundaria").hide();
+    $(".prepa").hide();
+  }else if(level==2){
+    $(".prescolar").hide();
+    $(".primaria").show();
+    $(".secundaria").hide();
+    $(".prepa").hide();
+  }else if(level==3){
+    $(".prescolar").hide();
+    $(".primaria").hide();
+    $(".secundaria").show();
+    $(".prepa").hide();
+  }else if(level==4){
+    $(".prescolar").hide();
+    $(".primaria").hide();
+    $(".secundaria").hide();
+    $(".prepa").show();
+  }
+}
+
+function valida_curp(){
+  $.ajax({
+            url: '/valida_curp',          
+            data: {"curp":$("#curp").val()},
+            dataType: "json",
+            type:"get",
+            success: function(result){
+              if(result==1){
+                $.alert('Este curp ya esta registrado, favor de ponerse en contacto con el administrador');
+                $("#btn_save").hide();
+              }else{
+                $("#btn_save").show();
+              }
+            }
+        });
+}

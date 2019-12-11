@@ -32,7 +32,7 @@
                 <h4 class="form-section">Pre kindergarten</h4><br>
                   <div class="row" style="background: #F0E6E4;padding-top: 14px">
                    @foreach($prescolar as $p)
-                    <div class="col-xl-2">
+                    <div class="col-xl-3">
                         <div class="card">
                           <div class="card-content">
                             <div class="card-body">
@@ -54,7 +54,7 @@
                 <h4 class="form-section">Primary</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                     @foreach($primaria as $pr)
-                      <div class="col-xl-2">
+                      <div class="col-xl-3">
                           <div class="card">
                             <div class="card-content">
                               <div class="card-body">
@@ -76,7 +76,7 @@
                 <h4 class="form-section">High school (Secundaria)</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                  @foreach($secundaria as $sec)
-                      <div class="col-xl-2">
+                      <div class="col-xl-3">
                           <div class="card">
                             <div class="card-content">
                               <div class="card-body">
@@ -101,7 +101,7 @@
                 <h4 class="form-section">High school (preparatoria)</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                   @foreach($prepa as $pre)
-                      <div class="col-xl-2">
+                      <div class="col-xl-3">
                           <div class="card">
                             <div class="card-content">
                               <div class="card-body">
@@ -123,9 +123,8 @@
             </div>
         </div>
     </div><br><hr>
-    <div style="overflow: auto; display: none;" id="tabla_alumnos" >
+    <div class="row" style="display: none;" id="tabla_alumnos" >
             @include('personal_info_alumnos.table')
-
     </div>
 @endsection
 

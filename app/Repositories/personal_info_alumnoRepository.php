@@ -49,7 +49,8 @@ class personal_info_alumnoRepository extends BaseRepository
         'level',
         'group',
         'school_cycle',
-        'num_control'
+        'num_control',
+        'curp'
 
     ];
 
