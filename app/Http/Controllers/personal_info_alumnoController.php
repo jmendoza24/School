@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
+use PDF;
+use View;
 
 class personal_info_alumnoController extends AppBaseController
 {
@@ -115,15 +117,16 @@ class personal_info_alumnoController extends AppBaseController
      */
     public function show($id)
     {
-        $personalInfoAlumno = $this->personalInfoAlumnoRepository->find($id);
+        $credencal = view('personal_info_alumnos.show')->render();
+        return ($credencal);
 
-        if (empty($personalInfoAlumno)) {
-            Flash::error('Personal Info Alumno not found');
+        //$pdf = \PDF::loadView('personal_info_alumnos.show')->setPaper('a4','landscape');
+        $pdf = App('dompdf.wrapper');
+        $pdf->loadHTML($credencal);
+        //return $pdf->stream();
 
-            return redirect(route('personalInfoAlumnos.index'));
-        }
-
-        return view('personal_info_alumnos.show')->with('personalInfoAlumno', $personalInfoAlumno);
+        return $pdf->download('invoice.pdf');
+        
     }
 
     /**
