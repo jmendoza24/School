@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('contactos', 'ContactosController');
 	Route::resource('documentacions', 'documentacionController');
 	Route::resource('catalogos', 'catalogosController');
-	Route::resource('materias', 'materiasController');
+	Route::resource('materias', 'MateriasController');
 	Route::get('reportes', 'ReportesController@index')->name('reportes.index');
 });
 
@@ -37,11 +37,14 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 	Route::get('/alumnos', 'personal_info_alumnoController@alumnos');
 	Route::get('/guarda_catalogo', 'catalogosController@store');
 	Route::get('/elimina_catalogo', 'catalogosController@elimina');	
+	Route::post('/documentos', 'alumnos_documentosController@store');
+	Route::post('/delete_document', 'alumnos_documentosController@destroy');
+
+	
+
 });
 
 Route::get('/valida_curp', 'HomeController@valida_curp');
-
-
 
 
 Route::resource('alumnosDocumentos', 'alumnos_documentosController');

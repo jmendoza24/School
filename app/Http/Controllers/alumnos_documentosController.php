@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\catalogos;
+use App\Models\personal_info_alumno;
+
 
 use App\Http\Requests\Createalumnos_documentosRequest;
 use App\Http\Requests\Updatealumnos_documentosRequest;
@@ -8,6 +11,7 @@ use App\Repositories\alumnos_documentosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use DB;
 use Response;
 
 class alumnos_documentosController extends AppBaseController
@@ -31,8 +35,9 @@ class alumnos_documentosController extends AppBaseController
     {
         $alumnosDocumentos = $this->alumnosDocumentosRepository->all();
 
-        return view('alumnos_documentos.index')
-            ->with('alumnosDocumentos', $alumnosDocumentos);
+        $documentos=catalogos::where('id',2)-get();
+
+        return view('alumnos_documentos.index',compact('alumnosDocumentos','documentos'));
     }
 
     /**
@@ -52,15 +57,42 @@ class alumnos_documentosController extends AppBaseController
      *
      * @return Response
      */
-    public function store(Createalumnos_documentosRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
 
-        $alumnosDocumentos = $this->alumnosDocumentosRepository->create($input);
+        $arreglo = $request->all();
+        $id=$arreglo['id'];
+        $id_al=$arreglo['id_alumno'];
 
-        Flash::success('Alumnos Documentos saved successfully.');
+        $variable=$arreglo['documento'.$id];
 
-        return redirect(route('alumnosDocumentos.index'));
+         if(empty($variable)){
+            
+            unset($variable);
+        }else{
+          
+
+           $file = $request->file('documento'.$id);
+           $nombre = $file->getClientOriginalName();
+           \Storage::disk('')->put($nombre,\File::get($file));
+           $arreglo['documento']=$nombre;
+           $arreglo['id_documento']=$id;
+        }
+
+        $documentos = $this->alumnosDocumentosRepository->create($arreglo);
+
+        $objeto_documentos = new personal_info_alumno; 
+        $documentos=$objeto_documentos->documentos($id_al);
+        
+
+
+        $options =  view('alumnos_documentos.table',compact('documentos','id_al'))->render();
+        
+        return ($options);
+
+
+
+       // return redirect(route('alumnosDocumentos.index'));
     }
 
     /**
@@ -137,20 +169,21 @@ class alumnos_documentosController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $alumnosDocumentos = $this->alumnosDocumentosRepository->find($id);
+       
+        
+        $arreglo = $request->all();
+        $id=$arreglo['id'];
+        $id_al=$arreglo['id_al'];
+        DB::table('alumnos_documentos')->delete($id);
 
-        if (empty($alumnosDocumentos)) {
-            Flash::error('Alumnos Documentos not found');
+        $objeto_documentos = new personal_info_alumno; 
+        $documentos=$objeto_documentos->documentos($id_al);
+        
+        $options =  view('alumnos_documentos.table',compact('documentos','id_al'))->render();
+        
+        return ($options);
 
-            return redirect(route('alumnosDocumentos.index'));
-        }
-
-        $this->alumnosDocumentosRepository->delete($id);
-
-        Flash::success('Alumnos Documentos deleted successfully.');
-
-        return redirect(route('alumnosDocumentos.index'));
     }
 }

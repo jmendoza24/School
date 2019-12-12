@@ -10,18 +10,15 @@
     <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt2" aria-controls="linkOpt2"><i class="fa fa-file-text-o"></i> Documents</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-file-text-o"></i> Documents</a>
+    <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-file-text-o"></i> Subjects</a>
   </li>
   @endif
 </ul>
 <div class="tab-content px-1 pt-1">
-<div role="tabpanel" class="tab-pane active in" id="active32" aria-labelledby="active-tab32" aria-expanded="true">
+  <div role="tabpanel" class="tab-pane active in" id="active32" aria-labelledby="active-tab32" aria-expanded="true">
    <br>
-   <div class="row">
-        
-        
-        
-          @if($ext==0)
+<div class="row">  
+            @if($ext==0)
             <div class="col-md-6" style="text-align: center;">
               <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
             </div>
@@ -469,47 +466,17 @@
     </div>
 </div>
 
-    
-  @if($editar ==1)
-  <div class="tab-pane" id="linkOpt2" role="tabpanel" aria-labelledby="linkOpt-tab2" aria-expanded="false">
-    <form method="post"  action="" class="form-horizontal needs-validation novalidate" enctype='multipart/form-data'>
-        <div class="form-row">
-            <div class="col-md-3">
-              <label for="validationDefault02">Documents:</label>
-              <select class="form-control" id="documents" name="documents" required="">
-                    <option value="" >select option</option>
-                    <option value="1" >School Cycle</option>
-                    <option value="2" >Documents</option>
-                    <option value="3" >Grade</option>
-                    <option value="4" >Groups</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label for="validationDefaultUsername">Archivo:</label>
-              <div class="input-group">
-                <input type="file" class="form-control" name="valor" id="valor" required="">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="validationDefaultUsername">Comment:</label>
-              <div class="input-group">
-                <input type="text" class="form-control" name="comments" id="comments">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="validationDefaultUsername">&nbsp;</label>
-              <div class="input-group">
 
-                <button type="submit" class="btn btn-success" id="btn_save"><i class="fa fa-save"></i>&nbsp;Save</button>
-              </div>
-            </div>
-        </div>
-    </form>
-    <hr>
-    @include('alumnos_documentos.table')
-  </div>
+  @if($editar ==1)
+  <div class="tab-pane" id="linkOpt2" role="tabpanel" aria-labelledby="linkOpt-tab2" aria-expanded="false" aria-controls="linkOpt2">
+    <br><br>
+    <div class="row" id="documentos">
+      @include('alumnos_documentos.table')
+      </div>
+      </div>
+
   <div class="tab-pane" id="linkOpt3" role="tabpanel" aria-labelledby="linkOpt-tab3" aria-expanded="false" aria-controls="linkOpt3">
-    JJJJJ
+    materias
   </div>
   @endif
 

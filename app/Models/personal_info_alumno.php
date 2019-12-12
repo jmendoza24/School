@@ -178,4 +178,19 @@ class personal_info_alumno extends Model
                          ->get();
 
     }
+
+    public function documentos($id_alumno)
+    {
+      
+      return DB::table('catalogos as c')
+                 ->leftjoin('alumnos_documentos as ad',function($join)use($id_alumno){
+                                           $join->on('ad.id_documento','c.id')
+                                           ->where('ad.id_alumno',$id_alumno);})
+                         //->leftjoin('alumnos_documentos as ad','ad.id_documento','=','c.id')
+                          ->selectraw("*,c.id as id_cat,ad.id as idad")
+                          ->where('c.catalogo',2)
+                          ->get();
+
+
+    }
 }

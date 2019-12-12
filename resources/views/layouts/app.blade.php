@@ -51,6 +51,9 @@
           color: white;
         
         }
+        .v{
+          color: #52b921
+        }
 
         .g{
           color: #666666;    
@@ -93,6 +96,11 @@
         }
         .btn_verde{
            background-color: #52b921;
+           color: white;
+
+        }
+        .btn_rojo{
+           background-color: red;
            color: white;
 
         }

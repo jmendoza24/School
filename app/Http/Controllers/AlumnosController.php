@@ -72,8 +72,10 @@ class alumnosController extends AppBaseController
     public function store(CreatealumnosRequest $request)
     {
          $input = $request->all();
-
-        $file_img = $request->file('foto');
+         $id=$input['id'];
+         $file_img = $request->file('documento'.$id);
+         dd($file_img);
+        
         if(!empty($file_img)){
             $img = Storage::url($file_img->store('alumnos', 'public'));
             $imgp = strpos($img,'/storage/');
@@ -83,8 +85,8 @@ class alumnosController extends AppBaseController
 
         $alumnos = $this->AlumnosRepository->create($input);
         
-
-
+        dd();
+         
         return redirect()->route('alumnos.index');
     }
 

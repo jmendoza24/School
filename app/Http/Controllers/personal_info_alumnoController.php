@@ -145,7 +145,16 @@ class personal_info_alumnoController extends AppBaseController
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
         $alumnosDocumentos = alumnos_documentos::get();
-        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos'));
+
+        $objeto_documentos = new personal_info_alumno; 
+        $documentos=$objeto_documentos->documentos($id);
+        $id_al=$id;
+       // dd($id_al);
+
+
+        //$documentos=catalogos::where('catalogo',2)->get();
+
+        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos','documentos','id_al'));
 
     }
 
