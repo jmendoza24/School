@@ -194,5 +194,32 @@ class personal_info_alumno extends Model
 
     }
 
-    
+    function informacion_alumno($filtros){
+        return DB::table('alumnos_personal_infos as a')
+                ->leftjoin('catalogos as c','c.id','=','a.group')
+                ->leftjoin('catalogos as c3','c3.id','=','a.school_cycle')
+                
+                ->where('a.id',$filtros->id)
+                ->selectraw("name,date_birth, c3.valor as ciclo, c.valor as grupo,
+                            case a.level when 1 then 'Pre kindergarten'
+                                         when 2 then 'Primary'
+                                         when 3 then 'High school (Secundaria)'
+                                         when 4 then 'High school (preparatoria)' end as nivel,
+                            case grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado,
+                                        photo_alumno  ")
+                ->get();
+    }
 }

@@ -119,14 +119,23 @@ class personal_info_alumnoController extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
-    {
-        $credencal = view('personal_info_alumnos.show')->render();
-        return ($credencal);
+    public function show($id){
+        $objeto_alumnos = new personal_info_alumno;
+        $objeto_alumnos->id = $id;
 
-        //$pdf = \PDF::loadView('personal_info_alumnos.show')->setPaper('a4','landscape');
-        $pdf = App('dompdf.wrapper');
-        $pdf->loadHTML($credencal);
+        $credencal = $objeto_alumnos->informacion_alumno($objeto_alumnos);
+
+
+
+        
+        $info = $credencal[0];
+        return view('personal_info_alumnos.show',compact('info'));
+        //$credencal = view('personal_info_alumnos.show')->render();
+        //return ($credencal);
+
+        $pdf = \PDF::loadView('personal_info_alumnos.show')->setPaper('a4','landscape');
+        //$pdf = App('dompdf.wrapper');
+        //$pdf->loadHTML($credencal);
         //return $pdf->stream();
 
         return $pdf->download('invoice.pdf');
