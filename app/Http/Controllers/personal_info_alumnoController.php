@@ -115,8 +115,17 @@ class personal_info_alumnoController extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id){
+        $objeto_alumnos = new personal_info_alumno;
+        $objeto_alumnos->id = $id;
+
+        $credencal = $objeto_alumnos->informacion_alumno($objeto_alumnos);
+
+
+
+        
+        $info = $credencal[0];
+        return view('personal_info_alumnos.show',compact('info'));
         //$credencal = view('personal_info_alumnos.show')->render();
         //return ($credencal);
 
