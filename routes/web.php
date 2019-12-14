@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('documentacions', 'documentacionController');
 	Route::resource('catalogos', 'catalogosController');
 	Route::resource('materias', 'MateriasController');
+    Route::resource('alumnosDocumentos', 'alumnos_documentosController');
+    Route::resource('tblMatAlumnos', 'tbl_mat_alumnosController');
 	Route::get('reportes', 'ReportesController@index')->name('reportes.index');
 });
 
@@ -39,6 +41,7 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 	Route::get('/elimina_catalogo', 'catalogosController@elimina');	
 	Route::post('/documentos', 'alumnos_documentosController@store');
 	Route::post('/delete_document', 'alumnos_documentosController@destroy');
+   	Route::get('/save_subjects', 'tbl_mat_alumnosController@store');	
 
 	
 
@@ -47,4 +50,3 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
 Route::get('/valida_curp', 'HomeController@valida_curp');
 
 
-Route::resource('alumnosDocumentos', 'alumnos_documentosController');

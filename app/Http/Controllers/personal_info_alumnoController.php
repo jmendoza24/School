@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\personal_info_alumno;
 use App\Models\catalogos;
 use App\Models\alumnos_documentos;
+use App\Models\tbl_mat_alumnos;
+
 use App\Http\Requests\Createpersonal_info_alumnoRequest;
 use App\Http\Requests\Updatepersonal_info_alumnoRequest;
 use App\Repositories\personal_info_alumnoRepository;
@@ -69,6 +71,8 @@ class personal_info_alumnoController extends AppBaseController
                                 );
         $personalInfoAlumno = (object)$personalInfoAlumno;
         $alumnosDocumentos = array();
+        $alumnosmarerias = array();
+
 
         return view('personal_info_alumnos.create',compact('grados','grupos','ciclos','alumnos','personalInfoAlumno','alumnosDocumentos'));
     }
@@ -151,13 +155,19 @@ class personal_info_alumnoController extends AppBaseController
 
         $objeto_documentos = new personal_info_alumno; 
         $documentos=$objeto_documentos->documentos($id);
+
+        $objeto_materias = new tbl_mat_alumnos; 
+        $alumnosmarerias=$objeto_materias->mate($id);
+        //dd($alumnosmarerias);
         $id_al=$id;
+
+        
        // dd($id_al);
 
 
         //$documentos=catalogos::where('catalogo',2)->get();
 
-        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos','documentos','id_al'));
+        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos','documentos','id_al','alumnosmarerias'));
 
     }
 

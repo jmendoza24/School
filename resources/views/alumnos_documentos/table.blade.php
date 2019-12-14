@@ -2,7 +2,7 @@
 
 <table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
         <thead>
-            <tr>
+            <tr class="azul">
                 <th>#</th>
                 <th>Documents</th>
                 <th style="text-align: center;">Status</th>

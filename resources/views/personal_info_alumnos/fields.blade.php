@@ -12,6 +12,7 @@
   <li class="nav-item">
     <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-file-text-o"></i> Subjects</a>
   </li>
+  
   @endif
 </ul>
 <div class="tab-content px-1 pt-1">
@@ -476,7 +477,10 @@
       </div>
 
   <div class="tab-pane" id="linkOpt3" role="tabpanel" aria-labelledby="linkOpt-tab3" aria-expanded="false" aria-controls="linkOpt3">
-    materias
+    <br><br>
+    <div class="row" id="materias">
+      @include('tbl_mat_alumnos.table')
+      </div>
   </div>
   @endif
 

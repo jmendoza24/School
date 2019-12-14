@@ -15,7 +15,7 @@ class CreateAlumnosPersonalInfosTable extends Migration
     {
         Schema::create('alumnos_personal_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable()->nullable();
+            $table->string('name')->nullable();
             $table->datetime('date_birth')->nullable();
             $table->string('place_birth')->nullable();
             $table->integer('gender')->nullable();

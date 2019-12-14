@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAlumnosDocumentosTable extends Migration
+class CreateTblMatAlumnosTable extends Migration
 {
 
     /**
@@ -13,11 +13,12 @@ class CreateAlumnosDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumnos_documentos', function (Blueprint $table) {
+        Schema::create('tbl_mat_alumnos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_alumno');
-            $table->integer('id_documento');
-            $table->string('documento')->nullable();
+            $table->integer('id_materia');
+            $table->decimal('calificacion',20,3)->nullable();
+            $table->text('comentarios')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateAlumnosDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('alumnos_documentos');
+        Schema::drop('tbl_mat_alumnos');
     }
 }

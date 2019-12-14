@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('titulo')Nueva materia @endsection
+@section('titulo')New Subject @endsection
+@php $editar=0 @endphp
 
 @section('content')
 {!! Form::open(['route' => 'materias.store','class'=>'needs-validation','novalidate']) !!}

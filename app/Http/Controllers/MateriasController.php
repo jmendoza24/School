@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\catalogos;
 use App\Http\Requests\CreatemateriasRequest;
 use App\Http\Requests\UpdatemateriasRequest;
@@ -9,7 +10,7 @@ use App\Repositories\materiasRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
-use Response;
+use Response;  
 
 class materiasController extends AppBaseController
 {
@@ -48,7 +49,9 @@ class materiasController extends AppBaseController
                           'grado'=>0);
         $materias =  (object)$materias;
 
-        return view('materias.create',compact('grados','materias'));
+        $grupos = catalogos::where('catalogo',4)->get();
+
+        return view('materias.create',compact('grados','materias','grados','grupos'));
     }
 
     /**

@@ -1,6 +1,6 @@
 <table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="">
     <thead>
-        <tr>
+        <tr class="azul">
             <th>Photo</th>
             <th>ID</th>                
             <th>Name</th>

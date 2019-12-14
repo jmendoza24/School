@@ -193,4 +193,6 @@ class personal_info_alumno extends Model
 
 
     }
+
+    
 }
