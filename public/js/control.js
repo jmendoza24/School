@@ -171,3 +171,95 @@ function delete_document(id,id_al){
        });   
 
 }
+
+
+function add_note(){
+
+var id_alumno=  $("#id_alumno").val();
+
+
+$.ajax({
+          url:"/api/v1/add_note",
+          type: "get",
+          data:{'id_alumno':id_alumno},
+          dataType: "json",
+          success: function(respuesta){ 
+            $("#notas").html(respuesta);
+
+          }
+      });
+
+}
+
+
+function upd_note(id){
+
+var id_alumno=  $("#id_alumno").val();
+var nota=$("#nota"+id).val();
+$.ajax({
+          url:"/api/v1/upd_note",
+          type: "get",
+          data:{'id_alumno':id_alumno,'nota':nota,'id':id},
+          dataType: "json",
+          success: function(respuesta){ 
+            $("#notas").html(respuesta);
+
+          }
+      });
+}
+
+
+function delete_note(id){
+
+var id_alumno=  $("#id_alumno").val();
+
+  $.confirm({
+           animation: 'zoom',
+           icon: 'la la-warning',
+           title: 'Mensaje',
+           cancelButtonClass: 'btn-danger',
+           content: '<h3 style="text-aling:center" class="texto_rojo"><strong>Delete this note?</strong></h3>',
+           buttons: {
+               Acept: function () {
+                  
+                  $.ajax({
+                        url:"/api/v1/delete_note",
+                        type: "get",
+                        data:{'id':id,'id_alumno':id_alumno},
+                        dataType: "json",
+                        success: function(respuesta){ 
+                          $("#notas").html(respuesta);
+
+                        }
+                    });
+
+                 
+               },
+               Cancel: function(){
+
+               }
+           }
+       }); 
+
+}
+
+function baja_pdf(){
+
+var level=  $("#level").val();
+var grade=  $("#grade").val();
+var group=  $("#group").val();
+var ethnicity=  $("#ethnicity").val();
+var race=  $("#race").val();
+
+$.ajax({
+        url:"/api/v1/baja_pdf",
+        type: "get",
+        data:{'level':level,'grade':grade,'group':group,'ethnicity':ethnicity,'race':race},
+        dataType: "json",
+        success: function(respuesta){ 
+          $("#reporte").html(respuesta);
+
+        }
+    });
+
+}

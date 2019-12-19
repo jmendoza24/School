@@ -23,7 +23,7 @@ $grupos=catalogos::where('catalogo',4)->get();
                       <div class="col-xl-6">
                       	 <div class="media-right media-middle">
                         <select class="form-control" name="nivel" id="level" required="required" onchange="grados_niveles()">      
-    	                  	<option value="">Level</option>
+    	                  	<option value="0">Level</option>
     	                  	<option value="1">Pre kindergarten</option>
                           <option value="2">Primary</option>
                           <option value="3">High school (Secundaria)</option>
@@ -34,7 +34,7 @@ $grupos=catalogos::where('catalogo',4)->get();
                       <div class="col-xl-6">
                       	 <div class="media-right media-middle">
                              <select class="form-control" name="grado" id="grade" required="required">
-                              <option value="" selected="">Grade</option> 
+                              <option value="0" selected="">Grade</option> 
                               <option value="1"   class="prescolar">Prekinder</option>
                               <option value="2"  class="prescolar">Kinder</option>
                               <option value="3"   class="primaria">1</option>
@@ -55,7 +55,7 @@ $grupos=catalogos::where('catalogo',4)->get();
                       <div class="col-xl-6">
       	                <div class="media-right media-middle">
                           <select class="form-control" name="group" id="group" required="required">
-                          <option value="" selected="">Group</option> 
+                          <option value="0" selected="">Group</option> 
                           @if(!empty($grupos))
                                @foreach($grupos as $tipo)
                               <option value="{{ $tipo->id }}" 
@@ -87,6 +87,11 @@ $grupos=catalogos::where('catalogo',4)->get();
                                <option value="5" >White</option> 
                            </select>   
                         </div>
+                      </div>
+                      <div class="col-xl-6">
+                          <button type="button"  onclick="baja_pdf()" class="btn btn_morado form-control" id="btn_save" style="">
+                              <i class="fa fa-pdf"></i> Download report
+                          </button>
                       </div>
 
 
@@ -124,6 +129,7 @@ $grupos=catalogos::where('catalogo',4)->get();
             </div>
           </div>
         </div>
+        <div class="row" id="reporte"></div>
     </div>
 </div>
 

@@ -5,6 +5,8 @@ use App\Models\personal_info_alumno;
 use App\Models\catalogos;
 use App\Models\alumnos_documentos;
 use App\Models\tbl_mat_alumnos;
+use App\Models\notas;
+
 
 use App\Http\Requests\Createpersonal_info_alumnoRequest;
 use App\Http\Requests\Updatepersonal_info_alumnoRequest;
@@ -161,6 +163,7 @@ class personal_info_alumnoController extends AppBaseController
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
         $alumnosDocumentos = alumnos_documentos::get();
+        $notas=notas::where('id_alumno',$id)->get();
 
         $objeto_documentos = new personal_info_alumno; 
         $documentos=$objeto_documentos->documentos($id);
@@ -176,8 +179,7 @@ class personal_info_alumnoController extends AppBaseController
 
         //$documentos=catalogos::where('catalogo',2)->get();
 
-        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos','documentos','id_al','alumnosmarerias'));
-
+        return view('personal_info_alumnos.edit',compact('alumnos','id','personalInfoAlumno','grados','grupos','ciclos','alumnosDocumentos','documentos','id_al','alumnosmarerias','notas'));
     }
 
     /**
@@ -246,6 +248,25 @@ class personal_info_alumnoController extends AppBaseController
         return json_encode($options);
         
 
+    }
+
+    public function baja_pdf(Request $request)
+    {
+        $input = $request->all();
+
+        $level=$input['level'];
+        $grade=$input['grade'];
+        $group=$input['group'];
+        $ethnicity=$input['ethnicity'];
+        $race=$input['race'];
+
+        $objeto_alumnos = new personal_info_alumno;
+        $personalInfoAlumnos=$objeto_alumnos->pdf($level,$grade,$group,$ethnicity,$race);
+
+       
+        $options =  view('reportes.table',compact('personalInfoAlumnos'))->render();
+
+        return json_encode($options);
     }
 
 }

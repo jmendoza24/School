@@ -10,9 +10,11 @@
     <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt2" aria-controls="linkOpt2"><i class="fa fa-file-text-o"></i> Documents</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-file-text-o"></i> Subjects</a>
+    <a class="nav-link" id="linkOpt-tab2" data-toggle="tab" href="#linkOpt3" aria-controls="linkOpt3"><i class="fa fa-check"></i> Subjects</a>
   </li>
-  
+  <li class="nav-item">
+    <a class="nav-link" id="linkOpt-tab4" data-toggle="tab" href="#linkOpt4" aria-controls="linkOpt4"><i class="fa fa-info-circle"></i> Notes</a>
+  </li>
   @endif
 </ul>
 <div class="tab-content px-1 pt-1">
@@ -480,6 +482,21 @@
     <br><br>
     <div class="row" id="materias">
       @include('tbl_mat_alumnos.table')
+      </div>
+  </div>
+
+  <div class="tab-pane" id="linkOpt4" role="tabpanel" aria-labelledby="linkOpt-tab4" aria-expanded="false" aria-controls="linkOpt4">
+    
+    <br><br>
+    <div class="row">
+      <div class="col-md-12 ">
+         <h1 class="pull-right">
+               <a class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="add_note()"> <i class="fa fa-plus"></i> Note</a>
+          </h1>
+      </div> <br><br>
+      </div>
+        <div class="row" id="notas">
+          @include('notas.table')
       </div>
   </div>
   @endif
