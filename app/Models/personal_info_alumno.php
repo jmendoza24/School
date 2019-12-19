@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use DB;
+use App\Models\personal_info_alumno;
 
 use Illuminate\Database\Eloquent\Model as Model;
 
@@ -221,5 +222,48 @@ class personal_info_alumno extends Model
                                         when 14 then 12 end as grado,
                                         photo_alumno  ")
                 ->get();
+    }
+
+
+    function pdf($level,$grade,$group,$ethnicity,$race){
+        
+        $query = personal_info_alumno::query();
+
+        if ($level==0) {
+        }else{
+            $query=$query->where('level',$level);
+
+        }
+        if ($grade==0) {
+        }else{
+            $query=$query->where('grade',$grade);
+
+        }
+        if ($group==0) {
+
+        }else{
+            $query=$query->where('group',$group);
+
+        }
+        if ($ethnicity==0) {
+
+        }else{
+
+            $query=$query->where('ethnicity',$ethnicity);
+
+        }
+        if ($race==0) {
+
+        }else{
+             $query=$query->where('race',$race);
+
+        }
+          
+           return  $results =$query->get();
+
+
+
+
+
     }
 }
