@@ -480,7 +480,14 @@
 
   <div class="tab-pane" id="linkOpt3" role="tabpanel" aria-labelledby="linkOpt-tab3" aria-expanded="false" aria-controls="linkOpt3">
     <br><br>
-    <div class="row" id="materias">
+    <div class="row">
+      <div class="col-md-12 ">
+         <h1 class="pull-right">
+               <a class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="add_subjet()"> <i class="fa fa-plus"></i> Subject</a>
+          </h1>
+      </div> <br><br>
+      </div>
+    <div class="row" id="subjects">
       @include('tbl_mat_alumnos.table')
       </div>
   </div>

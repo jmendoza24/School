@@ -170,7 +170,6 @@ class personal_info_alumnoController extends AppBaseController
 
         $objeto_materias = new tbl_mat_alumnos; 
         $alumnosmarerias=$objeto_materias->mate($id);
-        //dd($alumnosmarerias);
         $id_al=$id;
 
         

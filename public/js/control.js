@@ -173,6 +173,89 @@ function delete_document(id,id_al){
 }
 
 
+function add_subjet(){
+  var id_alumno=  $("#id_alumno").val();
+
+$.ajax({
+          url:"/api/v1/save_subjects",
+          type: "get",
+          data:{'id_alumno':id_alumno},
+          dataType: "json",
+          success: function(respuesta){ 
+           
+            $("#subjects").html(respuesta);
+
+          }
+      });
+
+
+}
+
+
+function save_subjects(id){
+
+var id_materia=  $("#id_materia"+id).val();
+var calificacion=  $("#calificacion"+id).val();
+var comentarios=  $("#comentarios"+id).val();
+var id_alumno=  $("#id_alumno").val();
+
+
+alert(id);
+$.ajax({
+        url:"/api/v1/upd_mat",
+        type: "get",
+        data:{'id_materia':id_materia,'calificacion':calificacion,'comentarios':comentarios,'id_alumno':id_alumno,'id':id},
+        dataType: "json",
+        success: function(respuesta){ 
+
+        }
+    });
+
+
+}
+
+
+function delete_subjet(id){
+
+var id_alumno=  $("#id_alumno").val();
+
+
+
+ $.confirm({
+           animation: 'zoom',
+           icon: 'la la-warning',
+           title: 'Mensaje',
+           cancelButtonClass: 'btn-danger',
+           content: '<h3 style="text-aling:center" class="texto_rojo"><strong>Delete this subject?</strong></h3>',
+           buttons: {
+               Acept: function () {
+                  
+                  $.ajax({
+                        url:"/api/v1/deletmat",
+                        type: "get",
+                        data:{'id_alumno':id_alumno,'id':id},
+                        dataType: "json",
+                        success: function(respuesta){ 
+
+                                      $("#subjects").html(respuesta);
+
+
+                        }
+                    });
+
+                 
+               },
+               Cancel: function(){
+
+               }
+           }
+       }); 
+
+
+  
+
+}
+
 function add_note(){
 
 var id_alumno=  $("#id_alumno").val();
