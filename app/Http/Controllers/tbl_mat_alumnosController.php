@@ -10,7 +10,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-
+use DB;
 class tbl_mat_alumnosController extends AppBaseController
 {
     /** @var  tbl_mat_alumnosRepository */
@@ -57,35 +57,54 @@ class tbl_mat_alumnosController extends AppBaseController
     {
         
         
+        // $input = $request->all();
+        // $id_alumnno=$input['id_alumno'];
+        // $id_materia=$input['id_materia'];
+        // $calificacion=$input['calificacion'];
+        // $comentarios=$input['comentarios'];
+
         $input = $request->all();
-        $id_alumnno=$input['id_alumno'];
-        $id_materia=$input['id_materia'];
-        $calificacion=$input['calificacion'];
-        $comentarios=$input['comentarios'];
+        $id_alumno = $input['id_alumno'];
+
+        $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
 
 
 
-        $objeto_materias = new tbl_mat_alumnos; 
-        $bs_mat=$objeto_materias->bs_materia($id_alumnno,$id_materia);
+             
+
+        $alumnosmarerias= DB::table('alumnos_personal_infos as i')
+                      ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
+                      ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
+                      ->where('i.id',$id_alumno)
+                      ->get();
+
+
+        $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
+
+        return json_encode($options);
         
-        if($bs_mat==0){
+
+        // $objeto_materias = new tbl_mat_alumnos; 
+        // $bs_mat=$objeto_materias->bs_materia($id_alumnno,$id_materia);
+        
+        // if($bs_mat==0){
           
-             $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
-             $v=1;
-        }else{
+        //      $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
+        //      $v=1;
+        // }else{
 
 
-         $contenido= tbl_mat_alumnos::where([['id_alumno', '=', $id_alumnno],['id_materia', '=', $id_materia]])
-                            ->update([
+        //  $contenido= tbl_mat_alumnos::where([['id_alumno', '=', $id_alumnno],['id_materia', '=', $id_materia]])
+        //                     ->update([
 
-                                    'id_alumno' => $id_alumnno,
-                                    'id_materia' => $id_materia,
-                                    'calificacion' => $calificacion,
-                                    'comentarios' => $comentarios,
-                                    ]);
+        //                             'id_alumno' => $id_alumnno,
+        //                             'id_materia' => $id_materia,
+        //                             'calificacion' => $calificacion,
+        //                             'comentarios' => $comentarios,
+        //                             ]);
 
           
-        }       
+        // }       
 
       
 
@@ -140,15 +159,21 @@ class tbl_mat_alumnosController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, Updatetbl_mat_alumnosRequest $request)
+    public function update(Request $request)
     {
+        
+
+        $input = $request->all();
+        $id_alumno = $input['id_materia'];
+        $id = $input['id'];
+
         $tblMatAlumnos = $this->tblMatAlumnosRepository->find($id);
+        $tblMatAlumnos = $this->tblMatAlumnosRepository->update($input, $id);
+        
 
-        $tblMatAlumnos = $this->tblMatAlumnosRepository->update($request->all(), $id);
 
-        Flash::success('Tbl Mat Alumnos updated successfully.');
 
-        return redirect(route('tblMatAlumnos.index'));
+
     }
 
     /**
@@ -160,20 +185,26 @@ class tbl_mat_alumnosController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $tblMatAlumnos = $this->tblMatAlumnosRepository->find($id);
+        
+        $input = $request->all();
+        $id_alumno = $input['id_alumno'];
+                $id = $input['id'];
 
-        if (empty($tblMatAlumnos)) {
-            Flash::error('Tbl Mat Alumnos not found');
 
-            return redirect(route('tblMatAlumnos.index'));
-        }
+        DB::table('tbl_mat_alumnos')->delete($id);
+            
 
-        $this->tblMatAlumnosRepository->delete($id);
+        $alumnosmarerias= DB::table('alumnos_personal_infos as i')
+                      ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
+                      ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
+                      ->where('i.id',$id_alumno)
+                      ->get();
 
-        Flash::success('Tbl Mat Alumnos deleted successfully.');
 
-        return redirect(route('tblMatAlumnos.index'));
+        $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
+
+        return json_encode($options);
     }
 }

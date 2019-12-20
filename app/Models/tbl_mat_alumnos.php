@@ -41,7 +41,7 @@ class tbl_mat_alumnos extends Model
     protected $casts = [
         'id' => 'integer',
         'id_alumno' => 'integer',
-        'id_materia' => 'integer',
+        'id_materia' => 'string',
         'calificacion' => 'integer',
         'comentarios' => 'string'
     ];
@@ -64,19 +64,28 @@ class tbl_mat_alumnos extends Model
       $grado=$al['grade'];
 
 
-      return DB::table('alumnos_personal_infos as i')
-                 ->join('materias as m',function($join)use($grado){
-                                           $join->on('m.nivel','i.level')
-                                           ->where('m.grado',$grado);})
+      // return DB::table('alumnos_personal_infos as i')
+      //            ->join('materias as m',function($join)use($grado){
+      //                                      $join->on('m.nivel','i.level')
+      //                                      ->where('m.grado',$grado);})
 
-                 ->leftjoin('tbl_mat_alumnos as ta',function($join)use($id_alumno){
-                                           $join->on('ta.id_materia','m.id')
-                                           ->where('ta.id_alumno',$id_alumno);})
-                         //->leftjoin('alumnos_documentos as ad','ad.id_documento','=','c.id')
-                          ->selectraw('m.materia,m.id as id_mat,i.id as id_alumno, level, nivel, grado, grade,ta.calificacion,ta.comentarios')
-                          ->where('i.id',$id_alumno)
-                          ->get();
+      //            ->leftjoin('tbl_mat_alumnos as ta',function($join)use($id_alumno){
+      //                                      $join->on('ta.id_materia','m.id')
+      //                                      ->where('ta.id_alumno',$id_alumno);})
+      //                    //->leftjoin('alumnos_documentos as ad','ad.id_documento','=','c.id')
+      //                     ->selectraw('m.materia,m.id as id_mat,i.id as id_alumno, level, nivel, grado, grade,ta.calificacion,ta.comentarios')
+      //                     ->where('i.id',$id_alumno)
+      //                     ->get();
         
+
+             
+
+        return DB::table('alumnos_personal_infos as i')
+                      ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
+                      ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
+                      ->where('i.id',$id_alumno)
+                      ->get();
+
     }
 
     public function bs_materia($id_alumno,$id_materia)

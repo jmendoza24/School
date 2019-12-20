@@ -4,13 +4,20 @@
                 <th>Subject</th>
                 <th>Score</th>
                 <th>Comments</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-        @php $x=0; @endphp
         @foreach($alumnosmarerias as $alumnosmarerias)
-                    <tr>
-                        <td>{!! $alumnosmarerias->materia !!}</td>
+           <tr>
+                        <td>
+                            @if(empty($alumnosmarerias->materia))
+                                    <input type="text" name="mst" id="id_materia{!! $alumnosmarerias->id_mat !!}"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})"class="form-control">
+                            @else
+                                    <input type="text" name="mst"  value="{{$alumnosmarerias->materia }}" id="id_materia{!! $alumnosmarerias->id_mat !!}"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})"class="form-control">
+
+                            @endif
+                        </td>
                         <td>
                             @if(empty($alumnosmarerias->calificacion))
                                <input   type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
@@ -19,6 +26,8 @@
                                <input  value="{{ $alumnosmarerias->calificacion }}" type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
 
                             @endif
+                        </td>
+
                         <td>
                              @if(empty($alumnosmarerias->comentarios))
                                   <textarea class="form-control" id="comentarios{!! $alumnosmarerias->id_mat !!}" onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="comentarios"></textarea>
@@ -27,39 +36,12 @@
 
                              @endif
                         </td>
+                                <td style="text-align: center">
+                                    <button type="button"  onclick="delete_subjet({{ $alumnosmarerias->id_mat }})" class="btn btn_rojo" id="btn_save" style="">
+                                              <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                </td>
                     </tr>
         @endforeach
         </tbody>
     </table>
-
-
-<script type="text/javascript">
-    function save_subjects(id_materia,id_alumno){
-
-  var comentarios=$('#comentarios'+id_materia).val();
-  var calificacion=$('#calificacion'+id_materia).val();
-
-  var parametros ={ 
-        "id_materia":id_materia,
-        "id_alumno":id_alumno,
-        "comentarios":comentarios,
-        "calificacion":calificacion,
-                               
-   };
-   
-    $.ajax({
-              url:"/api/v1/save_subjects",
-              type: "get",
-              data:parametros,
-              success: function(respuesta){ 
-               
-
-              },  
-              error: function(XMLHttpRequest, textStatus, errorThrown) { 
-               alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-              }   
-
-          });
-
-}
-</script>
