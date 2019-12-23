@@ -131,11 +131,11 @@ class personal_info_alumnoController extends AppBaseController
 
         
         $info = $credencal[0];
-        return view('personal_info_alumnos.show',compact('info'));
+       // return view('personal_info_alumnos.show',compact('info'));
         //$credencal = view('personal_info_alumnos.show')->render();
         //return ($credencal);
 
-        $pdf = \PDF::loadView('personal_info_alumnos.show')->setPaper('a4','landscape');
+        $pdf = \PDF::loadView('personal_info_alumnos.show',compact('info'))->setPaper('a4','landscape');
         //$pdf = App('dompdf.wrapper');
         //$pdf->loadHTML($credencal);
         //return $pdf->stream();

@@ -165,16 +165,8 @@
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Date Birth:</label>
                 <div class="col-md-9">
-                <input type="date" name="date_birth" id="date_birth" class="form-control">
-                
-                    @section('scripts')
-                        <script type="text/javascript">
-                            $('#date_birth').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm:ss',
-                                useCurrent: false
-                            })
-                        </script>
-                    @endsection
+                  
+                <input type="date" name="date_birth" id="date_birth" class="form-control" value="{{  substr($personalInfoAlumno->date_birth,0,10)}}">
                 </div>
               </div>
           </div>
