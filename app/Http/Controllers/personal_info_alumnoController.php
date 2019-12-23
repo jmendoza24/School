@@ -172,6 +172,7 @@ class personal_info_alumnoController extends AppBaseController
         $alumnosmarerias=$objeto_materias->mate($id);
         $id_al=$id;
 
+
         
        // dd($id_al);
 

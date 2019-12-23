@@ -20,7 +20,9 @@ class tbl_mat_alumnosRepository extends BaseRepository
         'id_alumno',
         'id_materia',
         'calificacion',
-        'comentarios'
+        'comentarios',
+        'school_cycle',
+        'grade'
     ];
 
     /**

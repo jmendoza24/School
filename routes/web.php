@@ -48,9 +48,8 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
     Route::get('/delete_note', 'notasController@destroy');	
     Route::get('/baja_pdf', 'personal_info_alumnoController@baja_pdf');	
     Route::get('/upd_mat', 'tbl_mat_alumnosController@update');	
-
-
-        Route::get('/deletmat', 'tbl_mat_alumnosController@destroy');	
+    Route::get('/deletmat', 'tbl_mat_alumnosController@destroy');	
+    Route::get('/kardex', 'tbl_mat_alumnosController@kardex');	
 
 
 

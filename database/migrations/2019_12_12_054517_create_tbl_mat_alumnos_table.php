@@ -19,7 +19,11 @@ class CreateTblMatAlumnosTable extends Migration
             $table->integer('id_materia');
             $table->decimal('calificacion',20,3)->nullable();
             $table->text('comentarios')->nullable();
+            $table->integer('school_cycle')->nullable();
+            $table->integer('grade')->nullable();
             $table->timestamps();
+
+            
         });
     }
 

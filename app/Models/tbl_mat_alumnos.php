@@ -30,7 +30,9 @@ class tbl_mat_alumnos extends Model
         'id_alumno',
         'id_materia',
         'calificacion',
-        'comentarios'
+        'comentarios',
+        'school_cycle',
+        'grade'
     ];
 
     /**
@@ -43,7 +45,11 @@ class tbl_mat_alumnos extends Model
         'id_alumno' => 'integer',
         'id_materia' => 'string',
         'calificacion' => 'integer',
-        'comentarios' => 'string'
+        'comentarios' => 'string',
+        'school_cycle' => 'integer',
+        'grade' => 'integer',
+
+
     ];
 
     /**
