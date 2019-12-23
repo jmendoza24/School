@@ -1,4 +1,5 @@
-<table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
+        <table class="table table-striped table-bordered file-export">
+
         <thead>
             <tr class="azul">
                 <th>Subject</th>

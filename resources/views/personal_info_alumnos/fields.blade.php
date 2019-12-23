@@ -27,12 +27,15 @@
             </div>
             @endif
             <div class="col-md-6">
+                <div class="col-md-12">
+
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Photo:</label>
                 <div class="col-md-9">
-                <input type="file" name="foto" id="foto" class="form-control">
+                <input type="file" name="foto" accept="application/pdf,image/*" id="foto" class="form-control" onchange="validarFile()">
                 </div>
               </div>
+            </div> 
             </div> 
 
         
@@ -73,6 +76,8 @@
               </div>
           </div>
         </div>
+        @if($ext==0)
+
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
@@ -158,15 +163,23 @@
               </div>
           </div>
         </div>
-        
+        @endif
         
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Date Birth:</label>
                 <div class="col-md-9">
-                  
-                <input type="date" name="date_birth" id="date_birth" class="form-control" value="{{  substr($personalInfoAlumno->date_birth,0,10)}}">
+                <input type="date" name="date_birth" id="date_birth" class="form-control">
+                
+                    @section('scripts')
+                        <script type="text/javascript">
+                            $('#date_birth').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm:ss',
+                                useCurrent: false
+                            })
+                        </script>
+                    @endsection
                 </div>
               </div>
           </div>

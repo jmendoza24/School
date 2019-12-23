@@ -1,4 +1,4 @@
-<table class="table display nowrap  table-striped table-bordered zero-configuration"  id="">
+<table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="">
     <thead>
         <tr class="azul">
             <th>Photo</th>
