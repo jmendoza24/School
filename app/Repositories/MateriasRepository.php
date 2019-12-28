@@ -2,27 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\tbl_mat_alumnos;
+use App\Models\materias;
 use App\Repositories\BaseRepository;
 
 /**
- * Class tbl_mat_alumnosRepository
+ * Class materiasRepository
  * @package App\Repositories
- * @version December 12, 2019, 5:45 am UTC
+ * @version November 27, 2019, 4:39 am UTC
 */
 
-class tbl_mat_alumnosRepository extends BaseRepository
+class materiasRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'id_alumno',
-        'id_materia',
-        'calificacion',
-        'comentarios',
-        'school_cycle',
-        'grade'
+        'nivel',
+        'grado',
+        'materia'
     ];
 
     /**
@@ -40,6 +37,6 @@ class tbl_mat_alumnosRepository extends BaseRepository
      **/
     public function model()
     {
-        return tbl_mat_alumnos::class;
+        return materias::class;
     }
 }

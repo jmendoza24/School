@@ -1,4 +1,5 @@
-<table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
+        <table class="table table-striped table-bordered file-export">
+
         <thead>
             <tr class="azul">
                 <th>Subject</th>
@@ -6,7 +7,7 @@
                 <th>Comments</th>
                 <th></th>
             </tr>
-        </thead>
+        </thead> 
         <tbody>
         @foreach($alumnosmarerias as $alumnosmarerias)
            <tr>
@@ -23,7 +24,7 @@
                                <input   type="text" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
 
                             @else
-                               <input  value="{{ $alumnosmarerias->calificacion }}" type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
+                               <input  value="{{ number_format($alumnosmarerias->calificacion,2)}}" type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
 
                             @endif
                         </td>

@@ -27,19 +27,22 @@
             </div>
             @endif
             <div class="col-md-6">
+                <div class="col-md-12">
+
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Photo:</label>
                 <div class="col-md-9">
-                <input type="file" name="foto" id="foto" class="form-control">
+                <input type="file" name="foto" accept="application/pdf,image/*" id="foto" class="form-control" onchange="validarFile()">
                 </div>
               </div>
+            </div> 
             </div> 
 
         
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Name:</label>
+                <label class="col-md-3 label-control" for="userinput2">Name: <span class="red">*</span></label>
                 <div class="col-md-9">
                 {!! Form::text('name', null, ['class' => 'form-control','required'=>'required']) !!}
                 <div class="invalid-feedback">This field is required.</div>
@@ -52,7 +55,7 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Student ID:</label>
+                <label class="col-md-3 label-control" for="userinput2">Student ID: <span class="red">*</span></label>
                 <div class="col-md-9">
                      {!! Form::text('num_control', null, ['class' => 'form-control','required'=>'required']) !!}
                 <div class="invalid-feedback">This field is required.</div>
@@ -64,7 +67,7 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Curp:</label>
+                <label class="col-md-3 label-control" for="userinput2">Curp: <span class="red">*</span></label>
                 <div class="col-md-9">
                      {!! Form::text('curp', null, ['class' => 'form-control','required'=>'required','id'=>'curp','onchange'=>'valida_curp()']) !!}
                 <div class="invalid-feedback">This field is required.</div>
@@ -73,10 +76,12 @@
               </div>
           </div>
         </div>
+        @if($ext==0)
+
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">School Cycle:</label>
+                <label class="col-md-3 label-control" for="userinput2">School Cycle: <span class="red">*</span></label>
                 <div class="col-md-9">
                 <select class="form-control" name="school_cycle" id="school_cycle" required="required">
                     <option value="" selected="">select option</option> 
@@ -97,7 +102,7 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">School Level:</label>
+                <label class="col-md-3 label-control" for="userinput2">School Level: <span class="red">*</span></label>
                 <div class="col-md-9">
                 <select class="form-control" name="level" id="level" required="required" onchange="grados_niveles()">
                     <option value="" selected="">select option</option>
@@ -114,7 +119,7 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Group:</label>
+                <label class="col-md-3 label-control" for="userinput2">Group: <span class="red">*</span></label>
                 <div class="col-md-9">
                 <select class="form-control" name="group" id="group" required="required">
                     <option value="" selected="">select option</option> 
@@ -135,7 +140,7 @@
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
-                <label class="col-md-3 label-control" for="userinput2">Grade:</label>
+                <label class="col-md-3 label-control" for="userinput2">Grade: <span class="red">*</span></label>
                 <div class="col-md-9">
                 <select class="form-control" name="grade" id="grade" required="required">
                     <option value="" selected="">select option</option> 
@@ -158,15 +163,23 @@
               </div>
           </div>
         </div>
-        
+        @endif
         
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Date Birth:</label>
                 <div class="col-md-9">
-                  
-                <input type="date" name="date_birth" id="date_birth" class="form-control" value="{{  substr($personalInfoAlumno->date_birth,0,10)}}">
+                <input type="date" name="date_birth" id="date_birth" class="form-control">
+                
+                    @section('scripts')
+                        <script type="text/javascript">
+                            $('#date_birth').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm:ss',
+                                useCurrent: false
+                            })
+                        </script>
+                    @endsection
                 </div>
               </div>
           </div>
@@ -474,9 +487,22 @@
     <br><br>
     <div class="row">
       <div class="col-md-12 ">
-        
+        <body onload="view_kardex()"></body>
          <h1 class="pull-right">
-               <a class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="add_subjet()"> <i class="fa fa-plus"></i> Subject</a>
+          <a class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="add_subjet()"> <i class="fa fa-plus"></i> Subject</a>
+
+          <select class="form-control" onchange="view_kardex()" id="vciclo">
+             <option value="" selected="" >All subjets</option> 
+                     @if(!empty($ciclos))
+                         @foreach($ciclos as $tipo)
+                        <option value="{{ $tipo->id }}" 
+                          
+                            {{ ($personalInfoAlumno->school_cycle == $tipo->id) ? 'selected' : '' }}
+                           >
+                          {{ $tipo->valor}}</option>
+                        @endforeach
+                    @endif
+              </select>
           </h1>
       </div> <br><br>
       </div>

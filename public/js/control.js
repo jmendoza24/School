@@ -200,7 +200,6 @@ var comentarios=  $("#comentarios"+id).val();
 var id_alumno=  $("#id_alumno").val();
 
 
-alert(id);
 $.ajax({
         url:"/api/v1/upd_mat",
         type: "get",
@@ -345,4 +344,43 @@ $.ajax({
         }
     });
 
+}
+
+
+function view_kardex(){
+
+var id_alumno=  $("#id_alumno").val();
+var vciclo=  $("#vciclo").val();
+
+$.ajax({
+        url:"/api/v1/kardex",
+        type: "get",
+        data:{'id_alumno':id_alumno,'vciclo':vciclo},
+        dataType: "json",
+        success: function(respuesta){ 
+
+          if (respuesta==1) {
+
+              $.confirm({
+                       animation: 'zoom',
+                       icon: 'la la-warning',
+                       title: 'Mensaje',
+                       cancelButtonClass: 'btn-danger',
+                       content: '<h3 style="text-aling:center" class="texto_rojo"><strong>There are no subjects registered for this school Cycle</strong></h3>',
+                       buttons: {
+                           Acept: function () {
+                              
+                                               
+                           },
+                           Cancel: function(){
+
+                           }
+                       }
+                   }); 
+
+          }
+            $("#subjects").html(respuesta);
+
+        }
+    });
 }

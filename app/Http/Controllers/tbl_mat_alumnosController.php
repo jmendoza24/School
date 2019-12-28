@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\personal_info_alumno;
 use App\Models\tbl_mat_alumnos;
+
 
 use App\Http\Requests\Createtbl_mat_alumnosRequest;
 use App\Http\Requests\Updatetbl_mat_alumnosRequest;
@@ -56,55 +58,26 @@ class tbl_mat_alumnosController extends AppBaseController
     public function store(Request $request)
     {
         
-        
-        // $input = $request->all();
-        // $id_alumnno=$input['id_alumno'];
-        // $id_materia=$input['id_materia'];
-        // $calificacion=$input['calificacion'];
-        // $comentarios=$input['comentarios'];
 
         $input = $request->all();
         $id_alumno = $input['id_alumno'];
 
+        $alum=personal_info_alumno::where('id',$id_alumno)->get();
+        $alum=$alum[0];
+        $vciclo=$alum->school_cycle;
+        $input['school_cycle']=$vciclo;
+
         $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
-
-
-
-             
 
         $alumnosmarerias= DB::table('alumnos_personal_infos as i')
                       ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
                       ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
-                      ->where('i.id',$id_alumno)
+                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
                       ->get();
-
 
         $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
 
-        return json_encode($options);
-        
-
-        // $objeto_materias = new tbl_mat_alumnos; 
-        // $bs_mat=$objeto_materias->bs_materia($id_alumnno,$id_materia);
-        
-        // if($bs_mat==0){
-          
-        //      $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
-        //      $v=1;
-        // }else{
-
-
-        //  $contenido= tbl_mat_alumnos::where([['id_alumno', '=', $id_alumnno],['id_materia', '=', $id_materia]])
-        //                     ->update([
-
-        //                             'id_alumno' => $id_alumnno,
-        //                             'id_materia' => $id_materia,
-        //                             'calificacion' => $calificacion,
-        //                             'comentarios' => $comentarios,
-        //                             ]);
-
-          
-        // }       
+        return json_encode($options); 
 
       
 
@@ -164,8 +137,22 @@ class tbl_mat_alumnosController extends AppBaseController
         
 
         $input = $request->all();
-        $id_alumno = $input['id_materia'];
+        $id_alumno = $input['id_alumno'];
         $id = $input['id'];
+        $calificacion= $input['calificacion'];
+
+        $alumnosmarerias= DB::table('alumnos_personal_infos as i')
+                      ->where('i.id',$id_alumno)
+                      ->get();
+
+
+        $alumnosmarerias=$alumnosmarerias[0];
+        $ciclo= $alumnosmarerias->school_cycle;
+        $grade= $alumnosmarerias->grade;
+        $input['school_cycle']=$ciclo;
+        $input['grade']=$grade;
+        $input['calificacion']=$calificacion;
+
 
         $tblMatAlumnos = $this->tblMatAlumnosRepository->find($id);
         $tblMatAlumnos = $this->tblMatAlumnosRepository->update($input, $id);
@@ -190,11 +177,42 @@ class tbl_mat_alumnosController extends AppBaseController
         
         $input = $request->all();
         $id_alumno = $input['id_alumno'];
-                $id = $input['id'];
+        $id = $input['id'];
+
+
+
+        $alum=personal_info_alumno::where('id',$id_alumno)->get();
+        $alum=$alum[0];
+        $vciclo=$alum->school_cycle;
+        $input['school_cycle']=$vciclo;
 
 
         DB::table('tbl_mat_alumnos')->delete($id);
             
+        $alumnosmarerias= DB::table('alumnos_personal_infos as i')
+                      ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
+                      ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
+                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
+                      ->get();
+
+
+        $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
+
+        return json_encode($options);
+    }
+
+    public function kardex(Request $request)
+    {
+
+
+        $input = $request->all();
+        $id_alumno = $input['id_alumno'];
+        $vciclo = $input['vciclo'];
+
+
+
+        if (empty($vciclo)) {
+           
 
         $alumnosmarerias= DB::table('alumnos_personal_infos as i')
                       ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
@@ -202,9 +220,36 @@ class tbl_mat_alumnosController extends AppBaseController
                       ->where('i.id',$id_alumno)
                       ->get();
 
-
         $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
+                    return json_encode($options);
 
-        return json_encode($options);
+        }else{
+
+
+
+
+        $alumnosmarerias= DB::table('alumnos_personal_infos as i')
+                      ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
+                      ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
+                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
+                      ->get();
+
+                if (empty($alumnosmarerias)) {
+               return  $resp=1;
+                }else{
+
+
+                    $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
+                    return json_encode($options);
+                 
+                }
+
+
+        }
+            
+
+        
+
+
     }
 }
