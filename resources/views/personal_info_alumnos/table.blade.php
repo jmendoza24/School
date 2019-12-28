@@ -27,6 +27,7 @@
                 {!! Form::open(['route' => ['personalInfoAlumnos.destroy', $personalInfoAlumno->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('personalInfoAlumnos.show', [$personalInfoAlumno->id]) !!}" class='btn btn-float btn-outline-secondary btn-round'><i class="fa fa-user"></i></a>
+                    <a href="{!! route('personalInfoAlumnos.calif', [$personalInfoAlumno->id]) !!}" class='btn btn-float btn-outline-secondary btn-round'><i class="fa fa-card"></i></a>
                     <a href="{!! route('personalInfoAlumnos.edit', [$personalInfoAlumno->id]) !!}" class='btn btn-float btn-outline-success btn-round'><i class="fa fa-edit"></i></a>
                     {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-float btn-outline-danger btn-round', 'onclick' => "return confirm('Are you sure you want to delete?')"]) !!}
                 </div>

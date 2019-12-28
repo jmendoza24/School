@@ -20,7 +20,7 @@
                         </td>
                         <td>
                             @if(empty($alumnosmarerias->calificacion))
-                               <input   type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
+                               <input   type="text" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>
 
                             @else
                                <input  value="{{ $alumnosmarerias->calificacion }}" type="texte" min="0" step="any" class="form-control decimal-inputmask"  onchange="save_subjects({!! $alumnosmarerias->id_mat !!},{!! $alumnosmarerias->id_alumno !!})" name="calificacion" id="calificacion{!! $alumnosmarerias->id_mat !!}"></td>

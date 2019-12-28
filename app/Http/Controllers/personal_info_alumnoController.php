@@ -140,7 +140,7 @@ class personal_info_alumnoController extends AppBaseController
         //$pdf->loadHTML($credencal);
         //return $pdf->stream();
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('credencal.pdf');
         
     }
 
@@ -266,6 +266,13 @@ class personal_info_alumnoController extends AppBaseController
         $options =  view('reportes.table',compact('personalInfoAlumnos'))->render();
 
         return json_encode($options);
+    }
+
+    function descarga_credencial(Request $request){
+       # return view('personal_info_alumnos.reporte_calificacion');
+        $info = 1;
+        $pdf = \PDF::loadView('personal_info_alumnos.reporte_calificacion',compact('info'));
+        return $pdf->download('calificacion.pdf');
     }
 
 }
