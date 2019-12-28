@@ -34,7 +34,7 @@
     <div class="card profile-card-with-cover" style="border: gray 0px solid">
       <img src="{{ asset('app-assets/images/header.jpg')}}" style="width: 100%; height: 72px;">
       <div class="" style="margin-top: -40px; border: 0px solid green; text-align: center; "  >
-        <img src="{{ url($info->photo_alumno)}}" style="width: 120px; border-radius:57px; border: solid #B810AE 2px; " class="circular-square">
+        <img src="{{ url($info->photo_alumno)}}" style="width: 110px; height: 110px; border-radius:57px; border: solid #B810AE 2px; " class="circular-square">
           <h3 class="card-title" style="padding-top: -40px; border: solid blue 0px; font-family: sans-serif; ">
             <b>{{ $info->name }}</b>
                 <br/>
