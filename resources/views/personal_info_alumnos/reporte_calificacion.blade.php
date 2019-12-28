@@ -52,9 +52,10 @@
                 <tr>
                     <td style="" colspan="2">
                         <br><br>
-                        <h3>OFFICIAL TRANSCRIPT</h3>
-                        <p style="font-size: 14px;">STUDENT INFORMATION</p>
-                        <h2>{{ $info->name }}</h>
+                        <br><br>
+                        <label style="font-size: 25px;">OFFICIAL TRANSCRIPT</label>
+                        <label style="font-size: 16px;">STUDENT INFORMATION</label> <br>
+                        <label style="font-size: 18px; font-weight: bold;">{{ $info->name }}</label>                
                     </td>
                     <td style="" colspan="2">
                         <table style="width: 100%;" border="0">
@@ -62,7 +63,7 @@
                                 <td style="text-align: right;">
                                     <img class="brand-logo" alt="stack admin logo"  style="width: 90px;" src="{{ url('app-assets/images/logo/thumbnail_mati-talent-sin-fondo.png') }}">
                                 </td>
-                                <td> <label>TALENT INSTITUTE</label></td>
+                                <td> <label style="font-size: 20px;">TALENT INSTITUTE</label></td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align: center;">
@@ -78,6 +79,9 @@
                         </table>                        
                     </td>
                 </tr>
+            </table>
+            <br><br><br>
+            <table style="width: 90%; margin: auto;">
                 <tr>
                     <td>Gender: </td>
                     <td>
@@ -118,59 +122,54 @@
                     <td>D.O.B.:</td>
                     <td colspan="3"></td>
                 </tr>
-                <tr><td colspan="4"></td></tr> 
+            </table>
+            <table style="width: 100%;">
                 <tr>
-                    <td colspan="3">
-                        <table border="1" style="border-collapse: collapse; border-color: blue;">
+                    <td>
+                        <table id="materias" border="1" style=" width: 100%; border-collapse: collapse; ">
                             <tr style="background:blue; color: white; text-align: center;">
                                 <td>COURSE</td>
                                 <td>PERCENTAGE</td>
                                 <td>LETTER GRADE</td>
                             </tr>
+                            <?php $i = 0; $suma = 0; ?>
                             @foreach($materias as $mat)
                             <tr>
                                 <td>{{ $mat->id_materia }}</td>
-                                <td>{{ $mat->calificacion }}</td>
+                                <td style="text-align: center;">{{ number_format($mat->calificacion,0) }}</td>
+                                <td style="text-align: center;">{{ $mat->comentarios }}</td>
+                            </tr>
+                            <?php $i += 1; $suma +=$mat->calificacion; ?>
+                            @endforeach
+                            <tr>
+                                <td>Avg. GRADE </td>
+                                <td style="text-align: center;">{{ $suma/$i }}</td>
                                 <td></td>
                             </tr>
-                            @endforeach
                         </table>
-                        <!--<table border="1" style="border-collapse: collapse; border-color: blue;">
-                            <tr style="background: blue; color: white;">
-                                <td>COURSE</td>
-                                <td>PERCENTAGE</td>
-                                <td>LETTER GRADE</td>
-                            </tr>    
-                            <tr>
-                                <td>aaa</td>
-                                <td>aaa</td>
-                                <td>aaa</td>
-                            </tr>
-                            <tr>
-                                <td>Avg. GRADE</td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </table>--->
-                    </td>
-                    <td>
-                        <table style="background: blue; color: white; width: 100%;">
-                            <tr>
-                                <td>Granding scale</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    A = 90-100<br>
-                                    B = 80-100 <br>
-                                    C = 70-100 <br>
-                                    D = 60-100
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                </td>
+                <td>
+                    <table style="background: blue; color: white;">
+                        <tr>
+                            <td>Granding scale</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                A = 90-100<br>
+                                B = 80-100 <br>
+                                C = 70-100 <br>
+                                D = 60-100
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             </table>
+
             <label>
+                <br><br><br>
                 An Academic advisor has reviewed the simple work and verified the grades assigned to the course of study. <br>
+                <br><br>
                 {{ $info->name }} has successfully completed the 
                         @if($info->grade==1)Prekinder
                         @elseif($info->level==2)Kinder
@@ -187,7 +186,7 @@
                         @elseif($info->level==13)11
                         @elseif($info->level==14)12
                         @endif
-                         grade during the {{ $info->ciclo }} academic year 
+                         grade during the {{ $info->ciclo }} academic  
                         @if($info->grade==1) and is promoted to grade  Kinder
                         @elseif($info->level==2) and is promoted to grade  1
                         @elseif($info->level==3) and is promoted to grade  2
@@ -205,10 +204,16 @@
                         .
             </label>
             <br>
+            <br>
+            <br><br><br>
+            <center>
             <label style="text-align: center;">
-            ______________________________ <br>
+            
+            <img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;">
+            <hr style=" width: 150px;" /> 
             OFFICIAL SIGNATURE
             </label>
+            </center>
         </main>
     </body>
 </html>

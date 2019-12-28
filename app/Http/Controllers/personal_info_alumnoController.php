@@ -166,16 +166,16 @@ class personal_info_alumnoController extends AppBaseController
 
         
         $info = $credencal[0];
-        return view('personal_info_alumnos.show',compact('info'));
+        #return view('personal_info_alumnos.show',compact('info'));
         //$credencal = view('personal_info_alumnos.show')->render();
         //return ($credencal);
 
-        $pdf = \PDF::loadView('personal_info_alumnos.show')->setPaper('a4','landscape');
+        $pdf = \PDF::loadView('personal_info_alumnos.show',compact('info'))->setPaper('a4','landscape');
         //$pdf = App('dompdf.wrapper');
         //$pdf->loadHTML($credencal);
         //return $pdf->stream();
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('Credencial.pdf');
         
     }
 
@@ -270,7 +270,7 @@ class personal_info_alumnoController extends AppBaseController
         $this->personalInfoAlumnoRepository->delete($id);
 
         Flash::success('Personal Info Alumno deleted successfully.');
-
+ 
         return redirect(route('personalInfoAlumnos.index'));
     }
     public function alumnos(Request $request){
@@ -304,4 +304,17 @@ class personal_info_alumnoController extends AppBaseController
         return json_encode($options);
     }
 
+function descarga_credencial(Request $request){
+        $info = db::table('alumnos_personal_infos as a')
+                    ->leftjoin('catalogos as c', 'c.id','a.school_cycle')
+                ->where('a.id',$request->id_alumno)
+                ->selectraw('a.*,valor as ciclo')
+                ->get();
+        $info = $info[0];
+        $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$request->id_alumno],['grade',$info->grade]])->get();
+        // return view('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
+        // $info = 1;
+        $pdf = \PDF::loadView('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
+        return $pdf->download('calificacion.pdf');
+    }
 }

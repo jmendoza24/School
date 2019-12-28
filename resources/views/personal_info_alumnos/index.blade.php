@@ -123,7 +123,7 @@
             </div>
         </div>
     </div><br><hr>
-    <div class="row" style="display: none;" id="tabla_alumnos" >
+    <div class="row" style="display: none; overflow-x: auto;" id="tabla_alumnos" >
             @include('personal_info_alumnos.table')
     </div>
 @endsection
