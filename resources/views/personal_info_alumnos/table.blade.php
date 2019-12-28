@@ -5,7 +5,7 @@
             <th>ID</th>                
             <th>Name</th>
             <th>Level</th>
-            <th>Grade</th>
+            <th>Grade</th> 
             <th>Group</th>
             <th>Email</th>
             <th>Phone</th>

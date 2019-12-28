@@ -258,7 +258,7 @@ class personal_info_alumnoController extends AppBaseController
      * @return Response
      */
     public function destroy($id)
-    {
+    { 
         $personalInfoAlumno = $this->personalInfoAlumnoRepository->find($id);
 
         if (empty($personalInfoAlumno)) {
