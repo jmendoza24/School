@@ -71,7 +71,6 @@ class HomeController extends Controller
         }
 
         $personalInfoAlumno = $this->personalInfoAlumnoRepository->create($input);
-        dd($personalInfoAlumno);
         //return redirect()->route('personalInfoAlumnos.index');
 
     }

@@ -22,8 +22,8 @@
    <br>
 <div class="row">  
             @if($ext==0)
-            <div class="col-md-6" style="text-align: center;">
-              <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumnos)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/>
+            <div class="col-md-6" style="text-align: center;"> 
+              <img class="media-object rounded-circle" src="@if(!empty($personalInfoAlumno->photo_alumno)) {{ asset($personalInfoAlumno->photo_alumno) }} @else {{ url('app-assets/images/default-user-icon-5.jpg') }} @endif" style="width: 110px;height: 110px;"/><br>
             </div>
             @endif
             <div class="col-md-6">
@@ -38,7 +38,7 @@
             </div> 
             </div> 
 
-        
+        <br><br><br><br><br><br><br>
         <div class="col-md-6">
           <div class="col-md-12">
               <div class="form-group row">
@@ -76,7 +76,6 @@
               </div>
           </div>
         </div>
-        @if($ext==0)
 
         <div class="col-md-6">
           <div class="col-md-12">
@@ -163,7 +162,6 @@
               </div>
           </div>
         </div>
-        @endif
         
         <div class="col-md-6">
           <div class="col-md-12">

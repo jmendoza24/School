@@ -165,7 +165,7 @@ class personal_info_alumno extends Model
 
     public function grados_grupos($nivel,$grado,$grupo)
     {
-      
+      #return  $nivel.'-'.$grado.'-'.$grupo;
         return DB::table('alumnos_personal_infos as a')
                          //->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')

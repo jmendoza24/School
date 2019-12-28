@@ -12,7 +12,9 @@
             </tr>
         </thead>
         <tbody>
-        @php $x=0; @endphp
+        @php $x=0;
+            
+         @endphp
 
         @foreach($documentos as $alumnosDocumentos)
                         @php $x++; @endphp

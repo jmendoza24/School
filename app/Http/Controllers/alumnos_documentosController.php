@@ -11,6 +11,8 @@ use App\Repositories\alumnos_documentosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Storage;
+
 use DB;
 use Response;
 
@@ -59,7 +61,7 @@ class alumnos_documentosController extends AppBaseController
      */
     public function store(Request $request)
     {
-
+        
         $arreglo = $request->all();
         $id=$arreglo['id'];
         $id_al=$arreglo['id_alumno'];
@@ -72,10 +74,11 @@ class alumnos_documentosController extends AppBaseController
         }else{
           
 
-           $file = $request->file('documento'.$id);
-           $nombre = $file->getClientOriginalName();
-           \Storage::disk('')->put($nombre,\File::get($file));
-           $arreglo['documento']=$nombre;
+           $file_img = $request->file('documento'.$id);
+            $img = Storage::url($file_img->store('alumnos', 'public'));
+            $imgp = strpos($img,'/storage/');
+            $img = substr($img, $imgp, strlen($img));
+           $arreglo['documento']=$img;
            $arreglo['id_documento']=$id;
         
 
@@ -95,33 +98,7 @@ class alumnos_documentosController extends AppBaseController
        // return redirect(route('alumnosDocumentos.index'));
     }
 
-    /**
-     * Display the specified alumnos_documentos.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $alumnosDocumentos = $this->alumnosDocumentosRepository->find($id);
-
-        if (empty($alumnosDocumentos)) {
-            Flash::error('Alumnos Documentos not found');
-
-            return redirect(route('alumnosDocumentos.index'));
-        }
-
-        return view('alumnos_documentos.show')->with('alumnosDocumentos', $alumnosDocumentos);
-    }
-
-    /**
-     * Show the form for editing the specified alumnos_documentos.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
+   }
     public function edit($id)
     {
         $alumnosDocumentos = $this->alumnosDocumentosRepository->find($id);

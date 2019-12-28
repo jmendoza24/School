@@ -113,8 +113,11 @@ class personal_info_alumnoController extends AppBaseController
         if($ext==1){
 
             $cat_doc=catalogos::where('catalogo',2)->get();
-            $user= personal_info_alumno::all();
-            $user->last();
+
+            $user = DB::table('alumnos_personal_infos')
+                          ->selectraw("max(id) as id")
+                          ->get();
+            
             $user=$user[0];
             $id_al=$user->id;
 
@@ -123,7 +126,7 @@ class personal_info_alumnoController extends AppBaseController
                 if(isset($input['documento'.$key->id])){
                     
                     $file_img=$input['documento'.$key->id];
-
+//dd($file_img);
                         if(!empty($file_img)){
                         $img = Storage::url($file_img->store('alumnos', 'public'));
                         $imgp = strpos($img,'/storage/');
@@ -209,7 +212,6 @@ class personal_info_alumnoController extends AppBaseController
 
 
         
-       // dd($id_al);
 
 
         //$documentos=catalogos::where('catalogo',2)->get();
@@ -242,7 +244,6 @@ class personal_info_alumnoController extends AppBaseController
         }else{
             unset($alumnos['photo_alumno'] );
         }
-        #dd($alumnos);
         $alumnos = $this->personalInfoAlumnoRepository->update($alumnos, $id);
         return redirect(route('personalInfoAlumnos.index'));
 
@@ -277,7 +278,7 @@ class personal_info_alumnoController extends AppBaseController
 
         $objeto_alumnos = new personal_info_alumno;
         $personalInfoAlumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grado,$request->grupo);
-        
+        #dd($personalInfoAlumnos);
         $options =  view('personal_info_alumnos.table',compact('personalInfoAlumnos'))->render();
 
         return json_encode($options);
