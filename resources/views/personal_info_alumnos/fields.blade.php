@@ -461,6 +461,44 @@
           </div>
         </div>
     </div>
+
+    @if($ext==1)
+    <h4 class="form-section"><i class="fa fa-file-text-o"></i> DOCUMENTATION</h4>
+    <div class="row">
+      <table class="table table-striped table-bordered datacol-basic-initialisation display"  id="">
+        <thead>
+            <tr class="azul">
+                <th>#</th>
+                <th>Documents</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @php $x=0; @endphp
+
+        @foreach($cat_doc as $cat_doc)
+          @php $x++; @endphp
+              <tr>
+                <td>{!! $x !!}</td>
+                <td>
+                  @if(empty(!$cat_doc->documento))
+                    {!! $cat_doc->valor !!}
+                  @else
+                     {!! $cat_doc->valor !!}
+                  @endif
+                </td>
+                <td style="text-align: center;">
+                      <input onchange="validarFile(this)" type="file" accept="application/pdf,image/*" name="documento{{ $cat_doc->id }}" id="documento{{ $cat_doc->id }}" class="form-control">
+                </td>
+              </tr>
+
+        @endforeach
+        </tbody>
+    </table>
+
+    </div>
+    @endif
+
     
     <div class="form-actions right">
       <a href="{{ route('personalInfoAlumnos.index') }}">

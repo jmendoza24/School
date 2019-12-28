@@ -11,6 +11,7 @@ use App\Models\notas;
 use App\Http\Requests\Createpersonal_info_alumnoRequest;
 use App\Http\Requests\Updatepersonal_info_alumnoRequest;
 use App\Repositories\personal_info_alumnoRepository;
+
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,11 +19,13 @@ use Flash;
 use Response;
 use PDF;
 use View;
+use DB;
 
 class personal_info_alumnoController extends AppBaseController
 {
     /** @var  personal_info_alumnoRepository */
     private $personalInfoAlumnoRepository;
+   private $alumnosDocumentosRepository;
 
     public function __construct(personal_info_alumnoRepository $personalInfoAlumnoRepo)
     {
@@ -74,7 +77,7 @@ class personal_info_alumnoController extends AppBaseController
         $personalInfoAlumno = (object)$personalInfoAlumno;
         $alumnosDocumentos = array();
         $alumnosmarerias = array();
-
+        
 
         return view('personal_info_alumnos.create',compact('grados','grupos','ciclos','alumnos','personalInfoAlumno','alumnosDocumentos'));
     }
@@ -105,7 +108,39 @@ class personal_info_alumnoController extends AppBaseController
 
         $personalInfoAlumno = $this->personalInfoAlumnoRepository->create($input);
 
+        
+
         if($ext==1){
+
+            $cat_doc=catalogos::where('catalogo',2)->get();
+            $user= personal_info_alumno::all();
+            $user->last();
+            $user=$user[0];
+            $id_al=$user->id;
+
+            foreach ($cat_doc as $key) {
+                 
+                if(isset($input['documento'.$key->id])){
+                    
+                    $file_img=$input['documento'.$key->id];
+
+                        if(!empty($file_img)){
+                        $img = Storage::url($file_img->store('alumnos', 'public'));
+                        $imgp = strpos($img,'/storage/');
+                        $img = substr($img, $imgp, strlen($img));
+
+                        DB::table('alumnos_documentos')->insertGetId(
+                        array('id_alumno' => $id_al,
+                              'id_documento' => $key->id,
+                              'documento' => $img,
+                                  )
+                        );
+                    }
+
+                }               
+
+            }
+
             return redirect()->route('personalInfoAlumnos.thanks');
         }else{
             return redirect()->route('personalInfoAlumnos.index');    
@@ -140,7 +175,7 @@ class personal_info_alumnoController extends AppBaseController
         //$pdf->loadHTML($credencal);
         //return $pdf->stream();
 
-        return $pdf->download('credencal.pdf');
+        return $pdf->download('invoice.pdf');
         
     }
 
@@ -267,13 +302,6 @@ class personal_info_alumnoController extends AppBaseController
         $options =  view('reportes.table',compact('personalInfoAlumnos'))->render();
 
         return json_encode($options);
-    }
-
-    function descarga_credencial(Request $request){
-       # return view('personal_info_alumnos.reporte_calificacion');
-        $info = 1;
-        $pdf = \PDF::loadView('personal_info_alumnos.reporte_calificacion',compact('info'));
-        return $pdf->download('calificacion.pdf');
     }
 
 }

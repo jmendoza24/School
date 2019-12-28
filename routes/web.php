@@ -34,7 +34,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tblMatAlumnos', 'tbl_mat_alumnosController');
 	Route::get('reportes', 'ReportesController@index')->name('reportes.index');
 	Route::resource('notas', 'notasController');
-	Route::get('descarga_credencial', 'personal_info_alumnoController@descarga_credencial')->name('personalInfoAlumnos.calif');
 });
 
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {

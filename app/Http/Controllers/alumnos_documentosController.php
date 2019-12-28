@@ -77,7 +77,7 @@ class alumnos_documentosController extends AppBaseController
            \Storage::disk('')->put($nombre,\File::get($file));
            $arreglo['documento']=$nombre;
            $arreglo['id_documento']=$id;
-        }
+        
 
         $documentos = $this->alumnosDocumentosRepository->create($arreglo);
 

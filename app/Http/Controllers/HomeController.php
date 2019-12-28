@@ -38,6 +38,8 @@ class HomeController extends Controller
         $grados=catalogos::where('catalogo',3)->get();
         $grupos=catalogos::where('catalogo',4)->get();
         $ciclos=catalogos::where('catalogo',1)->get();
+        $cat_doc=catalogos::where('catalogo',2)->get();
+
         $alumnos=array();
         $personalInfoAlumno = array('grade'=>'',
                                     'group'=>'',
@@ -50,7 +52,7 @@ class HomeController extends Controller
         $personalInfoAlumno = (object)$personalInfoAlumno;
         $alumnosDocumentos = array();
 
-        return view('personal_info_alumnos.registo_ext',compact('grados','grupos','ciclos','alumnos','personalInfoAlumno','alumnosDocumentos'));
+        return view('personal_info_alumnos.registo_ext',compact('cat_doc','grados','grupos','ciclos','alumnos','personalInfoAlumno','alumnosDocumentos'));
      }
 
           
