@@ -318,4 +318,16 @@ function descarga_credencial(Request $request){
         $pdf = \PDF::loadView('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
         return $pdf->download('calificacion.pdf');
     }
+
+
+    public function asistencia(Request $request)
+    {
+
+        $input = $request->all();
+        $personalInfoAlumnos=$input['datos'];
+        $options =  view('personal_info_alumnos.asistencia',compact('personalInfoAlumnos'))->render();
+        return $options;
+
+
+    }
 }

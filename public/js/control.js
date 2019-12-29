@@ -384,3 +384,26 @@ $.ajax({
         }
     });
 }
+
+
+function toma_asistencia(id_alumno){
+ var parametros ={ 
+        "id_alumno":id_alumno,
+        "asistencia":1,
+
+                       
+   };
+$.ajax({
+              url:"/api/v1/toma_asistencia",
+              type: "get",
+              data:parametros,
+              success: function(respuesta){ 
+
+
+              },  
+              error: function(XMLHttpRequest, textStatus, errorThrown) { 
+              // alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+              }   
+
+          });  
+}

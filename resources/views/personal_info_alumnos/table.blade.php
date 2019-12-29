@@ -1,3 +1,26 @@
+<script type="text/javascript">
+    function asistencias(datos){
+        $.ajax({
+                  url:"/api/v1/asistencia",
+                  type: "get",
+                  datatype:'json',
+                  data:{'datos':datos},
+                  success: function(respuesta)
+                  {    
+                      
+                       $("#fields").html(respuesta);               
+                      
+                  }
+              }) ; 
+}
+</script>
+<table border="0" style="width: 100%">
+    <tr class="pull-right">
+        <td  class="pull-right">
+             <a data-toggle="modal" data-target="#large_familias" class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="asistencias({{ $personalInfoAlumnos }})"> <i class="fa fa-plus"></i> Assistance</a>
+        </td>
+    </tr>
+</table>
 <table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="">
     <thead>
         <tr class="azul">

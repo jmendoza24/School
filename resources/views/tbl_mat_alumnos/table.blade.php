@@ -4,7 +4,7 @@
             <tr class="azul">
                 <th>Subject</th>
                 <th>Score</th>
-                <th>Letter grade</th>
+                <th>Comments</th>
                 <th></th>
             </tr>
         </thead> 

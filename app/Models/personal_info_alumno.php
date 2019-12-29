@@ -169,6 +169,7 @@ class personal_info_alumno extends Model
         return DB::table('alumnos_personal_infos as a')
                          //->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
+
                          ->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
                                     case a.level when 1 then 'Pre kindergarten'
                                                when 2 then 'Primary'
