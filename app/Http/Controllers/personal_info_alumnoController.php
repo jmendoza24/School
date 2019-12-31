@@ -6,7 +6,7 @@ use App\Models\catalogos;
 use App\Models\alumnos_documentos;
 use App\Models\tbl_mat_alumnos;
 use App\Models\notas;
-
+ 
 
 use App\Http\Requests\Createpersonal_info_alumnoRequest;
 use App\Http\Requests\Updatepersonal_info_alumnoRequest;

@@ -161,20 +161,25 @@ class personal_info_alumno extends Model
                          ->groupby('c2.valor','a.grade', 'a.group')
                          ->get();
 
-    }  
+    }   
 
-    public function grados_grupos($nivel,$grado,$grupo)
-    {
+    public function grados_grupos($nivel,$grado,$grupo){
+
+      $fecha = date('Y-m-d');
+
       #return  $nivel.'-'.$grado.'-'.$grupo;
         return DB::table('alumnos_personal_infos as a')
                          //->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
-
+                         //->leftjoin('asistencias as ass', 'ass.id_alumno','a.id')
+                         ->leftjoin('asistencias as asi',function($join)use($fecha){
+                            $join->on('asi.id_alumno','a.id')
+                            ->where('asi.created_at',$fecha);})
                          ->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
                                     case a.level when 1 then 'Pre kindergarten'
                                                when 2 then 'Primary'
                                                when 3 then 'High school (Secundaria)'
-                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar ")
+                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, asi.asistencia, asi.created_at")
                          ->where([['a.level',$nivel],['a.grade',$grado],['a.group',$grupo]])
                          ->orderby('a.grade','asc')
                          ->get();

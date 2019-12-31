@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\personal_info_alumno;
 use App\Http\Requests\CreateasistenciasRequest;
 use App\Http\Requests\UpdateasistenciasRequest;
 use App\Repositories\asistenciasRepository;
@@ -31,10 +31,12 @@ class asistenciasController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $asistencias = $this->asistenciasRepository->all();
+        $objeto_alumnos = new personal_info_alumno;
+        $personalInfoAlumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grade,$request->group);
 
-        return view('asistencias.index')
-            ->with('asistencias', $asistencias);
+        $options =  view('personal_info_alumnos.asistencia',compact('personalInfoAlumnos'))->render();
+
+        return ($options);
     }
 
     /**
@@ -59,6 +61,13 @@ class asistenciasController extends AppBaseController
         $input = $request->all();
 
         $asistencias = $this->asistenciasRepository->create($input);
+
+        $objeto_alumnos = new personal_info_alumno;
+        $personalInfoAlumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grade,$request->group);
+
+        $options =  view('personal_info_alumnos.asistencia',compact('personalInfoAlumnos'))->render();
+
+        return ($options);
 
     }
 

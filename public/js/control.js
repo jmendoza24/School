@@ -68,9 +68,7 @@ function tabla_alumnos(nivel, grado, grupo){
           dataType: "json",
           success: function(respuesta){ 
             $("#tabla_alumnos").html(respuesta);
-            $('.scroll-horizontal').DataTable( {
-                  "scrollX": true
-              } );
+            $('.scroll-horizontal').DataTable();
 
             $("#tabla_alumnos").show();
 
@@ -386,19 +384,21 @@ $.ajax({
 }
 
 
-function toma_asistencia(id_alumno){
+function toma_asistencia(id_alumno,grado,grupo,nivel){
  var parametros ={ 
         "id_alumno":id_alumno,
         "asistencia":1,
+        'grade':grado,
+        'group':grupo,
+        'nivel':nivel  ,
 
-                       
    };
 $.ajax({
               url:"/api/v1/toma_asistencia",
               type: "get",
               data:parametros,
               success: function(respuesta){ 
-
+                $("#fields").html(respuesta);
 
               },  
               error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -406,4 +406,24 @@ $.ajax({
               }   
 
           });  
+}
+
+
+function asistencias(grado,grupo,nivel){
+  var parametros ={ 
+        'grade':grado,
+        'group':grupo,
+        'nivel':nivel
+
+   };
+  $.ajax({
+              url:"/api/v1/lista_asisencia",
+              type: "get",
+              data:parametros,
+              success: function(respuesta){ 
+                $("#fields").html(respuesta);
+
+              } 
+
+          }); 
 }

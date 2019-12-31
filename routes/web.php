@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('reportes', 'ReportesController@index')->name('reportes.index');
 	Route::resource('notas', 'notasController');
 	Route::get('descarga_credencial', 'personal_info_alumnoController@descarga_credencial')->name('personalInfoAlumnos.calif');
+
+
 });
 
 Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
@@ -53,7 +55,8 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
     Route::get('/deletmat', 'tbl_mat_alumnosController@destroy');	
     Route::get('/kardex', 'tbl_mat_alumnosController@kardex');	
     Route::get('/asistencia', 'personal_info_alumnoController@asistencia');	
-    Route::get('/toma_asistencia', 'asistenciasController@store');	
+    Route::get('/toma_asistencia', 'asistenciasController@store');
+    Route::get('lista_asisencia', 'asistenciasController@index');
 
 
 
