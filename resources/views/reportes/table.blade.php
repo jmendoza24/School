@@ -1,3 +1,5 @@
+
+@if(sizeof($personalInfoAlumnos)>1)
 <table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
     <thead>
         <tr class="azul">
@@ -34,4 +36,39 @@
     @endforeach
     </tbody>
 </table>
+@elseif(sizeof($asistencia)>1)
+<table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
+    <thead>
+        <tr class="azul">
+            <th>ID</th>                
+            <th>Name</th>
+            <th>Level</th>
+            <th>Grade</th>
+            <th>Group</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Ethnicity</th>
+            <th>Race</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($asistencia as $ass)
+        <tr>
+            <td>{!! $ass->num_control !!}</td>
+            <td>{!! $ass->name !!}</td>
+            <td>{!! $ass->nivel_escolar !!}</td>
+            <td>{!! $ass->grado !!}</td>
+            <td>{!! $ass->grupo !!}</td>
+            <td>{!! $ass->email !!}</td>
+            <td>{!! $ass->tels !!}</td>
+            <td>{!! $ass->ethnicity !!}</td>
+            <td>{!! $ass->race !!}</td>
+            <td>{!! $ass->created_at !!}</td></td>
+
+        </tr>
+    @endforeach
+    </tbody>
+</table>
+@endif
  

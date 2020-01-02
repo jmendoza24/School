@@ -88,14 +88,13 @@ $grupos=catalogos::where('catalogo',4)->get();
                            </select>   
                         </div>
                       </div>
-                      <div class="col-xl-6">
+                  </div>
+                  <div class="col-xl-6">
+                        <br>
                           <button type="button"  onclick="baja_pdf()" class="btn btn_morado form-control" id="btn_save" style="">
                               <i class="fa fa-pdf"></i> Download report
                           </button>
                       </div>
-
-
-                  </div>
                 </div>
                 <div class=" azul p-2 media-middle">
                   <i class="ft-user font-large-2 white" style="cursor: pointer;"></i>
@@ -114,12 +113,18 @@ $grupos=catalogos::where('catalogo',4)->get();
                   <div class="row">
                   	<div class="media-right media-middle">
                   		<label>Start date:</label>
-	                  <input type="date" name="" class="form-control" >
+	                  <input type="date" id="f_inicio" class="form-control" value="{{ date('Y-m-d')}}" >
 	                </div>
 	                <div class="media-right media-middle" style="padding-left: 5px;">
 	                	<label>Final date:</label>
-	                  <input type="date" name="" class="form-control">
+	                  <input type="date" id="f_fin" class="form-control" value="{{ date('Y-m-d')}}">
 	                </div>
+                  <div class="col-xl-6">
+                    <br>
+                      <button type="button"  onclick="baja_asistencia()" class="btn btn_morado form-control" id="btn_save" style="">
+                          <i class="fa fa-pdf"></i> Download report
+                      </button>
+                  </div>
                   </div>
                 </div>
                 <div class="naranja p-2 media-middle">

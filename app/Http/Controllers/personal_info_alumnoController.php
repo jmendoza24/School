@@ -298,9 +298,9 @@ class personal_info_alumnoController extends AppBaseController
 
         $objeto_alumnos = new personal_info_alumno;
         $personalInfoAlumnos=$objeto_alumnos->pdf($level,$grade,$group,$ethnicity,$race);
-
+        $asistencia = array();
        
-        $options =  view('reportes.table',compact('personalInfoAlumnos'))->render();
+        $options =  view('reportes.table',compact('personalInfoAlumnos','asistencia'))->render();
 
         return json_encode($options);
     }
@@ -329,5 +329,16 @@ function descarga_credencial(Request $request){
         return $options;
 
 
+    }
+
+    function baja_asistencia(Request $request){
+      $filtro = new personal_info_alumno();
+      $asistencia = $filtro->obtener_asistencia($request);
+      #dd($asistencia);
+      $personalInfoAlumnos = array('');
+
+      $options =  view('reportes.table',compact('asistencia','personalInfoAlumnos'))->render();
+      return json_encode($options);
+      
     }
 }

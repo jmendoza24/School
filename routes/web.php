@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
     Route::get('/asistencia', 'personal_info_alumnoController@asistencia');	
     Route::get('/toma_asistencia', 'asistenciasController@store');
     Route::get('lista_asisencia', 'asistenciasController@index');
+    Route::get('baja_asistencia', 'personal_info_alumnoController@baja_asistencia');
 
 
 

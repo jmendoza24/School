@@ -61,7 +61,7 @@
                                 <div class="media">
                                   <div class="media-body text-left w-100" onclick="tabla_alumnos(2,{{ $pr->grade }},{{ $pr->group }})" style="cursor: pointer;">
                                   <h4 class="primary">
-                                    <i class="icon-user-follow primary "></i>
+                                    <i class="icon-user-follow primary"></i>
                                     {{ $pr->grado }} - {{ $pr->grupo }} ({{ $pr->conteos }})</h4>
                                 </div>
                                 </div>
@@ -76,24 +76,21 @@
                 <h4 class="form-section">High school (Secundaria)</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                  @foreach($secundaria as $sec)
-                      <div class="col-xl-3">
-                          <div class="card">
-                            <div class="card-content">
-                              <div class="card-body">
-                                <div class="media">
-                                  <div class="media-body text-left w-100">
-                                    <h2 class="warning">{{ $sec->conteos }}</h2>
-                                    <span>{{ $sec->grado }} - {{ $sec->grupo }}</span>
-
-                                  </div>
-                                  <div class="media-right media-middle" onclick="tabla_alumnos(3,{{ $sec->grade }},{{ $sec->group }})" style="cursor: pointer;">
-                                    <i class="icon-user-follow warning font-large-2 float-right"></i>
-                                  </div>
-                                </div>
-                              </div>
+                    <div class="col-xl-3">
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="card-body">
+                            <div class="media">
+                              <div class="media-body text-left w-100" onclick="tabla_alumnos(3,{{ $sec->grade }},{{ $sec->group }})" style="cursor: pointer;">
+                              <h4 class="primary">
+                                <i class="icon-user-follow primary"></i>
+                                {{ $pr->grado }} - {{ $pr->grupo }} ({{ $pr->conteos }})</h4>
+                            </div>
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
                     @endforeach
                   
             </div>
@@ -102,24 +99,21 @@
                 <h4 class="form-section">High school (preparatoria)</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                   @foreach($prepa as $pre)
-                      <div class="col-xl-3">
-                          <div class="card">
-                            <div class="card-content">
-                              <div class="card-body">
-                                <div class="media">
-                                  <div class="media-body text-left w-100">
-                                    <h2 class="warning">{{ $pre->conteos }}</h2>
-                                    <span>{{ $pre->grado }} - {{ $pre->grupo }}</span>
-
-                                  </div>
-                                  <div class="media-right media-middle" onclick="tabla_alumnos(4,{{ $pre->grade }},{{ $pre->group }})" style="cursor: pointer;">
-                                    <i class="icon-user-follow warning font-large-2 float-right"></i>
-                                  </div>
-                                </div>
-                              </div>
+                  <div class="col-xl-3">
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="card-body">
+                            <div class="media">
+                              <div class="media-body text-left w-100" onclick="tabla_alumnos(4,{{ $pre->grade }},{{ $pre->group }})" style="cursor: pointer;">
+                              <h4 class="primary">
+                                <i class="icon-user-follow primary"></i>
+                                {{ $pre->grado }} - {{ $pre->grupo }} ({{ $pre->conteos }})</h4>
+                            </div>
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
                     @endforeach   
             </div>
         </div>

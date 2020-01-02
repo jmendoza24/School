@@ -271,4 +271,49 @@ class personal_info_alumno extends Model
                  ->get();
 
     }
+
+    function obtener_asistencia($filtros){
+        $query = db::table('asistencias as b')
+                    ->join('alumnos_personal_infos as a','b.id_alumno','a.id')
+                    ->leftjoin('catalogos as c2','c2.id','=','a.group');
+
+
+        if ($filtros->level!=0) { $query=$query->where('a.level',$filtros->level);}
+        if ($filtros->grade!=0) {$query=$query->where('a.grade',$filtros->grade);}
+        if ($filtros->group !=0) {$query=$query->where('a.group',$filtros->group);}
+        if ($filtros->ethnicity!=0) {$query=$query->where('a.ethnicity',$filtros->ethnicity);}
+
+        if ($filtros->race!=0) { $query=$query->where('a.race',$filtros->race);}
+        if ($filtros->f_inicio!='') { 
+            $query=$query->whereBetween('b.created_at', array($filtros->f_inicio, $filtros->f_fin));
+        }
+
+
+        return $query->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
+                            case a.level when 1 then 'Pre kindergarten'
+                                       when 2 then 'Primary'
+                                       when 3 then 'High school (Secundaria)'
+                                       when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar,
+                                       case grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado,
+                                        case a.ethnicity when 1 then 'Students of Hispanic/Latino Origin'
+                                                         when 2 then 'Not Hispanic/Latino' end as ethnicity,
+                                        case a.race when 1 then 'American Indian or Alaska Native'
+                                                    when 2 then 'Asian'
+                                                    when 3 then 'Black or African American'
+                                                    when 4 then 'Native Hawaiian or other Pacific Islander'
+                                                    when 5 then 'White' end as race, a.tel as tels")->get();
+    }
 }
