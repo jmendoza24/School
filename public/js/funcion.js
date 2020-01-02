@@ -40,11 +40,11 @@ function borra_catalogo(id){
         });
 }
 
-function grados_niveles(){
+function  rados_niveles(){
   var level = $("#level").val();
 
   if(level ==1){
-    $(".prescolar").show();
+    $(".prescolar").show(); 
     $(".primaria").hide();
     $(".secundaria").hide();
     $(".prepa").hide();

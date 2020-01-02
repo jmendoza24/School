@@ -156,9 +156,9 @@ class personal_info_alumno extends Model
                          ->selectraw("a.grade, a.group,
                                     case a.grade when 1 then 'Prekinder'
                                                  when 2 then 'Kinder'
-                                                 else a.grade end as grado,c2.valor as grupo,count(*) as conteos")
+                                                 else a.grade end as grado,c2.valor as grupo,count(*) as conteos, a.level")
                          ->where('a.level',$id)
-                         ->groupby('c2.valor','a.grade', 'a.group')
+                         ->groupby('c2.valor','a.grade', 'a.group','a.level')
                          ->get();
 
     }   
@@ -232,44 +232,43 @@ class personal_info_alumno extends Model
 
 
     function pdf($level,$grade,$group,$ethnicity,$race){
-        
-        $query = personal_info_alumno::query();
+        $query = DB::table('alumnos_personal_infos as a')
+                ->leftjoin('catalogos as c2','c2.id','=','a.group');
 
-        if ($level==0) {
-        }else{
-            $query=$query->where('level',$level);
-
-        }
-        if ($grade==0) {
-        }else{
-            $query=$query->where('grade',$grade);
-
-        }
-        if ($group==0) {
-
-        }else{
-            $query=$query->where('group',$group);
-
-        }
-        if ($ethnicity==0) {
-
-        }else{
-
-            $query=$query->where('ethnicity',$ethnicity);
-
-        }
-        if ($race==0) {
-
-        }else{
-             $query=$query->where('race',$race);
-
-        }
+        if ($level!=0) { $query=$query->where('level',$level);}
+        if ($grade!=0) {$query=$query->where('grade',$grade);}
+        if ($group !=0) {$query=$query->where('group',$group);}
+        if ($ethnicity!=0) {$query=$query->where('ethnicity',$ethnicity);}
+        if ($race!=0) { $query=$query->where('race',$race);}
           
-           return  $results =$query->get();
-
-
-
-
+   return  $results = $query->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
+                            case a.level when 1 then 'Pre kindergarten'
+                                       when 2 then 'Primary'
+                                       when 3 then 'High school (Secundaria)'
+                                       when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar,
+                                       case grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado,
+                                        case a.ethnicity when 1 then 'Students of Hispanic/Latino Origin'
+                                                         when 2 then 'Not Hispanic/Latino' end as ethnicity,
+                                        case a.race when 1 then 'American Indian or Alaska Native'
+                                                    when 2 then 'Asian'
+                                                    when 3 then 'Black or African American'
+                                                    when 4 then 'Native Hawaiian or other Pacific Islander'
+                                                    when 5 then 'White' end as race, a.tel as tels")
+                 ->orderby('a.grade','asc')
+                 ->get();
 
     }
 }

@@ -79,7 +79,7 @@ $grupos=catalogos::where('catalogo',4)->get();
                       <div class="col-xl-6">
                         <div class="media-right media-middle">
                             <select class="form-control" name="race" id="race" >
-                               <option value="0" selected="">select option</option>
+                               <option value="0" selected="">Race</option>
                                <option value="1" >American Indian or Alaska Native</option>
                                <option value="2" >Asian</option>
                                <option value="3" >Black or African American</option>
@@ -123,14 +123,17 @@ $grupos=catalogos::where('catalogo',4)->get();
                   </div>
                 </div>
                 <div class="naranja p-2 media-middle">
-                </a>  <i class="icon-speech font-large-2  white" style="cursor: pointer;"></i>
+                  </a>  <i class="icon-speech font-large-2  white" style="cursor: pointer;"></i>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" id="reporte"></div>
     </div>
+</div>
+<br>
+<div class="row" >
+  <div class="col-md-12" id="reporte" style="overflow-x: auto;"></div>          
 </div>
 
 @endsection

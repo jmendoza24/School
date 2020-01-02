@@ -86,7 +86,7 @@
                                     <span>{{ $sec->grado }} - {{ $sec->grupo }}</span>
 
                                   </div>
-                                  <div class="media-right media-middle" onclick="tabla_alumnos(2,{{ $sec->grade }},{{ $sec->group }})" style="cursor: pointer;">
+                                  <div class="media-right media-middle" onclick="tabla_alumnos(3,{{ $sec->grade }},{{ $sec->group }})" style="cursor: pointer;">
                                     <i class="icon-user-follow warning font-large-2 float-right"></i>
                                   </div>
                                 </div>
@@ -95,6 +95,7 @@
                           </div>
                         </div>
                     @endforeach
+                  
             </div>
         </div>
         <div class="tab-pane" id="link34" role="tabpanel" aria-labelledby="link-tab34" aria-expanded="false">
@@ -111,7 +112,7 @@
                                     <span>{{ $pre->grado }} - {{ $pre->grupo }}</span>
 
                                   </div>
-                                  <div class="media-right media-middle" onclick="tabla_alumnos(2,{{ $pre->grade }},{{ $pre->group }})" style="cursor: pointer;">
+                                  <div class="media-right media-middle" onclick="tabla_alumnos(4,{{ $pre->grade }},{{ $pre->group }})" style="cursor: pointer;">
                                     <i class="icon-user-follow warning font-large-2 float-right"></i>
                                   </div>
                                 </div>
