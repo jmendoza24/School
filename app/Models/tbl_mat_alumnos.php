@@ -44,7 +44,7 @@ class tbl_mat_alumnos extends Model
         'id' => 'integer',
         'id_alumno' => 'integer',
         'id_materia' => 'string',
-        'calificacion' => 'integer',
+        'calificacion' => 'string',
         'comentarios' => 'string',
         'school_cycle' => 'integer',
         'grade' => 'integer',

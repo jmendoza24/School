@@ -153,12 +153,24 @@ class personal_info_alumno extends Model
                         // ->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
                          ->leftjoin('catalogos as c3','c3.id','=','a.school_cycle')
-                         ->selectraw("a.grade, a.group,
-                                    case a.grade when 1 then 'Prekinder'
-                                                 when 2 then 'Kinder'
-                                                 else a.grade end as grado,c2.valor as grupo,count(*) as conteos, a.level")
+                         ->selectraw("case a.grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado, a.grade, a.group,
+                                      c2.valor as grupo,count(*) as conteos, a.level")
                          ->where('a.level',$id)
                          ->groupby('c2.valor','a.grade', 'a.group','a.level')
+                         ->orderby('a.grade')
                          ->get();
 
     }   

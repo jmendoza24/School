@@ -299,7 +299,7 @@ class personal_info_alumnoController extends AppBaseController
         $objeto_alumnos = new personal_info_alumno;
         $personalInfoAlumnos=$objeto_alumnos->pdf($level,$grade,$group,$ethnicity,$race);
         $asistencia = array();
-       
+        //return view('reportes.table',compact('personalInfoAlumnos','asistencia'));
         $options =  view('reportes.table',compact('personalInfoAlumnos','asistencia'))->render();
 
         return json_encode($options);

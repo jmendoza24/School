@@ -84,7 +84,7 @@
                               <div class="media-body text-left w-100" onclick="tabla_alumnos(3,{{ $sec->grade }},{{ $sec->group }})" style="cursor: pointer;">
                               <h4 class="primary">
                                 <i class="icon-user-follow primary"></i>
-                                {{ $pr->grado }} - {{ $pr->grupo }} ({{ $pr->conteos }})</h4>
+                                {{ $sec->grado }} - {{ $sec->grupo }} ({{ $sec->conteos }})</h4>
                             </div>
                             </div>
                           </div>

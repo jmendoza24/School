@@ -65,8 +65,8 @@
                 <label style="color: #B810AE; font-size: 14px;">Grado: {{ $info->grado }}</label><br/>
                 <label style="color: #B810AE; font-size: 14px;">Ciclo escolar: {{ $info->ciclo }}</label><br/>
                 
-            <label><br/>
-             <span style="color: #B810AE;"> _________________________________ </span><br/>
+            <label>
+           <center>   <img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;"></center>
               Directora
             </label>
           </h3>

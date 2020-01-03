@@ -45,7 +45,7 @@
         <footer>
             <img src="{{ url('app-assets/images/foot.JPG')}}">
         </footer>
-
+        
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
             <table style="width: 100%;" border="0">
@@ -72,7 +72,7 @@
                                         221 West Hallandale Beach Blvd. <br>
                                         #312, Hallandale Breach, FL 33009 <br>
                                         www.matik12.com<br>
-                                        FL DIE#5743
+                                        FL DOE#5743
                                     </label>
                                 </td>
                             </tr>
