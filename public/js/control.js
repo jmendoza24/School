@@ -392,12 +392,18 @@ $.ajax({
 
 
 function toma_asistencia(id_alumno,grado,grupo,nivel){
+  var f_inicio=  $("#f_inicio").val();
+  var f_fin=  $("#f_fin").val();
+
  var parametros ={ 
         "id_alumno":id_alumno,
         "asistencia":1,
         'grade':grado,
         'group':grupo,
-        'nivel':nivel  ,
+        'nivel':nivel,
+        'f_inicio':f_inicio,
+        'f_fin':f_fin,
+
 
    };
 $.ajax({
@@ -429,6 +435,56 @@ function asistencias(grado,grupo,nivel){
               data:parametros,
               success: function(respuesta){ 
                 $("#fields").html(respuesta);
+
+              } 
+
+          }); 
+}
+
+
+
+ function delete_student(){
+
+   $.confirm({
+               animation: 'zoom',
+               icon: 'la la-warning',
+               title: 'Mensaje',
+               cancelButtonClass: 'btn-danger',
+               content: '<h3 style="text-aling:center" class="texto_rojo"><strong>Delete this student</strong></h3>',
+               buttons: {
+                   Acept: function () {
+                      document.getElementById("alumnos").submit();
+
+                                       
+                   },
+                   Cancel: function(){
+
+                   }
+               }
+           }); 
+
+}
+
+
+function view_list(id,name){
+
+
+$('#large_familias').modal('hide');
+
+
+  var parametros ={ 
+        'id':id,
+        'name':name,
+     
+
+   };
+  $.ajax({
+              url:"/api/v1/lista_asisencia_alumnos",
+              type: "get",
+              data:parametros,
+              success: function(respuesta){ 
+                $("#asis").html(respuesta);
+
 
               } 
 

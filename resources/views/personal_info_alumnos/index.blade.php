@@ -143,6 +143,29 @@
       </div>
     </div>
   </div>
+
+
+
+    <div class="modal fade text-left" id="as_al"  role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="as_al" role="document">
+      <div class="modal-content" id="contenidos">
+        <div class="modal-header morado">
+          <h4 class="modal-title" id="myModalLabel17">Assistance</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <form method="post" enctype="multipart/form-data" id="formUpload">
+              {!! csrf_field() !!}
+          <div>
+            <div class="modal-body" id="asis" style="overflow:scroll ;">
+
+            </div>
+         </div>
+      </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 

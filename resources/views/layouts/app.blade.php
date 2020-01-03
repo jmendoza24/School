@@ -65,6 +65,11 @@
            color: white;
 
         }
+        .ta: {
+
+           color: #0275d8;
+
+        }
         .gris{
            
             background-color: #646464;
