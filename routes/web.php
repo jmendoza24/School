@@ -15,7 +15,7 @@
 Route::get('/', 'HomeController@index');
 Auth::routes();
 
-Route::get('/register', 'HomeController@register')->name('register');
+Route::get('/registro', 'HomeController@register')->name('register');
 Route::get('/thanks', 'HomeController@gracias')->name('personalInfoAlumnos.thanks');
 Route::resource('personalInfoAlumnos', 'personal_info_alumnoController');
 

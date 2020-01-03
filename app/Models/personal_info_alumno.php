@@ -175,11 +175,25 @@ class personal_info_alumno extends Model
                          ->leftjoin('asistencias as asi',function($join)use($fecha){
                             $join->on('asi.id_alumno','a.id')
                             ->where('asi.created_at',$fecha);})
-                         ->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
+                         ->selectraw("a.* ,c2.valor as grupo,
                                     case a.level when 1 then 'Pre kindergarten'
                                                when 2 then 'Primary'
                                                when 3 then 'High school (Secundaria)'
-                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, asi.asistencia, asi.created_at")
+                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, asi.asistencia, asi.created_at,
+                                    case a.grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado")
                          ->where([['a.level',$nivel],['a.grade',$grado],['a.group',$grupo]])
                          ->orderby('a.grade','asc')
                          ->get();

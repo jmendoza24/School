@@ -141,6 +141,7 @@
                             </tr>
                             <?php $i += 1; $suma +=$mat->calificacion; ?>
                             @endforeach
+                            <?php if($suma==0){ $i = 1;} ?>
                             <tr>
                                 <td>Avg. GRADE </td>
                                 <td style="text-align: center;">{{ $suma/$i }}</td>
