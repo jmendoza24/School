@@ -82,3 +82,4 @@ function valida_curp(){
             }
         });
 }
+
