@@ -16,7 +16,6 @@ class CreateAsistenciasTable extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_alumno')->nullable();
-            $table->integer('asistencia')->nullable();
             $table->timestamps();
         });
     }

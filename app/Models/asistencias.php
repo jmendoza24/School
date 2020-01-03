@@ -33,7 +33,6 @@ class asistencias extends Model
     protected $casts = [
         'id' => 'integer',
         'id_alumno' => 'integer',
-        'asistencia' => 'integer'
     ];
 
     /**

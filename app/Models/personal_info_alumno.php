@@ -191,7 +191,7 @@ class personal_info_alumno extends Model
                                     case a.level when 1 then 'Pre kindergarten'
                                                when 2 then 'Primary'
                                                when 3 then 'High school (Secundaria)'
-                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, asi.asistencia, asi.created_at,
+                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, asi.created_at,
                                     case a.grade  when 1 then 'Prekinder'
                                         when 2  then 'Kinder'
                                         when 3 then 1

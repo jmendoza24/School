@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\personal_info_alumno;
+use App\Models\asistencias;
+
+
 use App\Http\Requests\CreateasistenciasRequest;
 use App\Http\Requests\UpdateasistenciasRequest;
 use App\Repositories\asistenciasRepository;
@@ -11,6 +14,7 @@ use Flash;
 use Response;
 use View;
 use DB;
+use Carbon\Carbon; //Importa la clase Carbon hasta arriba de tu clase
 
 class asistenciasController extends AppBaseController
 {
@@ -60,14 +64,23 @@ class asistenciasController extends AppBaseController
     {
         $input = $request->all();
 
-        $asistencias = $this->asistenciasRepository->create($input);
 
-        $objeto_alumnos = new personal_info_alumno;
-        $personalInfoAlumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grade,$request->group);
+
+     $as=   db::select("insert into asistencias(id_alumno,created_at)
+         select ".$request->id_alumno.",fecha
+         from  tbl_calendario
+         where fecha between '".$request->f_inicio."' and '".$request->f_fin."'
+         and fecha not in (select created_at from asistencias where id_alumno = ".$request->id_alumno.")
+         and 
+         ");
+
+      //  $asistencias = $this->asistenciasRepository->create($input);
+         $objeto_alumnos = new personal_info_alumno;
+         $personalInfoAlumnos=$objeto_alumnos->grados_grupos($request->nivel,$request->grade,$request->group);
 
         $options =  view('personal_info_alumnos.asistencia',compact('personalInfoAlumnos'))->render();
 
-        return ($options);
+         return ($options);
 
     }
 
@@ -160,5 +173,15 @@ class asistenciasController extends AppBaseController
         Flash::success('Asistencias deleted successfully.');
 
         return redirect(route('asistencias.index'));
+    }
+
+    public function lista_asisencia_alumnos(Request $request)
+    {
+        $name=$request->name;
+        $asistencias=asistencias::where('id_alumno',$request->id)->get();
+        $options =  view('personal_info_alumnos.asistencias_alumno',compact('asistencias','name'))->render();
+
+         return ($options); 
+
     }
 }
