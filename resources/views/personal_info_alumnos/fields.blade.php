@@ -168,7 +168,12 @@
               <div class="form-group row">
                 <label class="col-md-3 label-control" for="userinput2">Date Birth:</label>
                 <div class="col-md-9">
-                <input type="date" name="date_birth" id="date_birth" class="form-control" value="{{ substr($personalInfoAlumno->date_birth,0,10)}}">
+                 @if(empty($personalInfoAlumno->date_birth))
+                         <input type="date" name="date_birth" id="date_birth" class="form-control" >
+                  @else
+                      <input type="date" name="date_birth" id="date_birth" class="form-control" value="{{ substr($personalInfoAlumno->date_birth,0,10)}}">
+
+                  @endif
                 </div>
               </div>
           </div>

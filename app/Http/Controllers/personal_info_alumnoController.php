@@ -20,6 +20,8 @@ use Response;
 use PDF;
 use View;
 use DB;
+use Mail;
+
 
 class personal_info_alumnoController extends AppBaseController
 {
@@ -143,6 +145,169 @@ class personal_info_alumnoController extends AppBaseController
                 }               
 
             }
+
+        $vista='personal_info_alumnos.correo_alumno';
+        $alum=personal_info_alumno::where('id',$id_al)->get();
+        $alum=$alum[0];
+        
+        
+        $grupos=catalogos::where('id',$alum->group)->get();
+        $grupos=$grupos[0];
+        $ciclos=catalogos::where('id',$alum->school_cycle)->get();
+        $ciclos=$ciclos[0];
+
+
+        if($alum->level==1){
+             $level='Pre kindergarten';
+        }elseif($alum->level==2){
+             $level='Primary';
+        }elseif($alum->level==3){
+             $level='High school (Secundaria)';
+        }else{
+             $level='High school (preparatoria)';
+        }
+
+
+        if($alum->grade==1){
+             $grado='1';
+        }elseif($alum->grade==2){
+             $grado='2';
+        }elseif($alum->grade==3){
+             $grado='3';
+        }elseif($alum->grade==4){
+             $grado='4';
+        }elseif($alum->grade==5){
+             $grado='5';
+        }elseif($alum->grade==6){
+             $grado='6';
+        }elseif($alum->grade==7){
+             $grado='7';
+        }elseif($alum->grade==8){
+             $grado='8';
+        }elseif($alum->grade==9){
+             $grado='9';
+        }elseif($alum->grade==10){
+             $grado='10';
+        }elseif($alum->grade==11){
+             $grado='11';
+        }elseif($alum->grade==12){
+             $grado='12';
+        }elseif($alum->grade==13){
+             $grado='13';
+        }elseif($alum->grade==14){
+             $grado='14';
+        }else{
+          $grado="";
+        }
+
+
+        
+         if($alum->gender==1){
+             $genero='M';
+        }elseif($alum->level==2){
+             $genero='F';
+        }else{
+          $genero="";
+        }
+
+
+        if($alum->ethnicity==1){
+             $ethnicity='Students of Hispanic/Latino Origin';
+        }elseif($alum->ethnicity==2){
+             $ethnicity='Not Hispanic/Latino';
+        }else{
+          $ethnicity="";
+        }
+
+
+
+        if($alum->race==1){
+             $race='American Indian or Alaska Native';
+        }elseif($alum->race==2){
+             $race='Asian';
+        }elseif($alum->race==3){
+             $race='Black or African American';
+        }elseif($alum->race==4){
+             $race='Native Hawaiian or other Pacific Islander';
+        }elseif($alum->race==5){
+             $race='White';
+        }elseif($alum->race==4){
+             $race='';
+        }
+
+
+        if($alum->special_ed==1){
+             $special_ed='YES';
+        }elseif($alum->special_ed==2){
+             $special_ed='NO';
+        }else{
+          $special_ed="";
+        }
+
+
+        if($alum->gifted_talented==1){
+             $gifted_talented='YES';
+        }elseif($alum->gifted_talented==2){
+             $gifted_talented='NO';
+        }else{
+          $gifted_talented="";
+        }
+
+
+
+
+            $data = array(
+
+            'name'=>$alum->name,
+            'date_birth'=>$alum->date_birth,
+            'place_birth'=>$alum->place_birth,
+            'gender'=>$genero,
+            'native_language'=>$alum->native_language,
+            'ethnicity'=>$ethnicity,
+            'race'=>$race,
+            'special_ed'=>$special_ed,
+            'gifted_talented'=>$gifted_talented,
+            'address'=>$alum->address,
+            'city'=>$alum->city,
+            'state'=>$alum->state,
+            'zipcode'=>$alum->zipcode,
+            'country'=>$alum->country,
+            'tel'=>$alum->tel,
+            'email'=>$alum->email,
+            'parents_cell'=>$alum->parents_cell,
+            'id_personal'=>$alum->id_personal,
+            'personal_info'=>$alum->personal_info,
+            'parents_email'=>$alum->parents_email,
+            'name_parent'=>$alum->name_parent,
+            'last_school'=>$alum->last_school,
+            'phone_school'=>$alum->phone_school,
+            'school_address'=>$alum->school_address,
+            'last_date_attended'=>$alum->last_date_attended,
+            'last_complete_level'=>$alum->last_complete_level,
+            'comments'=>$alum->comments,
+            'photo_alumno'=>$alum->photo_alumno,
+            'grade'=>$grado,
+            'level'=>$level,
+            'group'=>$grupos->valor,
+            'num_control'=>$alum->num_control,
+            'school_cycle'=>$ciclos->valor,
+            'curp'=>$alum->curp
+                       
+         );
+
+    
+       Mail::send($vista, $data, function($msj) use ($data) {
+                        
+        //    $pdf = PDF::loadView('cotizacions.correo_cliente',$data); 
+            $msj->from('ventas@fluxmetals.info');
+            $msj->sender('Mati@admin.com');
+            $msj->subject('New Student');
+            $msj->to('diego05vidales@gmail.com')->cc('jacobmendozaha@gmail.com');
+
+                
+                                
+           // $msj->attachData($pdf->output(), 'cotizacion.pdf');
+        }); 
 
             return redirect()->route('personalInfoAlumnos.thanks');
         }else{
@@ -299,7 +464,7 @@ class personal_info_alumnoController extends AppBaseController
         $objeto_alumnos = new personal_info_alumno;
         $personalInfoAlumnos=$objeto_alumnos->pdf($level,$grade,$group,$ethnicity,$race);
         $asistencia = array();
-        //return view('reportes.table',compact('personalInfoAlumnos','asistencia'));
+       
         $options =  view('reportes.table',compact('personalInfoAlumnos','asistencia'))->render();
 
         return json_encode($options);
