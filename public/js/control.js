@@ -351,6 +351,36 @@ $.ajax({
 
 }
 
+function baja_asistencia(){
+
+var level=  $("#level").val();
+var grade=  $("#grade").val();
+var group=  $("#group").val();
+var ethnicity=  $("#ethnicity").val();
+var race=  $("#race").val();
+var f_inicio=  $("#f_inicio").val();
+var f_fin=  $("#f_fin").val();
+
+$.ajax({
+        url:"/api/v1/baja_asistencia",
+        type: "get",
+        data:{'level':level,'grade':grade,'group':group,'ethnicity':ethnicity,'race':race,'f_fin':f_fin,'f_inicio':f_inicio},
+        dataType: "json",
+        success: function(respuesta){ 
+          $("#reporte").html(respuesta);
+          $('.file-export').DataTable({
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ]
+          });
+          $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+
+        }
+    });
+
+}
+
 
 function view_kardex(){
 

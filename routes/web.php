@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('descarga_credencial', 'personal_info_alumnoController@descarga_credencial')->name('personalInfoAlumnos.calif');
 	Route::get('guarda_credencial', 'personal_info_alumnoController@guarda_credencial');
 	Route::get('imprime_boleta', 'personal_info_alumnoController@imprime_boleta')->name('download.boleta');
+	Route::get('ver_constancia', 'personal_info_alumnoController@ver_constancia')->name('visualizar.constancia');
+	Route::get('imprime_constancia', 'personal_info_alumnoController@imprime_constancia')->name('download.constancia');
 	
 
 });

@@ -477,6 +477,9 @@ function descarga_credencial(Request $request){
                 ->selectraw('a.*,valor as ciclo')
                 ->get();
         $info = $info[0];
+        
+        db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->delete();
+
         $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$request->id_alumno],['grade',$info->grade]])->get();
 
         return view('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
@@ -491,7 +494,14 @@ function descarga_credencial(Request $request){
         $info = $info[0];
         
         $datos = db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->get();
-        $datos= $datos[0];
+        
+        if(sizeof($datos)>0){
+            $datos= $datos[0];    
+        }else{
+            $datos = array('promedio'=>0,
+                            'texto'=>'');
+            $datos = (object)$datos;
+        }
        # dd($datos);
 
         $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$request->id_alumno],['grade',$info->grade]])->get();
@@ -541,13 +551,39 @@ function descarga_credencial(Request $request){
 
         return 1;
     }
+
+    function ver_constancia(Request $request){
+
+        $info = db::table('alumnos_personal_infos as a')
+                    ->leftjoin('catalogos as c', 'c.id','a.school_cycle')
+                ->where('a.id',$request->id_alumno)
+                ->selectraw('a.*,valor as ciclo')
+                ->get();
+        $info = $info[0];
+
+        return view('personal_info_alumnos.ver_constancia',compact('info'));
+    }
+
+    function imprime_constancia(Request $request){
+        $info = db::table('alumnos_personal_infos as a')
+                    ->leftjoin('catalogos as c', 'c.id','a.school_cycle')
+                ->where('a.id',$request->id_alumno)
+                ->selectraw('a.*,valor as ciclo')
+                ->get();
+        $info = $info[0];
+        
+        $datos = db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->get();
+        
+        if(sizeof($datos)>0){
+            $datos= $datos[0];    
+        }else{
+            $datos = array('promedio'=>0,
+                            'texto'=>'');
+            $datos = (object)$datos;
+        }
+       
+        $pdf = \PDF::loadView('personal_info_alumnos.imprime_constancia',compact('info','datos'));
+        return $pdf->download('Constancia.pdf');
+    }
 }
 
-/**
-  db::select("insert into asistencia(id_alumno, created_at)
-          select ".$request->id_alumno.",fecha
-          from rom tbl_calendario
-          where fecha between '".$request->f_inicio."' and '".$request->f_fin."'
-          and fecha not in (select created_at from asistencia where id_alumno = ".$request->id_alumno.")")
-
-  */

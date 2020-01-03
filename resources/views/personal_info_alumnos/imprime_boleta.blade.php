@@ -101,19 +101,19 @@
                     <td>Grade:</td>
                     <td>
                         @if($info->grade==1)Prekinder
-                        @elseif($info->level==2)Kinder
-                        @elseif($info->level==3)1
-                        @elseif($info->level==4)2
-                        @elseif($info->level==5)3 
-                        @elseif($info->level==6)4
-                        @elseif($info->level==7)5
-                        @elseif($info->level==8)6
-                        @elseif($info->level==9)7
-                        @elseif($info->level==10)8
-                        @elseif($info->level==11)9
-                        @elseif($info->level==12)10
-                        @elseif($info->level==13)11
-                        @elseif($info->level==14)12
+                        @elseif($info->grade==2)Kinder
+                        @elseif($info->grade==3)1
+                        @elseif($info->grade==4)2
+                        @elseif($info->grade==5)3 
+                        @elseif($info->grade==6)4
+                        @elseif($info->grade==7)5
+                        @elseif($info->grade==8)6
+                        @elseif($info->grade==9)7
+                        @elseif($info->grade==10)8
+                        @elseif($info->grade==11)9
+                        @elseif($info->grade==12)10
+                        @elseif($info->grade==13)11
+                        @elseif($info->grade==14)12
                         @endif
 
                     </td>
