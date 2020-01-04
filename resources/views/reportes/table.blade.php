@@ -1,5 +1,5 @@
 
-@if(sizeof($personalInfoAlumnos)>1)
+@if(sizeof($personalInfoAlumnos)>0)
 <table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
     <thead>
         <tr class="azul">
@@ -36,7 +36,8 @@
     @endforeach
     </tbody>
 </table>
-@elseif(sizeof($asistencia)>1)
+
+@elseif(sizeof($asistencia)>0)
 <table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
     <thead>
         <tr class="azul">
@@ -65,7 +66,6 @@
             <td>{!! $ass->ethnicity !!}</td>
             <td>{!! $ass->race !!}</td>
             <td>{!! $ass->created_at !!}</td></td>
-
         </tr>
     @endforeach
     </tbody>
