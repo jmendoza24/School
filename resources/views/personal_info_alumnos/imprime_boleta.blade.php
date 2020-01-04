@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <td>D.O.B.:</td>
-                    <td colspan="3"></td>
+                    <td colspan="3">{{ $info->date_birth }}</td>
                 </tr>
             </table>
             <table style="width: 100%;">
@@ -177,8 +177,8 @@
             <center>
             <label style="text-align: center;">
             
-            <img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;">
-            <hr style=" width: 150px;" /> 
+            <!--<img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;">--->
+            <hr style=" width: 250px;" /> 
             OFFICIAL SIGNATURE
             </label>
             </center>

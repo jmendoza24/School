@@ -6,7 +6,7 @@
 @section('content')
 <div class="pull-right">
 <button class="btn btn-outline-success" onclick="guarda_credencial({{$info->id}})">Guardar</button>
-<a href="{{ route('download.constancia',['id_alumno'=>$info->id])}}">
+<a href="{{ route('download.boleta',['id_alumno'=>$info->id])}}">
     <button class="btn btn-outline-primary" style="display: none;" id="btn_imprime"><i class="fa fa-print" aria-hidden="true"></i></button>
 </a>
 </div>

@@ -478,11 +478,13 @@ function descarga_credencial(Request $request){
                 ->get();
         $info = $info[0];
         
-        db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->delete();
+        db::table('tbl_datos')->where('id_alumno',$info->id)->delete();
 
-        $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$request->id_alumno],['grade',$info->grade]])->get();
+        $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$info->id],['grade',$info->grade]])->get();
 
-        return view('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
+        //dd($materias);
+
+      return view('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
     }
 
     function imprime_boleta(Request $request){
