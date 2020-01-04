@@ -78,7 +78,6 @@
             OFFICIAL SIGNATURE<br>
             Mati Talent lnstitute Private School<br>
             FL DOE #5743<br>
-            Texas . Florida<br>
             </label>
             </center>
 @endsection

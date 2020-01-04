@@ -1,21 +1,7 @@
-<html>
-    <head>
-        <style>
-            /** 
-                Set the margins of the page to 0, so the footer and the header
-                can be of the full height and width !
-             **/
-            @page {
-                margin: 0cm 0cm;
-            }
+@extends('layouts.app')
+@section('titulo')Boleta de calificación 
 
-            /** Define now the real margins of every page in the PDF **/
-            body {
-                margin-top: 2cm;
-                margin-left: 2cm;
-                margin-right: 2cm;
-                margin-bottom: 2cm;
-            }
+@endsection
 
 @section('content')
 <div class="pull-right">
@@ -29,12 +15,12 @@
                     <td style="" colspan="2">
                         <br><br>
                         <br><br>
-                        <label style="font-size: 25px;">OFFICIAL TRANSCRIPT</label>
+                        <label style="font-size: 25px;">OFFICIAL TRANSCRIPT</label><br>
                         <label style="font-size: 16px;">STUDENT INFORMATION</label> <br>
                         <label style="font-size: 18px; font-weight: bold;">{{ $info->name }}</label>                
                     </td>
                     <td style="" colspan="2">
-                        <table style="width: 100%;" border="0">
+                        <table style="width: 90%;" border="0">
                             <tr>
                                 <td style="text-align: right;">
                                     <img class="brand-logo" alt="stack admin logo"  style="width: 90px;" src="{{ url('app-assets/images/logo/thumbnail_mati-talent-sin-fondo.png') }}">
@@ -75,19 +61,19 @@
                     <td>Grade:</td>
                     <td>
                         @if($info->grade==1)Prekinder
-                        @elseif($info->level==2)Kinder
-                        @elseif($info->level==3)1
-                        @elseif($info->level==4)2
-                        @elseif($info->level==5)3 
-                        @elseif($info->level==6)4
-                        @elseif($info->level==7)5
-                        @elseif($info->level==8)6
-                        @elseif($info->level==9)7
-                        @elseif($info->level==10)8
-                        @elseif($info->level==11)9
-                        @elseif($info->level==12)10
-                        @elseif($info->level==13)11
-                        @elseif($info->level==14)12
+                        @elseif($info->grade==2)Kinder
+                        @elseif($info->grade==3)1
+                        @elseif($info->grade==4)2
+                        @elseif($info->grade==5)3 
+                        @elseif($info->grade==6)4
+                        @elseif($info->grade==7)5
+                        @elseif($info->grade==8)6
+                        @elseif($info->grade==9)7
+                        @elseif($info->grade==10)8
+                        @elseif($info->grade==11)9
+                        @elseif($info->grade==12)10
+                        @elseif($info->grade==13)11
+                        @elseif($info->grade==14)12
                         @endif
 
                     </td>
@@ -96,7 +82,7 @@
                 </tr>
                 <tr>
                     <td>D.O.B.:</td>
-                    <td colspan="3"></td>
+                    <td colspan="3">{{ $info->date_birth }}</td>
                 </tr>
             </table>
             <table style="width: 100%;">
@@ -108,19 +94,17 @@
                                 <td>PERCENTAGE</td>
                                 <td>LETTER GRADE</td>
                             </tr>
-                            <?php $i = 0; $suma = 0; ?>
                             @foreach($materias as $mat)
                             <tr>
                                 <td>{{ $mat->id_materia }}</td>
-                                <td style="text-align: center;">{{ number_format($mat->calificacion,0) }}</td>
+                                <td style="text-align: center;">{{ $mat->calificacion }}</td>
                                 <td style="text-align: center;">{{ $mat->comentarios }}</td>
                             </tr>
-                            <?php $i += 1; $suma +=$mat->calificacion; ?>
                             @endforeach
-                            <?php if($suma==0){ $i = 1;} ?>
+                           
                             <tr>
                                 <td>Avg. GRADE </td>
-                                <td style="text-align: center;">{{ $suma/$i }}</td>
+                                <td style="text-align: center;"><input type="text" id="avg_calif" class="form-control"> </td>
                                 <td></td>
                             </tr>
                         </table>
@@ -145,40 +129,36 @@
 
             <label>
                 <br><br><br>
-                An Academic advisor has reviewed the simple work and verified the grades assigned to the course of study. <br>
-                <br><br>
-                {{ $info->name }} has successfully completed the 
-                        @if($info->grade==1)Prekinder
-                        @elseif($info->level==2)Kinder
-                        @elseif($info->level==3)1
-                        @elseif($info->level==4)2
-                        @elseif($info->level==5)3
-                        @elseif($info->level==6)4
-                        @elseif($info->level==7)5
-                        @elseif($info->level==8)6
-                        @elseif($info->level==9)7
-                        @elseif($info->level==10)8
-                        @elseif($info->level==11)9
-                        @elseif($info->level==12)10
-                        @elseif($info->level==13)11
-                        @elseif($info->level==14)12
-                        @endif
-                         grade during the {{ $info->ciclo }} academic  
-                        @if($info->grade==1) and is promoted to grade  Kinder
-                        @elseif($info->level==2) and is promoted to grade  1
-                        @elseif($info->level==3) and is promoted to grade  2
-                        @elseif($info->level==4) and is promoted to grade  3
-                        @elseif($info->level==5) and is promoted to grade  4
-                        @elseif($info->level==6) and is promoted to grade  5
-                        @elseif($info->level==7) and is promoted to grade  6
-                        @elseif($info->level==8) and is promoted to grade  7
-                        @elseif($info->level==9) and is promoted to grade  8
-                        @elseif($info->level==10) and is promoted to grade  9
-                        @elseif($info->level==11) and is promoted to grade  10
-                        @elseif($info->level==12) and is promoted to grade  11
-                        @elseif($info->level==13) and is promoted to grade  12
-                        @endif
-                        .
+                <textarea class="form-control" id="text_pie" style="width: 900px; height: 200px;">
+                An Academic advisor has reviewed the simple work and verified the grades assigned to the course of study. 
+                
+                {{ $info->name }} has successfully completed the  @if($info->grade==1)Prekinder
+                        @elseif($info->grade==2)Kinder
+                        @elseif($info->grade==3)1
+                        @elseif($info->grade==4)2
+                        @elseif($info->grade==5)3
+                        @elseif($info->grade==6)4
+                        @elseif($info->grade==7)5
+                        @elseif($info->grade==8)6
+                        @elseif($info->grade==9)7
+                        @elseif($info->grade==10)8
+                        @elseif($info->grade==11)9
+                        @elseif($info->grade==12)10
+                        @elseif($info->grade==13)11
+                        @elseif($info->grade==14)12 @endif grade during the {{ $info->ciclo }} academic  @if($info->grade==1) and is promoted to grade  Kinder
+                        @elseif($info->grade==2) and is promoted to grade  1
+                        @elseif($info->grade==3) and is promoted to grade  2
+                        @elseif($info->grade==4) and is promoted to grade  3
+                        @elseif($info->grade==5) and is promoted to grade  4
+                        @elseif($info->grade==6) and is promoted to grade  5
+                        @elseif($info->grade==7) and is promoted to grade  6
+                        @elseif($info->grade==8) and is promoted to grade  7
+                        @elseif($info->grade==9) and is promoted to grade  8
+                        @elseif($info->grade==10) and is promoted to grade  9
+                        @elseif($info->grade==11) and is promoted to grade  10
+                        @elseif($info->grade==12) and is promoted to grade  11
+                        @elseif($info->grade==13) and is promoted to grade  12
+                        @endif .</textarea>
             </label>
             <br>
             <br>
@@ -191,6 +171,4 @@
             OFFICIAL SIGNATURE
             </label>
             </center>
-        </main>
-    </body>
-</html>
+@endsection
