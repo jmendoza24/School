@@ -180,6 +180,39 @@ class personal_info_alumno extends Model
       $fecha = date('Y-m-d');
 
       #return  $nivel.'-'.$grado.'-'.$grupo;
+    return  db::select("select a.* ,c2.valor as grupo,
+                                    case a.level when 1 then 'Pre kindergarten'
+                                               when 2 then 'Primary'
+                                               when 3 then 'High school (Secundaria)'
+                                               when 4 then 'High school (preparatoria)' else 'No definido' end as nivel_escolar, 
+                                    case a.grade  when 1 then 'Prekinder'
+                                        when 2  then 'Kinder'
+                                        when 3 then 1
+                                        when 4 then 2
+                                        when 5 then 3
+                                        when 6 then 4
+                                        when 7 then 5
+                                        when 8 then 6
+                                        when 9 then 7
+                                        when 10 then 8
+                                        when 11 then 9 
+                                        when 12 then 10
+                                        when 13 then 11
+                                        when 14 then 12 end as grado, asi.created_at
+                    from alumnos_personal_infos as a
+                    left join catalogos as c2 on c2.id = a.group
+                    left join (
+                              select max(created_at) as created_at, id_alumno
+                              from asistencias
+                              group by id_alumno
+                                ) as asi on asi.id_alumno = a.id
+                    where a.level = ".$nivel."
+                    and a.grade = ".$grado."
+                    and a.group = ".$grupo."
+                    order by a.grade asc");
+
+
+       /**
         return DB::table('alumnos_personal_infos as a')
                          //->leftjoin('catalogos as c','c.id','=','a.grade')
                          ->leftjoin('catalogos as c2','c2.id','=','a.group')
@@ -209,7 +242,7 @@ class personal_info_alumno extends Model
                          ->where([['a.level',$nivel],['a.grade',$grado],['a.group',$grupo]])
                          ->orderby('a.grade','asc')
                          ->get();
-
+*/
     }
 
     public function documentos($id_alumno)
@@ -263,11 +296,12 @@ class personal_info_alumno extends Model
 
         if ($level!=0) { $query=$query->where('level',$level);}
         if ($grade!=0) {$query=$query->where('grade',$grade);}
+
         if ($group !=0) {$query=$query->where('group',$group);}
         if ($ethnicity!=0) {$query=$query->where('ethnicity',$ethnicity);}
         if ($race!=0) { $query=$query->where('race',$race);}
-          
-   return  $results = $query->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
+
+   $result =  $query->selectraw("a.* ,a.grade as grado,c2.valor as grupo,
                             case a.level when 1 then 'Pre kindergarten'
                                        when 2 then 'Primary'
                                        when 3 then 'High school (Secundaria)'
@@ -295,6 +329,8 @@ class personal_info_alumno extends Model
                                                     when 5 then 'White' end as race, a.tel as tels")
                  ->orderby('a.grade','asc')
                  ->get();
+                 //dd($result);
+        return $result;
 
     }
 
