@@ -40,11 +40,11 @@ function borra_catalogo(id){
         });
 }
 
-function  rados_niveles(){
+function grados_niveles(){
   var level = $("#level").val();
 
   if(level ==1){
-    $(".prescolar").show(); 
+    $(".prescolar").show();
     $(".primaria").hide();
     $(".secundaria").hide();
     $(".prepa").hide();
@@ -81,4 +81,22 @@ function valida_curp(){
               }
             }
         });
+}
+
+function guarda_credencial(id_alumno){
+  if($("#avg_calif").val()=='' || $("#text_pie").val()==''){
+    $.alert("Llene los campos solicitados");
+  }else{
+  $.ajax({
+            url: '/guarda_credencial',          
+            data: {"avg_calif":$("#avg_calif").val(),'text_pie':$("#text_pie").val(),'id_alumno':id_alumno},
+            dataType: "json",
+            type:"get",
+            success: function(result){
+              $.alert("Cambios guardados");
+              $("#btn_imprime").show();
+            }
+        });
+
+  }
 }
