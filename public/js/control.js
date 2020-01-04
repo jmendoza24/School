@@ -398,7 +398,6 @@ $.ajax({
         data:{'id_alumno':id_alumno,'vciclo':vciclo},
         dataType: "json",
         success: function(respuesta){ 
-
           if (respuesta==1) {
 
               $.confirm({
