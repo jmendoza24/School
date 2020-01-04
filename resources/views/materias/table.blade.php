@@ -1,5 +1,5 @@
 
-<table class="table table-striped table-bordered scroll-vertical display">
+<table class="table table-striped table-bordered scroll-vertical ">
     <thead>
         <tr class="azul">
         <th>Level</th>
@@ -11,7 +11,7 @@
     <tbody>
     @foreach($materias as $materias)
         <tr>
-        <td>@if($materias->nivel==1) {{  'Pre kindergarten' }} @elseif($materias->nivel==2) {{  'Primary' }} @elseif($materias->nivel==3) {{  'High school (Secundaria)' }} @elseif($materias->nivel==4) {{  'High school (preparatoria)' }}@endif</td>
+        <td>@if($materias->nivel==1) {{  'Pre kindergarten' }} @elseif($materias->nivel==2) {{  'Primary' }} @elseif($materias->nivel==3) {{  'Middle schooll' }} @elseif($materias->nivel==4) {{  'High school' }}@endif</td>
         <td>{!! $materias->grado !!}</td>
         <td>{!! $materias->materia !!}</td>
             <td style="text-align: center">
