@@ -26,8 +26,8 @@ $grupos=catalogos::where('catalogo',4)->get();
     	                  	<option value="0">Level</option>
     	                  	<option value="1">Pre kindergarten</option>
                           <option value="2">Primary</option>
-                          <option value="3">High school (Secundaria)</option>
-                          <option value="4">High school (preparatoria)</option>
+                          <option value="3">Middle schooll</option>
+                          <option value="4">High school</option>
     	                  </select> 
     	                   </div>
                       </div>

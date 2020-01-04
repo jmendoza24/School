@@ -9,7 +9,6 @@
                     <option value="" >select option</option>
                     <option value="1" >School Cycle</option>
                     <option value="2" >Documents</option>
-                    <option value="3" >Grade</option>
                     <option value="4" >Groups</option>
               </select>
             </div>

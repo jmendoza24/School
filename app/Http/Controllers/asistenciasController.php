@@ -71,7 +71,7 @@ class asistenciasController extends AppBaseController
          from  tbl_calendario
          where fecha between '".$request->f_inicio."' and '".$request->f_fin."'
          and fecha not in (select created_at from asistencias where id_alumno = ".$request->id_alumno.")
-         and 
+          
          ");
 
       //  $asistencias = $this->asistenciasRepository->create($input);

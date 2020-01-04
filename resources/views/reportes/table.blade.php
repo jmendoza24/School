@@ -2,19 +2,38 @@
 @if(sizeof($personalInfoAlumnos)>1)
 <table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
     <thead>
-        <tr class="azul">
+        <tr class="azul">   
             <th>Photo</th>
             <th>ID</th>                
             <th>Name</th>
             <th>Level</th>
             <th>Grade</th>
             <th>Group</th>
+            <th>School cycle</th>
+
             <th>Email</th>
             <th>Phone</th>
             <th>Ethnicity</th>
             <th>Race</th>
-       
 
+            <th>Date birth</th>
+            <th>Curp</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>country</th>
+            <th>City</th>
+            <th>Native language</th>
+            <th>Name parent</th>
+            <th>Parents email</th>
+            <th>Parents cell</th>
+            <th>Special ed</th>
+            <th>Gifted talented</th>
+            <th>Last school</th>
+            <th>Phone school</th>
+            <th>School address</th>
+            <th>Last complete level</th>
         </tr>
     </thead>
     <tbody>
@@ -26,9 +45,32 @@
             <td>{!! $personalInfoAlumno->nivel_escolar !!}</td>
             <td>{!! $personalInfoAlumno->grado !!}</td>
             <td>{!! $personalInfoAlumno->grupo !!}</td>
+
+            <td></td>
+
+
             <td>{!! $personalInfoAlumno->email !!}</td>
             <td>{!! $personalInfoAlumno->tels !!}</td>
             <td>{!! $personalInfoAlumno->ethnicity !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->race !!}</td>
             <td>{!! $personalInfoAlumno->race !!}</td>
 
 

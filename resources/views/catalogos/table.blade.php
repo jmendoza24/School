@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-sm-12">
+    {{-- <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Grade</h4>
@@ -93,7 +93,7 @@
             </table>
         </div>
       </div>
-    </div>
+    </div> --}}
     <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-header">
