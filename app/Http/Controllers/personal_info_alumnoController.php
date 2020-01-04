@@ -162,40 +162,40 @@ class personal_info_alumnoController extends AppBaseController
         }elseif($alum->level==2){
              $level='Primary';
         }elseif($alum->level==3){
-             $level='Middle schooll';
+             $level='High school (Secundaria)';
         }else{
-             $level='High school ';
+             $level='High school (preparatoria)';
         }
 
 
         if($alum->grade==1){
-             $grado='1';
+             $grado='Prekinder';
         }elseif($alum->grade==2){
-             $grado='2';
+             $grado='Kinder';
         }elseif($alum->grade==3){
-             $grado='3';
+             $grado='1';
         }elseif($alum->grade==4){
-             $grado='4';
+             $grado='2';
         }elseif($alum->grade==5){
-             $grado='5';
+             $grado='3';
         }elseif($alum->grade==6){
-             $grado='6';
+             $grado='4';
         }elseif($alum->grade==7){
-             $grado='7';
+             $grado='5';
         }elseif($alum->grade==8){
-             $grado='8';
+             $grado='6';
         }elseif($alum->grade==9){
-             $grado='9';
+             $grado='7';
         }elseif($alum->grade==10){
-             $grado='10';
+             $grado='8';
         }elseif($alum->grade==11){
-             $grado='11';
+             $grado='9';
         }elseif($alum->grade==12){
-             $grado='12';
+             $grado='10';
         }elseif($alum->grade==13){
-             $grado='13';
+             $grado='11';
         }elseif($alum->grade==14){
-             $grado='14';
+             $grado='12';
         }else{
           $grado="";
         }
@@ -261,7 +261,7 @@ class personal_info_alumnoController extends AppBaseController
             'name'=>$alum->name,
             'date_birth'=>$alum->date_birth,
             'place_birth'=>$alum->place_birth,
-            'gender'=>$genero, 
+            'gender'=>$genero,
             'native_language'=>$alum->native_language,
             'ethnicity'=>$ethnicity,
             'race'=>$race,
@@ -299,10 +299,10 @@ class personal_info_alumnoController extends AppBaseController
        Mail::send($vista, $data, function($msj) use ($data) {
                         
         //    $pdf = PDF::loadView('cotizacions.correo_cliente',$data); 
-            $msj->from('Mati@admin.com');
+            $msj->from('ventas@fluxmetals.info');
             $msj->sender('Mati@admin.com');
             $msj->subject('New Student');
-            $msj->to('diego05vidales@gmail.com');
+            $msj->to('diego05vidales@gmail.com')->cc('jacobmendozaha@gmail.com');
 
                 
                                 
@@ -509,7 +509,7 @@ function descarga_credencial(Request $request){
         $materias = db::table('tbl_mat_alumnos')->where([['id_alumno',$request->id_alumno],['grade',$info->grade]])->get();
 
         // $info = 1;
-        $pdf = \PDF::loadView('personal_info_alumnos.reporte_calificacion',compact('info','materias'));
+        $pdf = \PDF::loadView('personal_info_alumnos.imprime_boleta',compact('info','materias','datos'));
         return $pdf->download('calificacion.pdf');
     }
 
@@ -535,4 +535,57 @@ function descarga_credencial(Request $request){
       return json_encode($options);
       
     }
+
+    function guarda_credencial(Request $request){
+        $existe = db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->count();
+        
+        if($existe > 0){
+            db::table('tbl_datos')
+            ->where('id_alumno',$request->id_alumno)
+            ->update(['promedio'=>$request->avg_calif,
+                      'texto'=>$request->text_pie]);
+        }else{
+            db::table('tbl_datos')
+            ->insert(['promedio'=>$request->avg_calif,
+                      'texto'=>$request->text_pie,
+                      'id_alumno'=>$request->id_alumno]);
+        }
+
+        return 1;
+    }
+
+    function ver_constancia(Request $request){
+
+        $info = db::table('alumnos_personal_infos as a')
+                    ->leftjoin('catalogos as c', 'c.id','a.school_cycle')
+                ->where('a.id',$request->id_alumno)
+                ->selectraw('a.*,valor as ciclo')
+                ->get();
+        $info = $info[0];
+
+        return view('personal_info_alumnos.ver_constancia',compact('info'));
+    }
+
+    function imprime_constancia(Request $request){
+        $info = db::table('alumnos_personal_infos as a')
+                    ->leftjoin('catalogos as c', 'c.id','a.school_cycle')
+                ->where('a.id',$request->id_alumno)
+                ->selectraw('a.*,valor as ciclo')
+                ->get();
+        $info = $info[0];
+        
+        $datos = db::table('tbl_datos')->where('id_alumno',$request->id_alumno)->get();
+        
+        if(sizeof($datos)>0){
+            $datos= $datos[0];    
+        }else{
+            $datos = array('promedio'=>0,
+                            'texto'=>'');
+            $datos = (object)$datos;
+        }
+       
+        $pdf = \PDF::loadView('personal_info_alumnos.imprime_constancia',compact('info','datos'));
+        return $pdf->download('Constancia.pdf');
+    }
 }
+
