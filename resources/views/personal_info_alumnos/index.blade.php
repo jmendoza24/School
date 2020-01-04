@@ -20,11 +20,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="link-tab33" data-toggle="tab" href="#link33" aria-controls="link33"
-            aria-expanded="false"><i class="ft-user"></i>high school (Secundaria)</a>
+            aria-expanded="false"><i class="ft-user"></i>Middle schooll</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="link-tab34" data-toggle="tab" href="#link34" aria-controls="link34"
-            aria-expanded="false"><i class="ft-user"></i>high school (preparatoria)</a>
+            aria-expanded="false"><i class="ft-user"></i>High school </a>
           </li>
         </ul>
         <div class="tab-content px-1 pt-1 " >
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="tab-pane" id="link33" role="tabpanel" aria-labelledby="link-tab33" aria-expanded="false">
-                <h4 class="form-section">High school (Secundaria)</h4><br>
+                <h4 class="form-section">Middle schooll</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                  @foreach($secundaria as $sec)
                     <div class="col-xl-3">
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="tab-pane" id="link34" role="tabpanel" aria-labelledby="link-tab34" aria-expanded="false">
-                <h4 class="form-section">High school (preparatoria)</h4><br>
+                <h4 class="form-section">High school</h4><br>
                 <div class="row" style="background-color: #F0E6E4;padding-top: 14px">
                   @foreach($prepa as $pre)
                   <div class="col-xl-3">

@@ -11,7 +11,7 @@ function validarFile(all)
               $.confirm({
                    animation: 'zoom',
                    title: '<p style="text-aling:center" class="text-bold">Mensaje</p>',
-                   content: '<h4 style="text-aling:center" class="text-bold">Extensión de archivo no valida</h4>',
+                   content: '<h4 style="text-aling:center" class="text-bold">archivo no valido</h4>',
                    buttons: {
                        Ok: function () {
                         
@@ -89,7 +89,7 @@ function carga_documentos(id){
            icon: 'la la-warning',
            title: 'Mensaje',
            cancelButtonClass: 'btn-danger',
-           content: '<h3 style="text-aling:center" class="texto_rojo"><strong>Verificar campo requeridos!</strong></h3>',
+           content: '<h3 style="text-aling:center" class="texto_rojo"><strong>required fields!</strong></h3>',
            buttons: {
                Aceptar: function () {
 
@@ -111,6 +111,7 @@ function carga_documentos(id){
             processData: false,
             success: function(respuesta){ 
               $('#documentos').html(respuesta);
+                    $.alert("loaded document");
 
             },  
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -337,6 +338,8 @@ $.ajax({
         data:{'level':level,'grade':grade,'group':group,'ethnicity':ethnicity,'race':race},
         dataType: "json",
         success: function(respuesta){ 
+                    $.alert("updated data");
+
           $("#reporte").html(respuesta);
           $('.file-export').DataTable({
               dom: 'Bfrtip',
@@ -367,6 +370,8 @@ $.ajax({
         data:{'level':level,'grade':grade,'group':group,'ethnicity':ethnicity,'race':race,'f_fin':f_fin,'f_inicio':f_inicio},
         dataType: "json",
         success: function(respuesta){ 
+            $.alert("updated data");
+
           $("#reporte").html(respuesta);
           $('.file-export').DataTable({
               dom: 'Bfrtip',
@@ -393,7 +398,6 @@ $.ajax({
         data:{'id_alumno':id_alumno,'vciclo':vciclo},
         dataType: "json",
         success: function(respuesta){ 
-
           if (respuesta==1) {
 
               $.confirm({
@@ -442,6 +446,8 @@ $.ajax({
               data:parametros,
               success: function(respuesta){ 
                 $("#fields").html(respuesta);
+                                $.alert("saved assistance");
+
 
               },  
               error: function(XMLHttpRequest, textStatus, errorThrown) { 

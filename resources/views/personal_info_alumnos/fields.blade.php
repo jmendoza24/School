@@ -107,8 +107,8 @@
                     <option value="" selected="">select option</option>
                     <option value="1" {{($personalInfoAlumno->level ==1) ? 'selected':''}} >Pre kindergarten</option>
                     <option value="2" {{($personalInfoAlumno->level ==2) ? 'selected':''}} >Primary</option>
-                    <option value="3" {{($personalInfoAlumno->level ==3) ? 'selected':''}} >High school (Secundaria)</option>
-                    <option value="4" {{($personalInfoAlumno->level ==4) ? 'selected':''}} >High school (preparatoria)</option>
+                    <option value="3" {{($personalInfoAlumno->level ==3) ? 'selected':''}} >Midle schooll</option>
+                    <option value="4" {{($personalInfoAlumno->level ==4) ? 'selected':''}} >High school</option>
 
                 </select>
                 </div>
@@ -523,18 +523,23 @@
          <h1 class="pull-right">
           <a class="btn btn_morado pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="add_subjet()"> <i class="fa fa-plus"></i> Subject</a>
 
-          <select class="form-control" onchange="view_kardex()" id="vciclo">
-             <option value="" selected="" >All subjets</option> 
-                     @if(!empty($ciclos))
-                         @foreach($ciclos as $tipo)
-                        <option value="{{ $tipo->id }}" 
-                          
-                            {{ ($personalInfoAlumno->school_cycle == $tipo->id) ? 'selected' : '' }}
-                           >
-                          {{ $tipo->valor}}</option>
-                        @endforeach
-                    @endif
-              </select>
+               <select class="form-control" onchange="view_kardex()" id="vciclo">
+                    <option value="" selected="" >All subjets</option> 
+                    <option value="1" {{ ($personalInfoAlumno->grade == 1) ? 'selected' : '' }}  class="prescolar">Prekinder</option>
+                    <option value="2" {{ ($personalInfoAlumno->grade == 2) ? 'selected' : '' }}  class="prescolar">Kinder</option>
+                    <option value="3" {{ ($personalInfoAlumno->grade == 3) ? 'selected' : '' }}  class="primaria">Grade 1</option>
+                    <option value="4" {{ ($personalInfoAlumno->grade == 4) ? 'selected' : '' }}  class="primaria">Grade 2</option>
+                    <option value="5" {{ ($personalInfoAlumno->grade == 5) ? 'selected' : '' }}  class="primaria">Grade 3</option>
+                    <option value="6" {{ ($personalInfoAlumno->grade == 6) ? 'selected' : '' }}  class="primaria">Grade 4</option>
+                    <option value="7" {{ ($personalInfoAlumno->grade == 7) ? 'selected' : '' }}  class="primaria">Grade 5</option>
+                    <option value="8" {{ ($personalInfoAlumno->grade == 8) ? 'selected' : '' }}  class="primaria">Grade 6</option>
+                    <option value="9" {{ ($personalInfoAlumno->grade == 9) ? 'selected' : '' }}  class="secundaria">Grade 7</option>
+                    <option value="10" {{ ($personalInfoAlumno->grade == 10) ? 'selected' : '' }} class="secundaria">Grade 8</option>
+                    <option value="11" {{ ($personalInfoAlumno->grade == 11) ? 'selected' : '' }} class="secundaria">Grade 9</option>
+                    <option value="12" {{ ($personalInfoAlumno->grade == 12) ? 'selected' : '' }} class="prepa">Grade 10</option>                            
+                    <option value="13" {{ ($personalInfoAlumno->grade == 13) ? 'selected' : '' }} class="prepa">Grade 11</option>  
+                    <option value="14" {{ ($personalInfoAlumno->grade == 14) ? 'selected' : '' }} class="prepa">Grade 12</option>  
+                </select>
           </h1>
       </div> <br><br>
       </div>

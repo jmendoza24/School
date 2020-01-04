@@ -64,15 +64,15 @@ class tbl_mat_alumnosController extends AppBaseController
 
         $alum=personal_info_alumno::where('id',$id_alumno)->get();
         $alum=$alum[0];
-        $vciclo=$alum->school_cycle;
-        $input['school_cycle']=$vciclo;
+        $vciclo=$alum->grade;
+        $input['grade']=$vciclo;
 
         $tblMatAlumnos = $this->tblMatAlumnosRepository->create($input);
 
         $alumnosmarerias= DB::table('alumnos_personal_infos as i')
                       ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
                       ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
-                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
+                      ->where([['i.id',$id_alumno],['ta.grade',$vciclo]])
                       ->get();
 
         $options =  view('tbl_mat_alumnos.table',compact('alumnosmarerias'))->render();
@@ -183,8 +183,8 @@ class tbl_mat_alumnosController extends AppBaseController
 
         $alum=personal_info_alumno::where('id',$id_alumno)->get();
         $alum=$alum[0];
-        $vciclo=$alum->school_cycle;
-        $input['school_cycle']=$vciclo;
+        $vciclo=$alum->grade;
+        $input['grade']=$vciclo;
 
 
         DB::table('tbl_mat_alumnos')->delete($id);
@@ -192,7 +192,7 @@ class tbl_mat_alumnosController extends AppBaseController
         $alumnosmarerias= DB::table('alumnos_personal_infos as i')
                       ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
                       ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
-                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
+                      ->where([['i.id',$id_alumno],['ta.grade',$vciclo]])
                       ->get();
 
 
@@ -227,12 +227,12 @@ class tbl_mat_alumnosController extends AppBaseController
 
 
 
-
         $alumnosmarerias= DB::table('alumnos_personal_infos as i')
                       ->join('tbl_mat_alumnos as ta','ta.id_alumno','=','i.id')
                       ->selectraw('*,ta.id as id_mat,ta.id_materia as materia')
-                      ->where([['i.id',$id_alumno],['ta.school_cycle',$vciclo]])
+                      ->where([['i.id',$id_alumno],['ta.grade',$vciclo]])
                       ->get();
+
 
                 if (empty($alumnosmarerias)) {
                return  $resp=1;

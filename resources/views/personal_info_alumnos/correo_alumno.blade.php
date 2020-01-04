@@ -19,6 +19,10 @@
            <td>{{ $email }}</td>
          </tr>
          <tr>
+           <td>Id personal:</td>
+           <td>{{ $id_personal }}</td>
+         </tr>
+         <tr>
            <td>Tel:</td>
            <td>{{ $tel }}</td>
          </tr>
@@ -52,8 +56,8 @@
            <td>{{ $country }}</td>
          </tr>
          <tr>
-           <td>Zipcode:</td>
-           <td>{{ $zipcode }}</td>
+           <td>City:</td>
+           <td>{{ $city }}</td>
          </tr>
          <tr>
             <td>Ethnicity:</td>
@@ -72,13 +76,14 @@
            <td>{{ $name_parent }}</td>
          </tr>
          <tr>
+           <td>Parents email:</td>
+           <td>{{ $parents_email }}</td>
+         </tr>
+         <tr>
            <td>Parents cell:</td>
            <td>{{ $parents_cell }}</td>
          </tr>
-         <tr>
-           <td>Last school:</td>
-           <td>{{ $last_school }}</td>
-         </tr>
+         
          <tr>
            <td>Last complete level:</td>
            <td>{{ $last_complete_level }}</td>
@@ -98,6 +103,30 @@
          <tr>
            <td>School cycle:</td>
            <td>{{ $school_cycle }}</td>
+         </tr>
+         <tr>
+           <td>Special ed:</td>
+           <td>{{ $special_ed }}</td>
+         </tr>
+         <tr>
+           <td>Gifted_talented:</td>
+           <td>{{ $gifted_talented }}</td>
+         </tr>
+         <tr>
+           <td>Last school:</td>
+           <td>{{ $last_school }}</td>
+         </tr>
+         <tr>
+           <td>Phone school:</td>
+           <td>{{ $phone_school }}</td>
+         </tr>
+         <tr>
+           <td>School address:</td>
+           <td>{{ $school_address }}</td>
+         </tr>
+         <tr>
+           <td>Last complete level:</td>
+           <td>{{ $last_complete_level }}</td>
          </tr>
     </tbody>
 </table>
