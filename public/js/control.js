@@ -520,9 +520,15 @@ $('#large_familias').modal('hide');
               data:parametros,
               success: function(respuesta){ 
                 $("#asis").html(respuesta);
+                  $('#asistencia_al').DataTable({
+                      dom: 'Bfrtip',
+                      buttons: [
+                          'copy', 'csv', 'excel'
+                      ]
+                  });
+                  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
-
-              } 
+                      } 
 
           }); 
 }
