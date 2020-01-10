@@ -4,7 +4,7 @@
     <thead>
         <tr class="azul">   
             <th>Photo</th>
-            <th>ID</th>                
+            <th>ID</th>                  
             <th>Name</th>
             <th>Level</th>
             <th>Grade</th>
