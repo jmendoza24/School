@@ -15,7 +15,7 @@
     </div>
         
         </div>
-<table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="">
+<table class="table display nowrap table-striped table-bordered scroll-horizontal" >
     <thead>
         <tr class="azul">
             <th>Photo</th>

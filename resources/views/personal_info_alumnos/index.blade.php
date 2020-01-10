@@ -20,7 +20,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="link-tab33" data-toggle="tab" href="#link33" aria-controls="link33"
-            aria-expanded="false"><i class="ft-user"></i>Middle school</a>
+            aria-expanded="false"><i class="ft-user"></i>Middle schooll</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="link-tab34" data-toggle="tab" href="#link34" aria-controls="link34"

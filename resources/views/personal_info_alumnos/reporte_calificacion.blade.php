@@ -166,7 +166,7 @@
             <center>
             <label style="text-align: center;">
             
-            <!--<img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;">-->
+            <img src="{{ url('app-assets/images/firma.jpg')}}" style="width: 120px;">
             <hr style=" width: 150px;" /> 
             OFFICIAL SIGNATURE
             </label>

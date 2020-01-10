@@ -15,9 +15,9 @@
             <th>Phone</th>
             <th>Ethnicity</th>
             <th>Race</th>
-
             <th>Date birth</th>
             <th>Curp</th>
+
             <th>Gender</th>
             <th>Address</th>
             <th>State</th>
@@ -53,32 +53,31 @@
             <td>{!! $personalInfoAlumno->tels !!}</td>
             <td>{!! $personalInfoAlumno->ethnicity !!}</td>
             <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>{!! $personalInfoAlumno->date_birth !!}</td>
+            <td>{!! $personalInfoAlumno->curp !!}</td>
 
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
-            <td>{!! $personalInfoAlumno->race !!}</td>
+            <td>@if($personalInfoAlumno->gender==1) M @elseif($personalInfoAlumno->gender==2) F @else Sin asignar @endif </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 
 
         </tr>
     @endforeach
     </tbody>
 </table>
-
 @elseif(sizeof($asistencia)>0)
 <table class="table display nowrap table-striped table-bordered file-export"  id="table_export">
     <thead>
@@ -108,6 +107,7 @@
             <td>{!! $ass->ethnicity !!}</td>
             <td>{!! $ass->race !!}</td>
             <td>{!! $ass->created_at !!}</td></td>
+
         </tr>
     @endforeach
     </tbody>
