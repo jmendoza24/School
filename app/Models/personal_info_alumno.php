@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @package App\Models
  * @version November 28, 2019, 5:33 pm UTC
  *
- * @property string name
+ * @property string name 
  * @property string|\Carbon\Carbon date_birth
  * @property string place_birth
  * @property integer gender

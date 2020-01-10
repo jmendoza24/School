@@ -1,3 +1,4 @@
+<div style="overflow-y: scroll; max-height: 300px;">
 <table class="table display nowrap table-striped table-bordered scroll-horizontal"   id="asistencia_al">
     <thead>
         <tr class="azul">
@@ -17,4 +18,4 @@
     @endforeach
     </tbody>
 </table>
- 
+ </div>
